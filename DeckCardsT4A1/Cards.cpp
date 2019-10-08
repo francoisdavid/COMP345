@@ -19,6 +19,7 @@ Card::Card(){
   
 }
 Card::Card(int index){
+
     switch(index){
         // 8 Forest cards.
         case 1: goods = "Forest"; action = "Move 3 troops."; break;
@@ -76,7 +77,7 @@ Card::Card(int index){
         default: cout << "Trying to instantiate more than 42 cards." << endl;
     }
 }
-
+// Destructor.
 Card::~Card(){
     
 }
@@ -89,16 +90,18 @@ string Card::getGoods(){
     return goods;
 }
 
+
 // Deck CLASS.
 
 // Default Constructor.
 Deck::Deck(){
-   
-    for(int i = 1 ; i < 42 ; i ++ ){
-        Card* pointer = new Card(i);
-        cards.emplace_back(pointer);
+    if(cards.size() == 0){
+        for(int i = 1 ; i <= 42 ; i ++ ){
+            Card* pointer = new Card(i);
+            cards.emplace_back(pointer);
+        }
+        random_shuffle(cards.begin(), cards.end());
     }
-    random_shuffle(cards.begin(), cards.end());
 }
 
 // Destructor.
@@ -108,9 +111,11 @@ Deck::~Deck(){
 
 // Constructor with the nbOfCards Specified.
 Deck::Deck(int nbOfCards){
-    for(int i = 0 ; i < nbOfCards ; i ++ ){
-          Card* pointer = new Card();
-          cards.emplace_back(pointer);
+    if(cards.size() == 0 ){
+        for(int i = 0 ; i < nbOfCards ; i ++ ){
+              Card* pointer = new Card();
+              cards.emplace_back(pointer);
+        }
     }
 }
 
@@ -119,6 +124,10 @@ Card* Deck::drawCard(){
     Card &temp = *cards.back();
     cards.pop_back();
     return &temp;
+}
+
+int Deck::howManyCards(){
+    return cards.size();
 }
 
 
@@ -135,23 +144,33 @@ ostream& operator<<(ostream& os, const Deck& dt)
 // The HandObject CLASS
 // Default Constructor.
 HandObject::HandObject() {
-    Deck* deck = new Deck();
-    for(int i= 0 ; i < 6 ;i++){
-        displayCards[i] = deck->drawCard();
+    if(deck->howManyCards() == 42){
+        //Deck* deck = new Deck();
+        
+        for(int i= 0 ; i < 6 ;i++){
+            displayCards[i] = deck->drawCard();
+        }
     }
 }
-
+// Default destuctor.
 HandObject::~HandObject(){
     
 }
 
+// Constructor with size of deck specified.
 HandObject::HandObject(Deck* deckPassed){
-    deck = deckPassed;
-    for(int i= 0 ; i < 6 ; i++ ){
-        displayCards[i] = deck->drawCard();
+    if(deck->howManyCards() != deckPassed->howManyCards()){
+        deck = deckPassed;
+        for(int i= 0 ; i < 6 ; i++ ){
+            displayCards[i] = deck->drawCard();
+            cout << "Card "<< deck->howManyCards()<< " !" << endl;
+        }
     }
 }
 
+// For static variables (definition).
+Deck* HandObject::deck = new Deck();
+Card* HandObject::displayCards[6] = {NULL, NULL, NULL, NULL, NULL, NULL};
 
 
 // Exhcnage method for the hand object.
