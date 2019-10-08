@@ -10,9 +10,9 @@
 #define Cards_hpp
 #include <string>
 #include <vector>
-
 #include <stdio.h>
 using namespace std;
+
 
 // The Card CLASS.
 class Card {
@@ -29,9 +29,6 @@ private:
 };
 
 
-
-
-
 // The Deck CLASS.
 class Deck{
 public:
@@ -39,13 +36,11 @@ public:
     Deck(int nbbOfCards);
     ~Deck();
     Card* drawCard();
+    int howManyCards();
     friend ostream& operator<<(ostream& os, const Deck& dt);
 private:
     vector<Card*> cards;
 };
-
-
-
 
 
 // The HandObject CLASS
@@ -59,10 +54,10 @@ public:
     void setCard(Card card);
     void setDeck(Deck* deck);
     void toString();
+   
 private:
-    Card* displayCards[6];
-    Deck* deck;
+    static Card* displayCards[6];
+    static Deck* deck;
 };
 
-
-#endif /* Cards_hpp */
+#endif /* Cards_hpp *///s
