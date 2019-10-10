@@ -77,22 +77,25 @@ Card::Card(int index){
         default: cout << "Trying to instantiate more than 42 cards." << endl;
     }
 }
+
 // Destructor.
 Card::~Card(){
     
 }
+
 // Accessor method.
 string Card::getAction(){
     return action;
 }
+
 // Accessor method.
 string Card::getGoods(){
     return goods;
 }
 
 
-// Deck CLASS.
 
+// Deck CLASS.
 // Default Constructor.
 Deck::Deck(){
     if(cards.size() == 0){
@@ -106,7 +109,7 @@ Deck::Deck(){
 
 // Destructor.
 Deck::~Deck(){
-    
+    cards.clear();
 }
 
 // Constructor with the nbOfCards Specified.
@@ -126,7 +129,9 @@ Card* Deck::drawCard(){
     return &temp;
 }
 
+// Returns the number of cards in the Deck.
 int Deck::howManyCards(){
+    cout<< cards.size() <<endl;
     return cards.size();
 }
 
@@ -144,9 +149,9 @@ ostream& operator<<(ostream& os, const Deck& dt)
 // The HandObject CLASS
 // Default Constructor.
 HandObject::HandObject() {
+   
     if(deck->howManyCards() == 42){
         //Deck* deck = new Deck();
-        
         for(int i= 0 ; i < 6 ;i++){
             displayCards[i] = deck->drawCard();
         }
@@ -193,6 +198,7 @@ Card* HandObject::exchange(int indexOfCard){
     return pointer;
 }
 
+// To String object.
 void HandObject::toString(){
     for(int i = 0 ; i < 6  ; i++ ){
         cout << "\nThe card in position " << i + 1 << ". Price: "<< ceil(double(i)/2) << endl <<  "\t Goods: " << displayCards[i]->getGoods()<< endl <<"\t Action: " << displayCards[i]->getAction() << endl ;
