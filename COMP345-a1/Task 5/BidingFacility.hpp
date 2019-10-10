@@ -18,18 +18,17 @@ using namespace std;
 
 
 class BidingFacility{
+    
 public:
     BidingFacility();
     ~BidingFacility();
     void playerBid(Player* player, int bid);
     Player* revailHighestBider();
+    void resetCurrentBid();
 private:
-    static Player* currentlyHighestBidder;
+   static Player* currentlyHighestBidder;
     static int* currentBid;
-    
+  
 };
 
-
-
 #endif /* BidingFacility_hpp */
-

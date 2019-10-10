@@ -14,23 +14,31 @@
 #include <cmath>
 using namespace std;
 
-Player* BidingFacility::currentlyHighestBidder = new Player();
-int* BidingFacility::currentBid = 0;
+Player* BidingFacility::currentlyHighestBidder = NULL;
+int* BidingFacility::currentBid = new int(0);
 
 
 // Default Constructor.
 BidingFacility::BidingFacility (){
     
 }
+BidingFacility::~BidingFacility(){
+    
+}
 
 void BidingFacility::playerBid(Player* player, int bid) {
-    if(player->getPlayerCoins()> bid){
-        cout << "You cannot bbid more than you have !!" << endl;
+    if (currentlyHighestBidder == NULL){
+        currentlyHighestBidder = player;
+    }
+    if(player->getPlayerCoins()< bid){
+        cout << "You cannot bid more than you have !!" << endl;
     } else if (*currentBid < bid ){
         currentlyHighestBidder = player;
-    } else if (*currentBid == bid && player->getPlayerAge() < currentlyHighestBidder->getPlayerAge()) {
         *currentBid = bid;
-        *currentlyHighestBidder = *player;
+    }else if (*currentBid == bid && player->getPlayerAge() < currentlyHighestBidder->getPlayerAge()) {
+        
+        *currentBid = bid;
+        currentlyHighestBidder = player;
     }
 }
 
@@ -43,3 +51,7 @@ Player* BidingFacility::revailHighestBider(){
     
 }
 
+void BidingFacility::resetCurrentBid(){
+    *currentBid = 0;
+    currentlyHighestBidder = NULL;
+}
