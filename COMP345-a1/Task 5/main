@@ -1,0 +1,45 @@
+//
+//  main.cpp
+//  BidingT5A1
+//
+//  Created by Francois David on 2019-10-09.
+//  Copyright © 2019 Francois David. All rights reserved.
+//
+#include "BidingFacility.hpp"
+#include "Player.hpp"
+#include "Cards.hpp"
+#include <iostream>
+#include <vector>
+#include <iostream>
+using namespace std;
+
+
+
+
+int main(int argc, const char * argv[]) {
+    /*Player* player1 = new Player();
+    Player* player2 = new Player();
+    Player* player3 = new Player();
+    Player* player4 = new Player();
+    
+    player1->setAge(1);
+    player2->setAge(1);
+    player3->setAge(2);
+    player4->setAge(5);
+    
+    
+    BidingFacility* bf = new BidingFacility();
+    
+    
+    
+    bf->playerBid(player1, 0);
+    bf->playerBid(player2, 1);
+    bf->playerBid(player3, 0);
+    bf->playerBid(player4, 3);
+    
+    Player* winner = bf->revailHighestBider();*/
+    
+    
+    
+    return 0;
+}
