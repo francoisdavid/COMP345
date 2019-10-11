@@ -5,16 +5,31 @@ using namespace std;
 
 int main(int argc, const char* argv[]) {
 	
-	Player *player1 = new Player();
-	Player *player2 = new Player("Rami", 8, 23);
+	Player *player = new Player("Rami", 10, 3, 10, 1994);
 
-	cout << "Printing player info..." << endl;
-	player1->printInfo();
-	player2->printInfo();
+	player->printInfo();
+	cout << endl;
 
-	cout << player1->getName() +" pays 5 coins." << endl;
-	player1->PayCoin(5);
-	player1->printInfo();
+	cout << player->getName() << " will add a card to his collection..." << endl;
+	player->BuyCard(1);
+	cout << "Card: Action: " << player->getCards()[0]->getAction() << "; Good: " << player->getCards()[0]->getGoods() << endl;
+	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
+	cout << endl;
+
+	cout << player->getName() << " pays 5 coins..." << endl;
+	player->PayCoin(5);
+	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
+	cout << endl;
+
+	player->BuildCity();
+	player->DestroyArmy();
+	player->MoveArmies();
+	player->MoveOverLandOrWater();
+	player->PlaceNewArmies();
+
+	Map::Node* country = new Map::Node();
+	player->addCountry(country);
+
 
 	return 0;
 
