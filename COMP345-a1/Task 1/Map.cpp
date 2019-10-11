@@ -1,70 +1,113 @@
 #include "Map.h"
 
-Map::Map(char *name) : name(name) {
-  countriesSize = new int(20);
-  numOfCountries = new int(0);
-  countries = new Map::Node[*countriesSize];
+Map::Map(std::string* name) : name(name) {
 }
 
 Map::~Map() {
-  delete [] countries;
-  delete countriesSize;
-  delete numOfCountries;
+//  for (auto & country : countries)
+//    delete country;
+//  for (auto & continent : continents)
+//    delete continent;
+//  for (auto & edge : edges)
+//    delete edge;
+//  delete name;
 }
 
-
-Map::Node::Node(char *name) : name(name), continent(nullptr) {
+Node::Node(std::string* name) : name(name), continent(nullptr) {
 
 }
 
-Map::Node::~Node() {
-  delete continent;
+Node::~Node() {
 }
 
-void Map::Node::setContinent(Map *continent) {
+void Node::setContinent(Map *continent) {
   this->continent = continent;
-}
-
-Map::Edge::Edge(char *name, Map::Node *n1, Map::Node *n2) : name(name), node1(n1), node2(n2) {
 
 }
 
+Edge::Edge(std::string *name, Node *n1, Node *n2, bool* field) : name(name), node1(n1), node2(n2), field(field) {
+  n1->addEdge(this);
+  n2->addEdge(this);
+}
 
-std::ostream &operator<<(std::ostream &os, const Map::Edge &edge) {
-  os << "Edge {\n\tname: " << edge.name << ",\n\tnode1: " << *edge.node1 << ",\n\tnode2: " << *edge.node2 << "\n}";
+std::ostream &operator<<(std::ostream &os, const Edge &edge) {
+  os << "Edge {\n\tname: " << *edge.name << ",\n\tnode1: " << *edge.node1 << ",\n\tnode2: " << *edge.node2 << "\n}";
   return os;
 }
 
-std::ostream &operator<<(std::ostream &os, const Map::Node &node) {
-  os << "Node {name: " << node.name << ", continent: " << node.continent->getName() << "}";
+Edge::~Edge() {
+  delete name;
+  delete node1;
+  delete node2;
+  delete field;
+}
+
+Edge::Edge() {
+  node1 = nullptr;
+  node2 = nullptr;
+}
+
+Node *Edge::getNode1() const {
+  return node1;
+}
+
+Node *Edge::getNode2() const {
+  return node2;
+}
+
+std::ostream &operator<<(std::ostream &os, const Node &node) {
+  os << "Node {name: " << *node.name << ", continent: "<< ((node.continent && node.continent->getName()) ? (*node.continent->getName()) : ("NULL")) << "}";
   return os;
 }
 
-Map::Node::Node() {
+Node::Node() {
 
 }
 
-char *Map::getName() {
+
+void Node::addEdge(Edge * edge) {
+  edges.push_back(edge);
+}
+
+const std::vector<Edge *> &Node::getEdges() const {
+  return edges;
+}
+
+std::string * Map::getName() {
   return name;
 }
 
-
 std::ostream &operator<<(std::ostream &os, const Map &map) {
-  os << map.name << " map {\n";
-  for (int i = 0; i < *map.numOfCountries; i++)
+  os << *map.name << " map {\n";
+  for (int i = 0; i < map.countries.size(); i++)
     os << "\t" << map.countries[i] << ",\n";
   os << "}";
   return os;
 }
 
-void Map::addCountry(Map::Node * country) {
-  if (*numOfCountries == *countriesSize) {
-    *countriesSize *= 2;
-    Map::Node* tmp = new Map::Node[*countriesSize];
-    for (int i = 0; i < *numOfCountries; i++)
-      tmp[i] = countries[i];
-    delete [] countries;
-    countries = tmp;
-  }
-  countries[(*numOfCountries)++] = *country;
+void Map::addCountry(Node * country) {
+  countries.push_back(country);
+}
+
+void Map::addContinent(Map * continent) {
+  continents.push_back(continent);
+}
+
+void Map::addEdge(Edge * edge) {
+  edges.push_back(edge);
+}
+
+void Map::setContinent(Node * node, Map * continent){
+  if(std::find(continents.begin(), continents.end(), continent) == continents.end())
+    continents.push_back(continent);
+  node->setContinent(continent);
+}
+
+void Map::validate() {
+  for(auto & country : countries)
+    if (country->getEdges().empty())
+      std::cout << *country << "HAS NO EDGES." << std::endl;
+  for (auto & edge : edges)
+    if (edge->getNode1() == nullptr || edge->getNode2() == nullptr)
+      std::cout << *edge << "HAS ONE OR LESS NODES." << std::endl;
 }
