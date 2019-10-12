@@ -33,8 +33,12 @@ int main(int argc, const char* argv[]) {
 	player->PlaceNewArmies();
 	cout << endl;
 
+<<<<<<< HEAD
+	Node* country = new Node();
+=======
 	string* countryName = new string("Canada");
 	Node* country = new Node(countryName);
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 	player->addCountry(country);
 	cout << player->getName() << " owns " << *player->getCountries()[0]->getName() << "." << endl;
 

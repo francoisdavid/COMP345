@@ -14,7 +14,10 @@
 #include <cmath>
 using namespace std;
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 Card::Card(){
   
 }
@@ -103,7 +106,11 @@ Deck::Deck(){
             Card* pointer = new Card(i);
             cards.emplace_back(pointer);
         }
+<<<<<<< HEAD
+        random_shuffle(cards.begin(), cards.end());
+=======
         //random_shuffle(cards.begin(), cards.end());
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
     }
 }
 
@@ -131,7 +138,10 @@ Card* Deck::drawCard(){
 
 // Returns the number of cards in the Deck.
 int Deck::howManyCards(){
+<<<<<<< HEAD
+=======
     //cout<< cards.size() <<endl;
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
     return cards.size();
 }
 

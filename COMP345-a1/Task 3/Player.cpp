@@ -1,7 +1,19 @@
+//
+//  Player.cpp
+//  T3A1-Player
+//
+//  Created by Francois David on 2019-10-09.
+//  Copyright © 2019 Francois David. All rights reserved.
+//
 
-#include <iostream>
 #include "Player.h"
+
+#include <vector>
+#include <iostream>
+#include <stdlib.h>
 #include <string>
+#include <cmath>
+
 
 using namespace std;
 
@@ -14,7 +26,11 @@ Player::Player()
 	playerNumber = new int(*objCounter);
 	playerName = "Player "+ to_string(*playerNumber);
 	playerHand = new HandObject();
+<<<<<<< HEAD
+	playerBiddingFacility = new BidingFacility();
+=======
 	//playerBiddingFacility = new BiddingFacility();
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 
 	*objCounter = *objCounter + 1;
 }
@@ -28,7 +44,11 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB)
 	monthOfBirth = new int(MOB);
 	yearOfBirth = new int(YOB);
 	playerHand = new HandObject();
+<<<<<<< HEAD
+	playerBiddingFacility = new BidingFacility();
+=======
 	//playerBiddingFacility = new BiddingFacility(this, playerName, 0, *getPlayerAge());
+>>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 
 	*objCounter = *objCounter + 1;
 }
