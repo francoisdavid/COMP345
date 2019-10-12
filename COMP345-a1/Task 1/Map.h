@@ -31,7 +31,7 @@ public:
 
   void addCountry(Node *);
 
-  void addContinent(std::string, Node*);
+  void addCountry(std::string, Node*);
 
   void addEdge(Edge*);
 

@@ -53,7 +53,7 @@ bool MapLoader::validateNode(const std::string& nodeLine) {
         std::regex regex_node("^([0-9]+), (.*), (.*)$");
         std::smatch matches;
         if (std::regex_match(nodeLine, matches, regex_node))
-            map->addContinent(matches[3].str(), new Node(std::stoi(matches[1].str()), matches[2].str()));
+            map->addCountry(matches[3].str(), new Node(std::stoi(matches[1].str()), matches[2].str()));
     } catch (...) {
         return false;
     }

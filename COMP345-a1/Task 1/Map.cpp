@@ -90,7 +90,7 @@ void Map::addCountry(Node * country) {
   countries.push_back(country);
 }
 
-void Map::addContinent(std::string continent, Node* node) {
+void Map::addCountry(std::string continent, Node* node) {
     auto it = find_if(continents.begin(),
             continents.end(),
             [this, continent](Map *obj) {return *obj->getName() == continent;});
