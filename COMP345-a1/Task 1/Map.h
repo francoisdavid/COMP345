@@ -72,7 +72,6 @@ private:
   Node *node1;
   Node *node2;
 public:
-  Edge();
   Edge(std::string, Node *, Node *, std::string);
   ~Edge();
   Node *getNode1() const;
