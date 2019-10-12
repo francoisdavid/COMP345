@@ -20,14 +20,11 @@ Node::Node(std::string* name) : name(name), continent(nullptr) {
 Node::~Node() {
 }
 
-<<<<<<< HEAD
-=======
 std::string* Node::getName()
 {
 	return name;
 }
 
->>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 void Node::setContinent(Map *continent) {
   this->continent = continent;
 

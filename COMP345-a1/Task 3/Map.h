@@ -6,13 +6,10 @@
 #include <vector>
 #include <algorithm>
 
-<<<<<<< HEAD
 
 class Army {  //Replace with #include "Army.h"
 };
 
-=======
->>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
 class Map;
 class Edge;
 class Node;
@@ -54,11 +51,9 @@ public:
 
   ~Node();
 
-<<<<<<< HEAD
-=======
+
   std::string* getName();
 
->>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
   void setContinent(Map *);
   void addEdge(Edge*);
 
@@ -83,8 +78,5 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
 };
 
-<<<<<<< HEAD
-#endif //MAPS_MAP_H
-=======
 #endif //Map.h
->>>>>>> 79a969af53687e698b7011da35a12c5acd0112d5
+
