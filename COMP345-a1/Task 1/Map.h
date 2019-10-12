@@ -23,7 +23,6 @@ private:
   std::vector<Edge*> edges;
   std::vector<Map*> continents;
 public:
-  Map();
   Map(std::string*);
   ~Map();
 
@@ -31,28 +30,32 @@ public:
 
   void addCountry(Node *);
 
-  void addContinent(Map*);
+  void addCountry(Node *node, std::string continent);
 
   void addEdge(Edge*);
 
   std::string *getName();
 
-  void setContinent(Node *, Map * continent);
-
   void validate();
+
+  Node* getNode(int id);
+
+  void removeCountry(Node*);
+
+  int getNumberCountries();
 };
 
 class Node {
 private:
   std::string *name;
+  int* id;
   Map *continent;
   std::vector<Edge*> edges;
 public:
-  Node();
-  Node(std::string*);
-
+  Node(int id, std::string);
   ~Node();
 
+  int *getId() const;
   void setContinent(Map *);
   void addEdge(Edge*);
 
@@ -65,12 +68,11 @@ public:
 class Edge {
 private:
   std::string *name;
-  bool* field;
+  std::string* over;
   Node *node1;
   Node *node2;
 public:
-  Edge();
-  Edge(std::string *, Node *, Node *, bool*);
+  Edge(std::string, Node *, Node *, std::string);
   ~Edge();
   Node *getNode1() const;
   Node *getNode2() const;
