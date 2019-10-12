@@ -53,7 +53,7 @@ bool MapLoader::validateNode(const std::string& nodeLine) {
         std::regex regex_node("^([0-9]+), (.*), (.*)$");
         std::smatch matches;
         if (std::regex_match(nodeLine, matches, regex_node))
-            map->addCountry(matches[3].str(), new Node(std::stoi(matches[1].str()), matches[2].str()));
+            map->addCountry(new Node(std::stoi(matches[1].str()), matches[2].str()), matches[3].str());
     } catch (...) {
         return false;
     }
@@ -65,10 +65,10 @@ bool MapLoader::validateEdge(const std::string& edgeLine) {
         std::regex regex_node("^([0-9]+),([0-9]+),(.*)$");
         std::smatch matches;
         if (std::regex_match(edgeLine, matches, regex_node))
-            map->addEdge(new Edge(new std::string("EDGE_" + matches[1].str() + "_" + matches[2].str()),
+            map->addEdge(new Edge("EDGE_" + matches[1].str() + "_" + matches[2].str(),
                     map->getNode(std::stoi(matches[1].str())),
                     map->getNode(std::stoi(matches[2].str())),
-                    new std::string(matches[3].str())));
+                    matches[3].str()));
     } catch (...) {
         return false;
     }
