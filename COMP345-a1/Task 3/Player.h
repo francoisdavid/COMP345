@@ -5,7 +5,7 @@
 #include <string>
 #include "Cards.hpp"
 #include "Map.h"
-//#include "BiddingFacility.hpp"
+#include "BiddingFacility.h"
 
 using namespace std;
 
@@ -40,7 +40,7 @@ public:
 
 	//Implemented player methods
 	void addCountry(Map::Node*);
-	//void Bid(int);
+	void Bid(int);
 	void BuyCard(int);
 	void PayCoin(int);
 	void PlaceNewArmies();
@@ -62,8 +62,7 @@ private:
 	vector<Map::Node*> playerCountries;
 	vector<Card*> playerCards;
 	HandObject* playerHand;
-	vector<Map::Node*> playerCountries;
-	//BidingFacility* playerBidingFacility;
+	BiddingFacility* playerBiddingFacility;
 	//vector<Army*> playerArmy;
 	//vector<City*> playerCities;
 

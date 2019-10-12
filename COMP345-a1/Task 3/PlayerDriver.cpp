@@ -21,6 +21,11 @@ int main(int argc, const char* argv[]) {
 	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
 	cout << endl;
 
+	cout << player->getName() << " bids 2 coins..." << endl;
+	player->Bid(2);
+	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
+	cout << endl;
+
 	player->BuildCity();
 	player->DestroyArmy();
 	player->MoveArmies();
