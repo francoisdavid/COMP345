@@ -111,10 +111,10 @@ void Map::addEdge(Edge * edge) {
 void Map::validate() {
   for(auto & country : countries)
     if (country->getEdges().empty())
-      std::cout << *country << "HAS NO EDGES." << std::endl;
+      std::cout << *country << " HAS NO EDGES." << std::endl;
   for (auto & edge : edges)
     if (edge->getNode1() == nullptr || edge->getNode2() == nullptr)
-      std::cout << *edge << "HAS ONE OR LESS NODES." << std::endl;
+      std::cout << *edge << " HAS ONE OR LESS NODES." << std::endl;
 }
 
 Node *Map::getNode(int id) {
