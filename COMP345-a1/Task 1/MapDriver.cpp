@@ -38,13 +38,14 @@ int main() {
   world->addEdge(edge5_3);
   world->addEdge(edge1_4);
   world->addEdge(edge5_1);
-  world->addCountry(new Node(new std::string("Bulgaria")));
+  auto* BG = new Node((new std::string("Bulgaria")));
+
 
   world->validate();
 
-  std::cout << *node1 << std::endl;
-  std::cout << *europe << std::endl;
-  std::cout << *europe << std::endl;
+//  std::cout << *node1 << std::endl;
+//  std::cout << *europe << std::endl;
+//  std::cout << *europe << std::endl;
 
 //  delete world;
 //  delete europe;

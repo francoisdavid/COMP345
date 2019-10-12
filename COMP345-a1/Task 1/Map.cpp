@@ -13,11 +13,12 @@ Map::~Map() {
 //  delete name;
 }
 
-Node::Node(std::string* name) : name(name), continent(nullptr) {
-
+Node::Node(int id, std::string name) : name(new std::string(name)), continent(nullptr) {
+    this->id = new int(id);
 }
 
 Node::~Node() {
+    delete id;
 }
 
 void Node::setContinent(Map *continent) {
@@ -25,7 +26,7 @@ void Node::setContinent(Map *continent) {
 
 }
 
-Edge::Edge(std::string *name, Node *n1, Node *n2, bool* field) : name(name), node1(n1), node2(n2), field(field) {
+Edge::Edge(std::string *name, Node *n1, Node *n2, std::string* field) : name(name), node1(n1), node2(n2), over(field) {
   n1->addEdge(this);
   n2->addEdge(this);
 }
@@ -39,7 +40,7 @@ Edge::~Edge() {
   delete name;
   delete node1;
   delete node2;
-  delete field;
+  delete over;
 }
 
 Edge::Edge() {
@@ -60,10 +61,6 @@ std::ostream &operator<<(std::ostream &os, const Node &node) {
   return os;
 }
 
-Node::Node() {
-
-}
-
 
 void Node::addEdge(Edge * edge) {
   edges.push_back(edge);
@@ -71,6 +68,10 @@ void Node::addEdge(Edge * edge) {
 
 const std::vector<Edge *> &Node::getEdges() const {
   return edges;
+}
+
+int *Node::getId() const {
+    return id;
 }
 
 std::string * Map::getName() {
@@ -89,12 +90,25 @@ void Map::addCountry(Node * country) {
   countries.push_back(country);
 }
 
-void Map::addContinent(Map * continent) {
-  continents.push_back(continent);
+void Map::addContinent(std::string continent, Node* node) {
+    auto it = find_if(continents.begin(),
+            continents.end(),
+            [this, continent](Map *obj) {return *obj->getName() == continent;});
+    if (it != continents.end()) {
+        // Already existing continent
+        node->setContinent(*it);
+        (*it)->getName();
+    } else {
+        Map* new_continent = new Map(new std::string(continent));
+        continents.push_back(new_continent);
+        node->setContinent(new_continent);
+    }
+    countries.push_back(node);
 }
 
 void Map::addEdge(Edge * edge) {
-  edges.push_back(edge);
+    if (std::find(edges.begin(),edges.end(), edge) == edges.end())
+        edges.push_back(edge);
 }
 
 void Map::setContinent(Node * node, Map * continent){
@@ -110,4 +124,13 @@ void Map::validate() {
   for (auto & edge : edges)
     if (edge->getNode1() == nullptr || edge->getNode2() == nullptr)
       std::cout << *edge << "HAS ONE OR LESS NODES." << std::endl;
+}
+
+Node *Map::getNode(int id) {
+    auto it = find_if(countries.begin(),
+                      countries.end(),
+                      [this, id](Node *obj) {return *obj->getId() == id;});
+    if (it != countries.end())
+        return *it;
+    return nullptr;
 }
