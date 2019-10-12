@@ -4,11 +4,9 @@ node,3,Europe
 node,4,Europe
 node,5,Asia
 node,6,America
-edge,1,2,water
-edge,2,3,water
-edge,5,1,land
-edge,1,5,land
-edge,3,1,land
-edge,5,3,land
-edge,1,4,land
+edge,France,UK,water
+edge,USA,China,water
+edge,Germany,France,land
+edge,Spain,Portugal,land
+edge,Japan,China,land
 edge,

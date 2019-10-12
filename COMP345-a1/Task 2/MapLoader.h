@@ -1,7 +1,7 @@
 #ifndef MapLoader_h
 #define MapLoader_h
 
-#include "Map.h"
+#include "../Task 1/Map.h"
 
 using namespace std;
 
@@ -21,15 +21,15 @@ private:
     
     // Properties
     string filePath;
+    Map* graph;
     
     // Methods
-    static void validateFile(string);
-    static void getLines(string, string, vector<string>&);
-    static void processNodes(vector<string>, vector<Map>&);
-    static void processEdges(vector<string>);
-    static void processString(string, vector<string> &);
-    static bool getEdgeType(string);
-    static void processContinents(vector<string>, vector<Map>&);
+    void validateFile(string);
+    void getLines(string, string, vector<string>&);
+    void processNodes(vector<string>, vector<Map*>&);
+    void processEdges(vector<string>);
+    void processString(string, vector<string> &);
+    void processContinents(vector<string>, vector<Map*>&);
 };
 
 #endif // MapLoader_h
