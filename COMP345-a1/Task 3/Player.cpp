@@ -14,7 +14,7 @@ Player::Player()
 	playerNumber = new int(*objCounter);
 	playerName = "Player "+ to_string(*playerNumber);
 	playerHand = new HandObject();
-	playerBiddingFacility = new BiddingFacility();
+	//playerBiddingFacility = new BiddingFacility();
 
 	*objCounter = *objCounter + 1;
 }
@@ -28,7 +28,7 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB)
 	monthOfBirth = new int(MOB);
 	yearOfBirth = new int(YOB);
 	playerHand = new HandObject();
-	playerBiddingFacility = new BiddingFacility();
+	//playerBiddingFacility = new BiddingFacility(this, playerName, 0, *getPlayerAge());
 
 	*objCounter = *objCounter + 1;
 }
@@ -86,6 +86,11 @@ vector<Card*> Player::getCards()
 	return playerCards;
 }
 
+vector<Node*> Player::getCountries()
+{
+	return playerCountries;
+}
+
 //Setters
 void Player::setName(string name)
 {
@@ -122,12 +127,13 @@ void Player::printInfo()
 	
 }
 
-void Player::addCountry(Map::Node* country)
+void Player::addCountry(Node* country)
 {
-	Map::Node* count = country;
+	Node* count = country;
 	playerCountries.emplace_back(count);
 }
 
+/*
 void Player::Bid(int bid)
 {
 	while (bid > *playerCoins)
@@ -135,10 +141,10 @@ void Player::Bid(int bid)
 		
 	if (bid <= *playerCoins)
 	{
-		playerBiddingFacility->playerBid(this, bid);
 		this->PayCoin(bid);
 	}
 }
+*/
 
 void Player::BuyCard(int index)
 {

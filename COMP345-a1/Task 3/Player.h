@@ -27,6 +27,7 @@ public:
 	int* getYearOfBirth();
 	double* getPlayerAge();
 	vector<Card*> getCards();
+	vector<Node*> getCountries();
 
 	//Setters
 	void setName(string);
@@ -39,8 +40,8 @@ public:
 	void printInfo();
 
 	//Implemented player methods
-	void addCountry(Map::Node*);
-	void Bid(int);
+	void addCountry(Node*);
+	//void Bid(int);
 	void BuyCard(int);
 	void PayCoin(int);
 	void PlaceNewArmies();
@@ -59,10 +60,10 @@ private:
 	int* yearOfBirth;
 	double* playerAge;
 	int* playerCoins;
-	vector<Map::Node*> playerCountries;
+	vector<Node*> playerCountries;
 	vector<Card*> playerCards;
 	HandObject* playerHand;
-	BiddingFacility* playerBiddingFacility;
+	//BiddingFacility* playerBiddingFacility;
 	//vector<Army*> playerArmy;
 	//vector<City*> playerCities;
 

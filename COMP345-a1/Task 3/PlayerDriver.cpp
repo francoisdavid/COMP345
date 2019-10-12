@@ -21,19 +21,22 @@ int main(int argc, const char* argv[]) {
 	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
 	cout << endl;
 
-	cout << player->getName() << " bids 2 coins..." << endl;
-	player->Bid(2);
-	cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
-	cout << endl;
+	//cout << player->getName() << " bids 2 coins..." << endl;
+	//player->Bid(2);
+	//cout << player->getName() << " now has " << *player->getPlayerCoins() << " coins." << endl;
+	//cout << endl;
 
 	player->BuildCity();
 	player->DestroyArmy();
 	player->MoveArmies();
 	player->MoveOverLandOrWater();
 	player->PlaceNewArmies();
+	cout << endl;
 
-	Map::Node* country = new Map::Node();
+	string* countryName = new string("Canada");
+	Node* country = new Node(countryName);
 	player->addCountry(country);
+	cout << player->getName() << " owns " << *player->getCountries()[0]->getName() << "." << endl;
 
 
 	return 0;
