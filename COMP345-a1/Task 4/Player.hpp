@@ -12,6 +12,9 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
+#include "../Task 1/Map.h"
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 

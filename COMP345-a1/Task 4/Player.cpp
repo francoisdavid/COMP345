@@ -7,11 +7,6 @@
 //
 
 #include "Player.hpp"
-#include <vector>
-#include <iostream>
-#include <stdlib.h>
-#include <string>
-#include <cmath>
 
 using namespace::std;
 
