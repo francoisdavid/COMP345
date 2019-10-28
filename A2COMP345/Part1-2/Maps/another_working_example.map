@@ -1,0 +1,12 @@
+node,0,France,Europe
+node,1,UK,Europe
+node,2,Spain,Europe
+node,3,Italy,Europe
+node,4,USA,America
+node,5,Japan,Asia
+edge,0,1,water
+edge,1,2,water
+edge,2,3,land
+edge,3,5,land
+edge,5,4,land
+edge,4,0,land
