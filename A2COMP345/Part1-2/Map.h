@@ -5,12 +5,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
-
-class Player;
-
-class Army {  //Replace with #include "Army.h"
-};
+#include "Army.h"
+#include "City.h"
 
 class Map;
 class Edge;
@@ -51,6 +47,9 @@ private:
   int* id;
   Map *continent;
   std::vector<Edge*> edges;
+  std::vector<Army*> armies;
+  std::vector<City*> cities;
+
 public:
   Node(int id, std::string);
   ~Node();
@@ -61,6 +60,9 @@ public:
   void addEdge(Edge*);
 
   const std::vector<Edge *> &getEdges() const;
+
+  std::vector<Army*> getArmies();
+  std::vector<City*> getCities();
 
 
   friend std::ostream &operator<<(std::ostream &os, const Node &node);

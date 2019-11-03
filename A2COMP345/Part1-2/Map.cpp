@@ -1,4 +1,4 @@
-#include "Map.h"
+#include "..\Header Files\Map.h"
 
 Map::Map(std::string* name) : name(name) {
 
@@ -67,6 +67,16 @@ void Node::addEdge(Edge * edge) {
 
 const std::vector<Edge *> &Node::getEdges() const {
   return edges;
+}
+
+std::vector<Army*> Node::getArmies()
+{
+	return armies;
+}
+
+std::vector<City*> Node::getCities()
+{
+	return cities;
 }
 
 std::string* Node::getName()

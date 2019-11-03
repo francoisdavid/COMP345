@@ -6,6 +6,8 @@
 #include "Cards.h"
 #include "Map.h"
 #include "BidingFacility.h"
+#include "Army.h"
+#include "City.h"
 
 class BidingFacility;
 
@@ -51,11 +53,11 @@ public:
 	void Bid(int);
 	void BuyCard(int);
 	void PayCoin(int);
-	void PlaceNewArmies();
-	void MoveArmies();
-	void MoveOverLandOrWater();
-	void BuildCity();
-	void DestroyArmy();
+	void PlaceNewArmies(Node*);
+	void MoveArmies(Node*, Node*);
+	void MoveOverLandOrWater(Node*, Node*);
+	void BuildCity(Node*);
+	void DestroyArmy(Node*, int);
 
 private:
 
@@ -71,8 +73,8 @@ private:
 	vector<Card*> playerCards;
 	HandObject* playerHand;
 	BidingFacility* playerBiddingFacility;
-	//vector<Army*> playerArmy;
-	//vector<City*> playerCities;
+	vector<Army*> playerArmy;
+	vector<City*> playerCities;
 
 };
 

@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "Player.h"
+#include "..\Header Files\Player.h"
 #include <string>
 #include <cmath>
 
@@ -176,29 +176,66 @@ void Player::PayCoin(int cost)
 	else
 		cout << "You don't have enough coins." << endl;
 }
-void Player::PlaceNewArmies()
+void Player::PlaceNewArmies(Node* location)
 {
-	cout << "Armies can be placed in the starting location or in a city." << endl;
+	bool exists = false;
+	int index;
+	for (int i = 0; i < location->getArmies().size(); i++)
+	{
+		if (*(location->getArmies()[i]->getOwnerNumber) == *(this->playerNumber))
+		{
+			exists = true;
+			index = i;
+		}
+	}
+
+	if (exists)
+		location->getArmies()[index]->setNumberOfSoldiers(*(location->getArmies()[index]->getNumberOfSoldiers) + 1);
+	else
+	{
+		Army* army = new Army(location, *(this->playerNumber), 1);
+		location->getArmies().emplace_back(army);
+		playerArmy.emplace_back(army);
+	}
 }
 
-void Player::MoveArmies()
+void Player::MoveArmies(Node* startLocation, Node* endLocation)
 {
-	cout << "Armies can only move over land." << endl;
+	for (int i = 0; i < startLocation->getArmies().size(); i++)
+	{
+		if (*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
+		{
+			startLocation->getArmies()[i]->setNumberOfSoldiers(*(startLocation->getArmies()[i]->getNumberOfSoldiers) - 1);
+
+			for (int j = 0; j < endLocation->getArmies().size(); j++)
+				PlaceNewArmies(endLocation);
+
+			break;
+		}
+	}
 }
 
-void Player::MoveOverLandOrWater()
+void Player::MoveOverLandOrWater(Node* startLocation, Node* endLocation)
 {
-	cout << "Armies can move over land or water." << endl;
+	MoveArmies(startLocation, endLocation);
 }
 
-void Player::BuildCity()
+void Player::BuildCity(Node* location)
 {
-	cout << "Cities can only be built in countries where an army exists." << endl;
+	City* city = new City(location,*(this->playerNumber));
+	location->getCities().emplace_back(city);
+
 }
 
-void Player::DestroyArmy()
+void Player::DestroyArmy(Node* location, int ownerNumber)
 {
-	cout << "An army is destroyed." << endl;
+	for (int i = 0; i < location->getArmies().size(); i++)
+		if (*(location->getArmies()[i]->getOwnerNumber) == ownerNumber)
+		{
+			location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers) - 1);
+			break;
+		}
+
 }
 
 void Player::setPlayerBiddingFacility(BidingFacility* bf){
