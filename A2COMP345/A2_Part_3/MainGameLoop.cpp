@@ -121,7 +121,8 @@ void MainGameLoop::traverse(Turn *last)
         Card *card = handObject->getCard(indexOfCard);
         // Player pays for card
         p->player.BuyCard(indexOfCard);
-        cout << "Good: " << card->getGoods() << " Action: " << card->getAction() << endl;
+        cout << "Good: " << card->getGoods() << endl;
+        cout << "Action: " << card->getAction() << endl;
     
         // Next player's turn
         p = p -> next;
