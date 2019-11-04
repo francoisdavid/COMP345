@@ -26,29 +26,34 @@ MapLoader::~MapLoader()
 // Read file and parse map data
 void MapLoader::processMap()
 {
-    validateFile(filePath);
-    
-    cout << endl << "Reading from " << filePath << endl;
-    vector<string> nodeLines;
-    vector<string> edgeLines;
-    vector<Map*> maps;
-    vector<Edge*> edges;
- 
-    getLines(filePath, "node", nodeLines);
-    getLines(filePath, "edge", edgeLines);
-    
-    processContinents(nodeLines, maps);
-    processNodes(nodeLines, maps);
-    processEdges(edgeLines);
-    
-    cout << "Map validation ..." << endl;
-    graph->validate();
+    try {
+        validateFile(filePath);
+        
+        cout << endl << "Reading from " << filePath << endl;
+        vector<string> nodeLines;
+        vector<string> edgeLines;
+        vector<Map*> maps;
+        vector<Edge*> edges;
+        
+        getLines(filePath, "node", nodeLines);
+        getLines(filePath, "edge", edgeLines);
+        
+        processContinents(nodeLines, maps);
+        processNodes(nodeLines, maps);
+        processEdges(edgeLines);
+        
+        cout << "Map validation ..." << endl;
+        graph->validate();
+    }
+    catch (...) {
+        throw;
+    }
 }
 
 // Determines whether the file has the accepted .map extension
 void MapLoader::validateFile(string filePath) {
   try {
-    cout << "Validating file...";
+    cout << "Validating file extension...";
     ifstream f(filePath.c_str());
 
     if (f.good()) {
@@ -61,7 +66,8 @@ void MapLoader::validateFile(string filePath) {
       throw invalid_argument("File does not exist.");
     }
   } catch (invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
+      throw;
+    //std::cerr << e.what() << std::endl;
   }
 }
 
