@@ -42,6 +42,7 @@ int main(int argc, const char * argv[]) {
 
     // Execute main game loop
     MainGameLoop *mainGameLoop = new MainGameLoop(handObject, players);
+    mainGameLoop->~MainGameLoop();
     
     return 0;
 }

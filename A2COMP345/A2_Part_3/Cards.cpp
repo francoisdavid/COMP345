@@ -155,7 +155,6 @@ ostream& operator<<(ostream& os, const Deck& dt)
     return os;
 }
 
-
 // The HandObject CLASS
 // Default Constructor.
 HandObject::HandObject() {
@@ -218,4 +217,9 @@ void HandObject::toString(){
 // Returns Card object by index
 Card * HandObject::getCard(int indexOfCard) {
     return displayCards[indexOfCard];
+}
+
+// Returns Deck object
+int HandObject::getDeckCount() {
+    return deck->howManyCards();
 }

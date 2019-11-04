@@ -83,16 +83,18 @@ Turn *MainGameLoop::addToEnd(Turn *last, Player player)
 
 // Game loop remains in its execution phase until compute game score determines winner
 void MainGameLoop::executeGameLoop(Turn *last) {
-    int count = 0;
     cout << "Running game loop..." << endl;
     
-    while (count < 3) {
-        cout << endl << "ROUND START" << endl;
-        count++;
-        traverse(last);
-        cout << endl << "ROUND END" << endl;
+    try {
+        while (true) {
+            cout << endl << "ROUND START" << endl;
+            traverse(last);
+            cout << endl << "ROUND END" << endl;
+        }
+    } catch (const std::exception& ex) {
+        cout << endl << ex.what() << endl;
     }
-    
+
     cout << endl << "GAME IS OVER." << endl;
 }
 
@@ -123,8 +125,12 @@ void MainGameLoop::traverse(Turn *last)
         p->player.BuyCard(indexOfCard);
         cout << "Good: " << card->getGoods() << endl;
         cout << "Action: " << card->getAction() << endl;
-    
-        // Next player's turn
-        p = p -> next;
+
+        if (handObject->getDeckCount() > 0) {
+            // Next player's turn
+            p = p -> next;
+        } else {
+            throw invalid_argument("Deck of cards is finished.");
+        }
     } while(p != last->next);
 }
