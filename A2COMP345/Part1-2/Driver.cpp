@@ -7,7 +7,7 @@
 #include "Cards.h"
 
 using namespace std;
-
+/*
 int main() {
     // Valid map file with valid graph
     string filePath = "../Maps/MAP1.map";
@@ -109,4 +109,4 @@ int main() {
 
 
     return 0;
-}
+}*/
