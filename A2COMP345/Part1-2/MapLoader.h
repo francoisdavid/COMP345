@@ -16,6 +16,7 @@ public:
     
     // Methods
     void processMap();
+    Map* getGraph();
     
 private:
     

@@ -206,3 +206,7 @@ void MapLoader::processString(string line, vector<string> &tokens) {
     }
 }
 
+Map* MapLoader::getGraph() {
+    return graph;
+}
+

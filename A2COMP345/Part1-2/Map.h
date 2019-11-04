@@ -68,6 +68,7 @@ public:
 
   const std::vector<Edge *> &getEdges() const;
 
+
   std::vector<Army*> getArmies();
   std::vector<City*> getCities();
 

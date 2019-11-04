@@ -3,7 +3,7 @@
 #include "Cards.h"
 #include "MapLoader.h"
 #include "BidingFacility.h"
-
+/*
 int main() {
 
   int number = 2;
@@ -37,4 +37,4 @@ int main() {
 
 
   return 0;
-}
+}*/
