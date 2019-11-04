@@ -163,18 +163,27 @@ void Player::Bid(int bid)
 //when a player selects a card it will be added to their list of cards
 void Player::BuyCard(int index)
 {
-	Card* card = playerHand->exchange(index);
-	playerCards.emplace_back(card);
-	int price = ceil(double(index) / 2);
-	this->PayCoin(price);
-}
+    int price = ceil(double(index) / 2);
+    if(this->PayCoin(price)) {
+        Card *card = playerHand->exchange(index);
+        playerCards.emplace_back(card);
+    } else {
+        Card *card = playerHand->exchange(0);
+        playerCards.emplace_back(card);
+    }
 
-void Player::PayCoin(int cost)
+}
+// Method that returns a boolean and if the user as enough money, if not the system will automatically make him buy the last one.
+bool Player::PayCoin(int cost)
 {
-	if (cost <= *playerCoins)
-		*playerCoins = *playerCoins - cost;
-	else
-		cout << "You don't have enough coins." << endl;
+	if (cost <= *playerCoins) {
+        *playerCoins = *playerCoins - cost;
+        return true ;
+    }
+	else {
+        cout << "You don't have enough coins.  You'll buy the free one." << endl;
+        return false;
+    }
 }
 void Player::PlaceNewArmies()
 {
