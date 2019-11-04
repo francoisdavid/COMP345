@@ -9,6 +9,7 @@
 #include <dirent.h>
 
 using namespace std;
+/*
 
 MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
@@ -227,3 +228,4 @@ void getUserSelection(int *choice) {
     cout << "Enter the number corresponding to the file: ";
     cin >> *choice;
 }
+*/
