@@ -2,6 +2,8 @@
 
 #include "Map.h"
 
+class Node;
+
 class Army {
 
 public:

@@ -10,6 +10,7 @@
 #include "City.h"
 
 class BidingFacility;
+class City;
 
 using namespace std;
 

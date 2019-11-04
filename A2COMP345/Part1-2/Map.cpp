@@ -1,4 +1,4 @@
-#include "..\Header Files\Map.h"
+#include "Map.h"
 
 Map::Map(std::string* name) : name(name) {
 
@@ -119,7 +119,7 @@ void Map::addCountry(Node *node, std::string continent) {
 }
 
 void Map::addEdge(Edge * edge) {
-    if (std::find(edges.begin(),edges.end(), edge) == edges.end())
+    if (std::find(edges.begin(),edges.end(), edge) == edges.end()) //edge not found in edges vector
         edges.push_back(edge);
 }
 
@@ -130,6 +130,56 @@ void Map::validate() {
   for (auto & edge : edges)
     if (edge->getNode1() == nullptr || edge->getNode2() == nullptr)
       std::cout << *edge << " HAS ONE OR LESS NODES." << std::endl;
+  //Check that graph is connected
+  if (isConnected())
+    std::cout << "Graph is connected" << std::endl;
+  else
+    std::cout << "Graph is not connected." << std::endl;
+
+}
+
+void Map::traverse(Node* n, bool visited[]){
+  if (this->getIndexOf(n) != -1) {
+    visited[this->getIndexOf(n)] = true; //mark node as visited
+    std::vector<Edge*>::const_iterator it;
+    for(it = n->getEdges().begin(); it != n->getEdges().end(); it++)
+      if (!visited[getIndexOf((*it)->getNode2())])  //Go through all connected nodes that are not visited yet
+        traverse((*it)->getNode2(), visited);       //DFS recursively
+  } else
+    std::cerr << "Error trying to verify connected graph: Node not added to the graph" << std::endl;
+}
+
+bool Map::isConnected(){
+  bool **visited = new bool*[this->countries.size()];
+  bool allVisited = true;   //Assume all nodes will be visited, change if not
+  for (int i = 0; i < this->countries.size(); ++i) {
+    visited[i] = new bool[this->countries.size()];
+    for (int j = 0; j < this->countries.size(); ++j)
+      visited[i][j] = false;
+  }   //create adjacency matrix and set it to false
+
+  std::vector<Node*>::iterator it;
+  for(it = this->countries.begin(); it != this->countries.end(); it++)
+    traverse(*it, visited[getIndexOf(*it)]);    //Traverse every node of the world, recursively with DFS
+
+  for (int i = 0; i < this->countries.size(); ++i)  //Check that every node has been visited from any other node
+    for (int j = 0; j < this->countries.size(); ++j)
+      if (!visited[i][j])
+        allVisited = false;   //If a node has not been visited, then it is not connected graph
+
+  for (int k = 0; k < this->countries.size(); ++k)
+    delete[] visited[k];    //Clean-up dynamic array
+  delete[] visited;
+
+  return allVisited;
+}
+
+int Map::getIndexOf(Node * n) {
+  auto itr = std::find(this->countries.begin(), this->countries.end(), n);
+  if (itr != this->countries.cend())
+    return std::distance(this->countries.begin(), itr);
+  else
+    return -1;
 }
 
 Node *Map::getNode(int id) {
@@ -140,6 +190,7 @@ Node *Map::getNode(int id) {
         return *it;
     return nullptr;
 }
+
 
 void Map::removeCountry(Node* node) {
     countries.erase(std::find(countries.begin(), countries.end(), node));

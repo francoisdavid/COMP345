@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include "Player.h"
 
+class Player;
+
 using namespace std;
 
 class BidingFacility{

@@ -36,6 +36,12 @@ public:
 
   Node* getNode(int id);
 
+  int getIndexOf(Node*);
+
+  void traverse(Node*, bool[]);
+
+  bool isConnected();
+
   void removeCountry(Node*);
 
   int getNumberCountries();
