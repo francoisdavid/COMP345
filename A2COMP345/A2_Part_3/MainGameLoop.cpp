@@ -113,18 +113,16 @@ void MainGameLoop::traverse(Turn *last)
     // Perform action when traversing the list
     do
     {
-        cout << endl << "It is " << p->player.getName() << "'s turn to play now.";
+        cout << endl << "It is " << p->player.getName() << "'s turn to play now." << endl;
         
         // Select one of the six cards facing up
         int indexOfCard = rand() % + 5;
         
         Card *card = handObject->getCard(indexOfCard);
-        cout << endl << "This card costs : " << handObject->getCardCost(indexOfCard);
-        cout << endl << "Good: " << card->getGoods() << " Action: " << card->getAction() << endl;
-        
         // Player pays for card
         p->player.BuyCard(indexOfCard);
-        
+        cout << "Good: " << card->getGoods() << " Action: " << card->getAction() << endl;
+    
         // Next player's turn
         p = p -> next;
     } while(p != last->next);

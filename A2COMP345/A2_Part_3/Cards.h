@@ -55,7 +55,6 @@ public:
     void setCard(Card card);
     void setDeck(Deck* deck);
     void toString();
-    int getCardCost(int indexOfCard);
    
 private:
     static Card* displayCards[6];

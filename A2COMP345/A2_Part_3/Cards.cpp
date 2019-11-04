@@ -219,9 +219,3 @@ void HandObject::toString(){
 Card * HandObject::getCard(int indexOfCard) {
     return displayCards[indexOfCard];
 }
-
-// Returns cost of selected Card
-int HandObject::getCardCost(int indexOfCard) {
-    int costs[6] = { 0, 1, 1, 2, 2, 3 };
-    return costs[indexOfCard];
-}
