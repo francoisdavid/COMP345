@@ -11,6 +11,7 @@
 class Map;
 class Edge;
 class Node;
+class City;
 
 class Map {
 private:

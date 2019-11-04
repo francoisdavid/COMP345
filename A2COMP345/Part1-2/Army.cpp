@@ -1,5 +1,5 @@
 #include <iostream>
-#include "..\Header Files\Army.h"
+#include "Army.h"
 #include <string>
 
 using namespace std;

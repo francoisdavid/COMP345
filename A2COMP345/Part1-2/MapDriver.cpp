@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Map.h"
+/*
 
 int main() {
   Map* world = new Map(new std::string("The World"));
@@ -41,4 +42,4 @@ int main() {
 
   delete world;
   return 0;
-}
+}*/

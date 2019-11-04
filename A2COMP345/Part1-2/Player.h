@@ -11,13 +11,16 @@
 
 class BidingFacility;
 class City;
+class Node;
+class HandObject;
+class Army;
+
 
 using namespace std;
 
 class Player {
 
 public:
-
 	//Constructors/Destructor
 	Player();
 	Player(string, int, int, int, int);

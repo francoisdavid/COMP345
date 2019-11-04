@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "..\Header Files\Player.h"
+#include "Player.h"
 #include <string>
 #include <cmath>
 
@@ -182,7 +182,7 @@ void Player::PlaceNewArmies(Node* location)
 	int index;
 	for (int i = 0; i < location->getArmies().size(); i++)
 	{
-		if (*(location->getArmies()[i]->getOwnerNumber) == *(this->playerNumber))
+		if (*(location->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
 		{
 			exists = true;
 			index = i;
@@ -190,7 +190,7 @@ void Player::PlaceNewArmies(Node* location)
 	}
 
 	if (exists)
-		location->getArmies()[index]->setNumberOfSoldiers(*(location->getArmies()[index]->getNumberOfSoldiers) + 1);
+		location->getArmies()[index]->setNumberOfSoldiers(*(location->getArmies()[index]->getNumberOfSoldiers()) + 1);
 	else
 	{
 		Army* army = new Army(location, *(this->playerNumber), 1);
@@ -205,7 +205,7 @@ void Player::MoveArmies(Node* startLocation, Node* endLocation)
 	{
 		if (*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
 		{
-			startLocation->getArmies()[i]->setNumberOfSoldiers(*(startLocation->getArmies()[i]->getNumberOfSoldiers) - 1);
+			startLocation->getArmies()[i]->setNumberOfSoldiers(*(startLocation->getArmies()[i]->getNumberOfSoldiers()) - 1);
 
 			for (int j = 0; j < endLocation->getArmies().size(); j++)
 				PlaceNewArmies(endLocation);
@@ -230,9 +230,9 @@ void Player::BuildCity(Node* location)
 void Player::DestroyArmy(Node* location, int ownerNumber)
 {
 	for (int i = 0; i < location->getArmies().size(); i++)
-		if (*(location->getArmies()[i]->getOwnerNumber) == ownerNumber)
+		if (*(location->getArmies()[i]->getOwnerNumber()) == ownerNumber)
 		{
-			location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers) - 1);
+			location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers()) - 1);
 			break;
 		}
 
