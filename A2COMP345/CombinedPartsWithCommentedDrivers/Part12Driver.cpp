@@ -9,7 +9,6 @@
 #include <dirent.h>
 
 using namespace std;
-/*
 
 MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
@@ -164,6 +163,8 @@ int main() {
             delete temp;
         }
 
+        delete mapLoader;// Delete the mapLoader which will delete the map.
+
         // cout << "The winner of the bid is :"<< winner->getName() ;
     } catch (const std::exception& ex) {
         cout << ex.what() << endl;
@@ -228,4 +229,3 @@ void getUserSelection(int *choice) {
     cout << "Enter the number corresponding to the file: ";
     cin >> *choice;
 }
-*/

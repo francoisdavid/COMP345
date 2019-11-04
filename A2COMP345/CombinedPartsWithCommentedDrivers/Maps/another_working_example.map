@@ -5,8 +5,14 @@ node,3,Italy,Europe
 node,4,USA,America
 node,5,Japan,Asia
 edge,0,1,water
+edge,1,0,water
 edge,1,2,water
+edge,2,1,water
 edge,2,3,land
+edge,3,2,land
 edge,3,5,land
+edge,5,3,land
 edge,5,4,land
+edge,4,5,land
 edge,4,0,land
+edge,0,4,land
