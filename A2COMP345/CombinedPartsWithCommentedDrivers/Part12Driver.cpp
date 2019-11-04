@@ -201,7 +201,7 @@ MapLoader* loadMap(const char *directory) {
     // Prompt user choice
     int userChoice = -1;
     int *choice = &userChoice;
-    bool isErrorState = 1;
+    bool isErrorState = true;
 
     while (isErrorState) {
         getUserSelection(choice);

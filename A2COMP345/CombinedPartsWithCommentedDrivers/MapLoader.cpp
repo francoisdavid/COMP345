@@ -44,6 +44,8 @@ void MapLoader::processMap()
         
         cout << "Map validation ..." << endl;
         graph->validate();
+        if (!graph->isConnected())
+            throw invalid_argument("Not connected");
     }
     catch (...) {
         throw;
@@ -119,7 +121,7 @@ void MapLoader::processContinents(vector<string> nodeLines, vector<Map*> &maps) 
         cout << continents[i] << endl;
     }
   } catch (invalid_argument& e) {
-    std::cerr << e.what() << std::endl;
+    throw;//std::cerr << e.what() << std::endl;
   }
 
 }
