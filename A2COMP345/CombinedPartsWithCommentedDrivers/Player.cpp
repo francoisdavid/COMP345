@@ -261,6 +261,10 @@ void Player::playerBid(int coins) {
     playerBiddingFacility->playerBid(this, coins);
 }
 
+int Player::getArmyCount() {
+   return playerArmy.size();
+}
+
 void Player::toString(){
     cout <<"Player-" << getName() << "\n\tCoins: " << *getPlayerCoins() << "\n\tDateOfBirth:" << *getDayOfBirth() << "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
 }
