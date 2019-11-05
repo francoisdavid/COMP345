@@ -3,7 +3,7 @@
 #include "Cards.h"
 #include "MapLoader.h"
 #include "BidingFacility.h"
-
+/*
 int main() {
 
   // Vector that will hold the pointers to the different players.
@@ -42,4 +42,4 @@ int main() {
   delete bidingFacility;
 
   return 0;
-}
+}*/
