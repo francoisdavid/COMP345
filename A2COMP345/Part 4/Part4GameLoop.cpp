@@ -153,9 +153,17 @@ void Part4GameLoop::DestroyArmy(Node* location, Player* opponent)
 		cout << opponent->getName() << " does not have an army in " << *(location->getName()) << "." << endl;
 }
 
-void Part4GameLoop::AndOrAction()
+int Part4GameLoop::AndOrAction()
 {
+	cout << "1. Destroy army or build a city." << endl;
+	cout << "2. Add army unit or move an army unit." << endl;
+	cout << "3. Destroy army and build a city." << endl;
+	cout << "Select an option: ";
 
+	int selection;
+	cin >> selection;
+	cout << endl;
+	return selection;
 }
 
 void Part4GameLoop::Ignore()
