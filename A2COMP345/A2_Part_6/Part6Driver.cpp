@@ -11,7 +11,7 @@
 #include "Cards.h"
 #include "Player.h"
 #include "MapLoader.h"
-/*
+
 using namespace std;
 
 int main(int argc, const char * argv[]) {
@@ -45,36 +45,27 @@ int main(int argc, const char * argv[]) {
     
     cout << "There are " << to_string(numberOfPlayers) << " players." << endl;
     
-    /*string filePath = "/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map";
-    MapLoader *mapLoader = new MapLoader(filePath);
+    MapLoader *mapLoader = new MapLoader("/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map");
     mapLoader->processMap();
     Map* map = mapLoader->getGraph();
-    Node* node = map->getNode(1);
     
-    players.at(1)->addCountry(node);
-    players.at(1)->PlaceNewArmies(node);
+    Node* spain = map->getNode(1);
+    Node* france = map->getNode(2);
+    Node* holland = map->getNode(3);
+    Node* italy = map->getNode(4);
     
-    vector<Army*> armies = node->getArmies();
-    cout << *node->getName() << endl;
-    cout << armies.size() << endl;*/
+    // Place armies
+    players.at(0)->PlaceNewArmies(spain);
+    players.at(1)->PlaceNewArmies(france);
+    players.at(0)->PlaceNewArmies(holland);
+    players.at(1)->PlaceNewArmies(holland);
+    players.at(1)->PlaceNewArmies(holland);
+    players.at(1)->PlaceNewArmies(italy); // Comment this line to tie the game
     
-    // CONTINENTS
-    Map *europe = new Map(new std::string("Europe"));
-    Map *america = new Map(new std::string("America"));
-    Map *asia = new Map(new std::string("Asia"));
-    
-    // REGIONS
-    Node *korea = new Node(1, "Korea");
-    Node *japan = new Node(2, "Japan");
-    Node *thailand = new Node(3, "Thailand");
-    
-    asia->addCountry(korea);
-    asia->addCountry(japan);
-    asia->addCountry(thailand);
-    
-    players.at(1)->addCountry(korea);
-    players.at(1)->addCountry(japan);
-    players.at(1)->addCountry(thailand);
+    // Build cities
+    players.at(0)->BuildCity(holland);
+    players.at(1)->BuildCity(holland);
+    players.at(1)->BuildCity(italy);
     
     int numberOfCards = 0;
     switch (numberOfPlayers) {
@@ -99,17 +90,9 @@ int main(int argc, const char * argv[]) {
         }
     }
     
-    players.at(1)->PlaceNewArmies(korea);
-    players.at(1)->PlaceNewArmies(thailand);
-    
-    vector<Node*> countries = players.at(1)->getCountries();
-    cout << "Countries count: " << countries.size() << endl;
-    vector<Army*> armies = korea->getArmies();
-    cout << "Armies count: " << armies.size() << endl;
-    
     // Compute game score
-    GameScore *gameScore = new GameScore(players);
+    GameScore *gameScore = new GameScore(players, map);
     gameScore->computeGameScore();
     
     return 0;
-}*/
+}
