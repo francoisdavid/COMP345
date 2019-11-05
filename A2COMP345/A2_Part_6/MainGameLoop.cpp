@@ -120,7 +120,7 @@ void MainGameLoop::traverse(Turn *last)
         // Select one of the six cards facing up
         int indexOfCard = rand() % + 5;
         
-        Card *card = handObject->getCard(indexOfCard);
+        Card *card = handObject->exchange(indexOfCard);
         // Player pays for card
         p->player.BuyCard(indexOfCard);
         cout << "Good: " << card->getGoods() << endl;
