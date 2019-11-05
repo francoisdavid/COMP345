@@ -13,6 +13,7 @@ Army::Army(Node* location, int owner, int soldiers)
 	mapLocation = location;
 	ownerNumber = new int(owner);
 	numberOfSoldiers = new int(soldiers);
+	location->addArmy(this);
 }
 
 Army::~Army()

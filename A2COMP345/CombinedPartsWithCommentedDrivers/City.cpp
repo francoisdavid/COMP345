@@ -13,6 +13,7 @@ City::City(Node* location, int owner)
 {
 	mapLocation = location;
 	ownerNumber = new int(owner);
+	location->addCity(this);
 }
 
 City::~City()

@@ -44,13 +44,6 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB)
 //Destructor
 Player::~Player()
 {
-    delete playerHand;
-    delete playerNumber;
-    delete playerCoins;
-    delete dayOfBirth;
-    delete monthOfBirth;
-    delete yearOfBirth;
-    delete playerAge;
 
 }
 
@@ -170,18 +163,32 @@ void Player::Bid(int bid)
 //when a player selects a card it will be added to their list of cards
 void Player::BuyCard(int index)
 {
-	Card* card = playerHand->exchange(index);
-	playerCards.emplace_back(card);
 	int price = ceil(double(index) / 2);
-	this->PayCoin(price);
+	
+	if (this->PayCoin(price))
+	{
+		Card* card = playerHand->exchange(index);
+		playerCards.emplace_back(card);
+	}
+	else
+	{
+		Card* card = playerHand->exchange(0);
+		playerCards.emplace_back(card);
+	}
 }
 
-void Player::PayCoin(int cost)
+bool Player::PayCoin(int cost)
 {
 	if (cost <= *playerCoins)
+	{
 		*playerCoins = *playerCoins - cost;
+		return true;
+	}
 	else
-		cout << "You don't have enough coins." << endl;
+	{
+		cout << "You don't have enough coins. You'll buy the free one." << endl;
+		return false;
+	}
 }
 void Player::PlaceNewArmies(Node* location)
 {
@@ -189,7 +196,7 @@ void Player::PlaceNewArmies(Node* location)
 	int index;
 	for (int i = 0; i < location->getArmies().size(); i++)
 	{
-		if (*(location->getArmies()[i]->getOwnerNumber)() == *(this->playerNumber))
+		if (*(location->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
 		{
 			exists = true;
 			index = i;
@@ -197,11 +204,10 @@ void Player::PlaceNewArmies(Node* location)
 	}
 
 	if (exists)
-		location->getArmies()[index]->setNumberOfSoldiers(*(location->getArmies()[index]->getNumberOfSoldiers)() + 1);
+		location->getArmies()[index]->setNumberOfSoldiers(*(location->getArmies()[index]->getNumberOfSoldiers()) + 1);
 	else
 	{
 		Army* army = new Army(location, *(this->playerNumber), 1);
-		location->getArmies().emplace_back(army);
 		playerArmy.emplace_back(army);
 	}
 }
@@ -212,10 +218,9 @@ void Player::MoveArmies(Node* startLocation, Node* endLocation)
 	{
 		if (*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
 		{
-			startLocation->getArmies()[i]->setNumberOfSoldiers(*(startLocation->getArmies()[i]->getNumberOfSoldiers)() - 1);
+			startLocation->getArmies()[i]->setNumberOfSoldiers(*(startLocation->getArmies()[i]->getNumberOfSoldiers()) - 1);
 
-			for (int j = 0; j < endLocation->getArmies().size(); j++)
-				PlaceNewArmies(endLocation);
+			PlaceNewArmies(endLocation);
 
 			break;
 		}
@@ -230,16 +235,15 @@ void Player::MoveOverLandOrWater(Node* startLocation, Node* endLocation)
 void Player::BuildCity(Node* location)
 {
 	City* city = new City(location,*(this->playerNumber));
-	location->getCities().emplace_back(city);
-
+	playerCities.emplace_back(city);
 }
 
 void Player::DestroyArmy(Node* location, int ownerNumber)
 {
 	for (int i = 0; i < location->getArmies().size(); i++)
-		if (*(location->getArmies()[i]->getOwnerNumber)() == ownerNumber)
+		if (*(location->getArmies()[i]->getOwnerNumber()) == ownerNumber)
 		{
-			location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers)() - 1);
+			location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers()) - 1);
 			break;
 		}
 

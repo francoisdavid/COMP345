@@ -56,7 +56,7 @@ public:
 	void addCountry(Node*);
 	void Bid(int);
 	void BuyCard(int);
-	void PayCoin(int);
+	bool PayCoin(int);
 	void PlaceNewArmies(Node*);
 	void MoveArmies(Node*, Node*);
 	void MoveOverLandOrWater(Node*, Node*);
