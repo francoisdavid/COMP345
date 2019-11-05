@@ -11,7 +11,7 @@
 #include "Cards.h"
 #include "Player.h"
 #include "MapLoader.h"
-
+/*
 using namespace std;
 
 int main(int argc, const char * argv[]) {
@@ -113,3 +113,4 @@ int main(int argc, const char * argv[]) {
     
     return 0;
 }
+*/
