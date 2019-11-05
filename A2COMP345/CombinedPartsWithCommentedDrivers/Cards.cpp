@@ -216,3 +216,11 @@ void HandObject::toString(){
         cout << "\nThe card in position " << i + 1 << ". Price: "<< ceil(double(i)/2) << endl <<  "\t Goods: " << displayCards[i]->getGoods()<< endl <<"\t Action: " << displayCards[i]->getAction() << endl ;
     }
 }
+
+int HandObject::getDeckCount() {
+    return deck->howManyCards();
+}
+
+Card *HandObject::getCard(int indexOfCard) {
+    return displayCards[indexOfCard];;
+}

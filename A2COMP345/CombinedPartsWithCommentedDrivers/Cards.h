@@ -55,7 +55,9 @@ public:
     void setCard(Card card);
     void setDeck(Deck* deck);
     void toString();
-   
+
+    int getDeckCount();
+
 private:
     static Card* displayCards[6];
     static Deck* deck;
