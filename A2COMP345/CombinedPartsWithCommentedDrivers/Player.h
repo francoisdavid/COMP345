@@ -62,6 +62,8 @@ public:
 	void MoveOverLandOrWater(Node*, Node*);
 	void BuildCity(Node*);
 	void DestroyArmy(Node*, int);
+	
+	int getArmyCount();
 
 private:
 
