@@ -44,13 +44,7 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB)
 //Destructor
 Player::~Player()
 {
-    delete playerHand;
-    delete playerNumber;
-    delete playerCoins;
-    delete dayOfBirth;
-    delete monthOfBirth;
-    delete yearOfBirth;
-    delete playerAge;
+   
 
 }
 
