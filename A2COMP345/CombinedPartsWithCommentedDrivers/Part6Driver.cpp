@@ -46,18 +46,18 @@ int main(int argc, const char * argv[]) {
 
     cout << "There are " << to_string(numberOfPlayers) << " players." << endl;
 
-    /*string filePath = "/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map";
-    MapLoader *mapLoader = new MapLoader(filePath);
-    mapLoader->processMap();
-    Map* map = mapLoader->getGraph();
-    Node* node = map->getNode(1);
+//     string filePath = "/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map";
+//     MapLoader *mapLoader = new MapLoader(filePath);
+//     mapLoader->processMap();
+//     Map* map = mapLoader->getGraph();
+//     Node* node = map->getNode(1);
 
-    players.at(1)->addCountry(node);
-    players.at(1)->PlaceNewArmies(node);
+//     players.at(1)->addCountry(node);
+//     players.at(1)->PlaceNewArmies(node);
 
-    vector<Army*> armies = node->getArmies();
-    cout << *node->getName() << endl;
-    cout << armies.size() << endl;*/
+//     vector<Army*> armies = node->getArmies();
+//     cout << *node->getName() << endl;
+//     cout << armies.size() << endl;
 
 // CONTINENTS
 Map *europe = new Map(new std::string("Europe"));
