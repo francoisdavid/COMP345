@@ -75,9 +75,85 @@ void GameScore::computeGameScore() {
             }
         }
         
-        // If tied, check coins
+        // If tied, check armies
         else {
+            int maxArmies = 0;
             
+            for (int i = 0; i < players.size(); i++) {
+                if (players.at(i)->getArmyCount() > maxArmies) {
+                    maxArmies = players.at(i)->getArmyCount();
+                }
+            }
+            
+            int armiesCounter = 0;
+            for (int k = 0; k < players.size(); k++) {
+                if (players.at(k)-> getArmyCount() == maxArmies) {
+                    armiesCounter++;
+                }
+            }
+            
+            // There is only one winner with max armies
+            if (armiesCounter == 1) {
+                for (int k = 0; k < players.size(); k++) {
+                    if (players.at(k)->getArmyCount() == maxArmies) {
+                        cout << "Winner is " << "player " << to_string(k+1) << ": " << players.at(k)->getName() << endl;
+                    }
+                }
+            }
+            
+            // If tied, check coins
+            else {
+                int maxCoins = 0;
+                
+                for (int i = 0; i < players.size(); i++) {
+                    if (*players.at(i)->getPlayerCoins() > maxCoins) {
+                        maxCoins = *players.at(i)->getPlayerCoins();
+                    }
+                }
+                
+                int coinsCounter = 0;
+                for (int k = 0; k < players.size(); k++) {
+                    if (*players.at(k)-> getPlayerCoins() == maxCoins) {
+                        coinsCounter++;
+                    }
+                }
+                
+                // There is only one winner with max armies
+                if (coinsCounter == 1) {
+                    for (int k = 0; k < players.size(); k++) {
+                        if (*players.at(k)->getPlayerCoins() == maxCoins) {
+                            cout << "Winner is " << "player " << to_string(k+1) << ": " << players.at(k)->getName() << endl;
+                        }
+                    }
+                }
+                
+                // If tied, check regions
+                /*else {
+                    int maxCountries = 0;
+                    
+                    for (int i = 0; i < players.size(); i++) {
+                        if (players.at(i)->getCountries().size() > maxCoins) {
+                            maxCoins = *players.at(i)->getPlayerCoins();
+                        }
+                    }
+                    
+                    int coinsCounter = 0;
+                    for (int k = 0; k < players.size(); k++) {
+                        if (*players.at(k)-> getPlayerCoins() == maxCoins) {
+                            coinsCounter++;
+                        }
+                    }
+                    
+                    // There is only one winner with max armies
+                    if (coinsCounter == 1) {
+                        for (int k = 0; k < players.size(); k++) {
+                            if (*players.at(k)->getPlayerCoins() == maxCoins) {
+                                cout << "Winner is " << "player " << to_string(k+1) << ": " << players.at(k)->getName() << endl;
+                            }
+                        }
+                    }
+                }*/
+            }
         }
     }
 }
