@@ -55,6 +55,11 @@ Node *Edge::getNode2() const {
   return node2;
 }
 
+string* Edge::getOver()
+{
+	return over;
+}
+
 std::ostream &operator<<(std::ostream &os, const Node &node) {
   os << "Node {id: " << *node.id << ", name: " << *node.name << ", continent: "<< ((node.continent && node.continent->getName()) ? (*node.continent->getName()) : ("NULL")) << "}";
   return os;
@@ -77,6 +82,16 @@ std::vector<Army*> Node::getArmies()
 std::vector<City*> Node::getCities()
 {
 	return cities;
+}
+
+void Node::addCity(City* city)
+{
+	cities.emplace_back(city);
+}
+
+void Node::addArmy(Army* army)
+{
+	armies.emplace_back(army);
 }
 
 std::string* Node::getName()
