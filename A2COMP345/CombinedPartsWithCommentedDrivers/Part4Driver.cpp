@@ -1,5 +1,5 @@
 #include "Part4GameLoop.h"
-
+/*
 int main() {
 
 	Player* player1 = new Player("Player 1", 10, 18, 12, 1994);
@@ -122,4 +122,4 @@ int main() {
 
 	gameLoop->Ignore();
 
-}
+}*/
