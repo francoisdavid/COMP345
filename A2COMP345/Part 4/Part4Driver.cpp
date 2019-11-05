@@ -69,7 +69,51 @@ int main() {
 	//And or Action
 	cout << "And/Or actions..." << endl;
 
+	Node* egypt = new Node(10, "Egypt");
+	Node* algeria = new Node(11, "Algeria");
 
+	Edge* edge3 = new Edge("egyptalgeria", egypt, algeria, "land");
+
+	Army* egyptArmy = new Army(egypt, *(player1->getPlayerNumber()),2);
+	Army* algeriaArmy = new Army(algeria, *(player2->getPlayerNumber()), 1);
+
+	City* cairo = new City(egypt, *(player1->getPlayerNumber()));
+
+	switch (gameLoop->AndOrAction()) {
+		int selection;
+
+	case 1:
+		cout << "1. Destroy army" << endl;
+		cout << "2. Build a city" << endl;
+		cout << "Select an option: ";
+		cin >> selection;
+		cout << endl;
+
+		if (selection == 1)
+			gameLoop->DestroyArmy(algeria, player2);
+		if (selection == 2)
+			gameLoop->BuildCity(egypt);
+
+		break;
+	case 2:
+		cout << "1. Add an army unit" << endl;
+		cout << "2. Move an army unit" << endl;
+		cout << "Select an option: ";
+		cin >> selection;
+		cout << endl;
+
+		if (selection == 1)
+			gameLoop->PlaceNewArmies(egypt);
+		if (selection == 2)
+			gameLoop->MoveOverLand(egypt,algeria);
+
+		break;
+	case 3:
+		cout << "3. Destroy army and build a city." << endl;
+		gameLoop->DestroyArmy(algeria, player2);
+		gameLoop->BuildCity(egypt);
+		break;
+	}
 
 	cout << endl;
 
