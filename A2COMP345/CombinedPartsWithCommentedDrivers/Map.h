@@ -71,6 +71,8 @@ public:
 
   std::vector<Army*> getArmies();
   std::vector<City*> getCities();
+  void addCity(City*);
+  void addArmy(Army*);
 
 
   friend std::ostream &operator<<(std::ostream &os, const Node &node);
@@ -87,6 +89,7 @@ public:
   ~Edge();
   Node *getNode1() const;
   Node *getNode2() const;
+  std::string* getOver();
   friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
 };
 
