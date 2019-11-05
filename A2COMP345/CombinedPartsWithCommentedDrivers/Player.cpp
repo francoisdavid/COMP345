@@ -265,6 +265,12 @@ int Player::getArmyCount() {
    return playerArmy.size();
 }
 
+// Returns number of card player has
+int Player::getCardCount() {
+   vector<Card*> cards = getCards();
+   return cards.size();
+}
+
 void Player::toString(){
     cout <<"Player-" << getName() << "\n\tCoins: " << *getPlayerCoins() << "\n\tDateOfBirth:" << *getDayOfBirth() << "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
 }
