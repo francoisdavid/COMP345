@@ -20,7 +20,7 @@ public:
 	void MoveOverWater(Node*, Node*);
 	void BuildCity(Node*);
 	void DestroyArmy(Node*, Player*);
-	void AndOrAction();
+	int AndOrAction();
 	void Ignore();
 
 private:

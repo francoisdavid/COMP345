@@ -9,4 +9,6 @@ add_executable(Maps "Part1-2/Map.cpp" "Part1-2/Map.h" "Part1-2/MapDriver.cpp" "P
 add_executable(MapLoader "Part1-2/MapLoader.cpp" "Part1-2/MapLoader.h" "Part1-2/Map.cpp" "Part1-2/Map.h")
 add_executable(Player "Part1-2/Player.cpp" "Part1-2/Player.h")
 add_executable(Cards_Deck "Part1-2/Cards.cpp" "Part1-2/Cards.h" Part1-2/Part5Driver.cpp "Part1-2/BidingFacility.cpp" "Part1-2/BidingFacility.h" "Part1-2/Player.cpp" "Part1-2/Player.h" "Part1-2/Army.h" "Part1-2/Army.cpp" "Part1-2/BidingFacility.cpp" "Part1-2/BidingFacility.h" "Part1-2/City.h" "Part1-2/City.cpp")
+list(REMOVE_ITEM A2 "Part1-2/MapDriver.cpp")
 add_executable(Part5 ${A2})
+add_executable(DemoConnectedGraph "Part1-2/Map.h" "Part1-2/Map.cpp" "Part1-2/MapDriver.cpp")
