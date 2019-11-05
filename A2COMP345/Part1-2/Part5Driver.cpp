@@ -3,10 +3,8 @@
 #include "Cards.h"
 #include "MapLoader.h"
 #include "BidingFacility.h"
-/*
-int main() {
 
-  int number = 2;
+int main() {
 
   // Vector that will hold the pointers to the different players.
   vector<Player*> players;
@@ -26,15 +24,22 @@ int main() {
 
   Deck *deck = new Deck(37);
 
-  HandObject* handObj = new HandObject(deck);
+  int cardIndex = 0;
 
+  HandObject* handObj = new HandObject(deck);
+    handObj->toString();
   for (Player* player : players) {
     std::cout << "Showing cards on the board." << std::endl;
-    handObj->toString();
-    player->BuyCard(2);
-    std::cout << "Showing cards on the board after player's buying 3rd card." << std::endl;
+    player->BuyCard(cardIndex);
+      handObj->toString();
+    std::cout << "Showing cards on the board after player's buying card #" << cardIndex << std::endl;
   }
 
+  delete handObj;
+  delete deck;
+  delete player1;
+  delete player2;
+  delete bidingFacility;
 
   return 0;
-}*/
+}
