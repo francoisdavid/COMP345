@@ -64,6 +64,7 @@ public:
 	void DestroyArmy(Node*, int);
 	
 	int getArmyCount();
+	int getCardCount();
 
 private:
 
