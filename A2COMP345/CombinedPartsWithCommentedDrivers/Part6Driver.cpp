@@ -1,6 +1,4 @@
-//
-// Created by Francois David on 2019-11-04.
-//
+
 
 //
 //  Driver.cpp
@@ -15,7 +13,7 @@
 #include "Cards.h"
 #include "Player.h"
 #include "MapLoader.h"
-
+/*
 using namespace std;
 int main(int argc, const char * argv[]) {
 
@@ -115,4 +113,4 @@ GameScore *gameScore = new GameScore(players);
 gameScore->computeGameScore();
 
 return 0;
-}
+}*/
