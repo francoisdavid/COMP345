@@ -214,3 +214,11 @@ void Map::removeCountry(Node* node) {
 int Map::getNumberCountries() {
     return countries.size();
 }
+
+vector<Node*> Map::getCountries() {
+    return countries;
+}
+
+vector<Map*> Map::getContinents() {
+    return continents;
+}
