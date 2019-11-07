@@ -48,6 +48,8 @@ public:
     int getNumberCountries();
     
     std::vector<Node*> getCountries();
+    
+    std::vector<Map*> getContinents();
 };
 
 class Node {

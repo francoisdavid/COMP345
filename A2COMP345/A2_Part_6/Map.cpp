@@ -218,3 +218,7 @@ int Map::getNumberCountries() {
 vector<Node*> Map::getCountries() {
     return countries;
 }
+
+vector<Map*> Map::getContinents() {
+    return continents;
+}

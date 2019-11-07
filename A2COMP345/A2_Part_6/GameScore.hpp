@@ -26,19 +26,27 @@ public:
     
     // Methods
     void computeGameScore();
+private:
+    
+    // Properties
+    vector<Player*> players;
+    Map* map;
+    
+    // Methods
     bool isGameEnd();
     void processRegionsScore();
+    void processContinentsScore();
     int computeGoodsScore(Player*);
     int carrotsScore(int);
     int oreScore(int);
     int crystalScore(int);
     int forestScore(int);
     int anvilScore(int);
-private:
-    
-    // Properties
-    vector<Player*> players;
-    Map* map;
+    void listScoreAndStatistics();
+    void determineWinnerByScore();
+    void determineWinnerByArmies();
+    void determineWinnerByCoins();
+    void determineWinnerByControlledRegions();
 };
 
 #endif /* GameScore_hpp */
