@@ -6,6 +6,7 @@
 //  Copyright © 2019 Wilson Fong. All rights reserved.
 //
 
+
 #include <iostream>
 #include "GameScore.hpp"
 #include "Cards.h"
@@ -43,8 +44,8 @@ int main(int argc, const char * argv[]) {
         players.push_back(newPlayer);
     }
     
-    //MapLoader *mapLoader = new MapLoader("/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map");
-    MapLoader *mapLoader = new MapLoader("../Maps/MAP1.map");
+    MapLoader *mapLoader = new MapLoader("/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map");
+    //MapLoader *mapLoader = new MapLoader("../Maps/MAP1.map");
     mapLoader->processMap();
     Map* map = mapLoader->getGraph();
     
@@ -175,6 +176,7 @@ int main(int argc, const char * argv[]) {
     players.at(1)->BuildCity(holland);
     players.at(1)->BuildCity(holland);
     players.at(1)->BuildCity(italy);*/
+    
     
     // Compute game score
     GameScore *gameScore = new GameScore(players, map);
