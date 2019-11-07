@@ -44,8 +44,7 @@ int main(int argc, const char * argv[]) {
         players.push_back(newPlayer);
     }
     
-    MapLoader *mapLoader = new MapLoader("/Users/Wilson/git/COMP345/A2COMP345/A2_Part_6/A2_Part_6/Maps/MAP1.map");
-    //MapLoader *mapLoader = new MapLoader("../Maps/MAP1.map");
+    MapLoader *mapLoader = new MapLoader("../Maps/MAP1.map");
     mapLoader->processMap();
     Map* map = mapLoader->getGraph();
     
