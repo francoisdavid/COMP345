@@ -46,6 +46,10 @@ public:
   void removeCountry(Node*);
 
   int getNumberCountries();
+  
+  std::vector<Node*> getCountries();
+    
+  std::vector<Map*> getContinents();
 };
 
 class Node {

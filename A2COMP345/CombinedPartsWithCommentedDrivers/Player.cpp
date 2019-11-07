@@ -19,6 +19,8 @@ Player::Player()
 	monthOfBirth = new int();
 	yearOfBirth = new int();
 	playerAge = new double();
+	playerScore = new int();
+    	playerNumOfArmiesBasedOnSoldiers = new int();
 
 	playerHand = new HandObject();
 	playerBiddingFacility = new BidingFacility();
@@ -35,6 +37,8 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB)
 	monthOfBirth = new int(MOB);
 	yearOfBirth = new int(YOB);
 	playerAge = new double();
+	playerScore = new int();
+    	playerNumOfArmiesBasedOnSoldiers = new int();
 	playerHand = new HandObject();
 	playerBiddingFacility = new BidingFacility();
 
@@ -275,3 +279,35 @@ void Player::toString(){
     cout <<"Player-" << getName() << "\n\tCoins: " << *getPlayerCoins() << "\n\tDateOfBirth:" << *getDayOfBirth() << "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
 }
 
+vector<City*> Player::getCities() {
+    return playerCities;
+}
+
+int Player::getPlayerScore() {
+    return *playerScore;
+}
+
+void Player::setPlayerScore(int score) {
+    *playerScore = score;
+}
+
+int Player::getArmyCountBasedOnSoldiers() {
+    return *playerNumOfArmiesBasedOnSoldiers;
+}
+
+// Sets the number of armies based on # of soldiers
+void Player::setPlayerNumOfArmiesBasedOnSoldiers(int number) {
+    *playerNumOfArmiesBasedOnSoldiers += number;
+}
+
+// Returns list of continents
+vector<Map*> Player::getContinents() {
+    return playerContinents;
+}
+
+//when a player takes control of a continent it will be added to the list
+void Player::addContinent(Map *map)
+{
+    Map *newMap = map;
+    playerContinents.emplace_back(newMap);
+}

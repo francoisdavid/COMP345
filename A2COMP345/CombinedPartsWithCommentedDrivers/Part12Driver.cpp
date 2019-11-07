@@ -222,6 +222,8 @@ MapLoader* loadMap(const char *directory) {
             cout << endl << ex.what() << endl;
         }
     }
+        
+    return NULL;
 };
 
 // Prompts user for input
