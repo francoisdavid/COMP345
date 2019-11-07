@@ -14,7 +14,7 @@ class City;
 class Node;
 class HandObject;
 class Army;
-
+class Map;
 
 using namespace std;
 
@@ -36,6 +36,8 @@ public:
 	double* getPlayerAge();
 	vector<Card*> getCards();
 	vector<Node*> getCountries();
+	vector<City*> getCities();
+	vector<Map*> getContinents();
 	BidingFacility* getBuildingFacility();
 	void playerBid(int coins);
 	void toString();
@@ -48,12 +50,15 @@ public:
 	void setPlayerAge(double);
 	void setPlayerCoins(int);
 	void setPlayerBiddingFacility(BidingFacility* bf);
+	void setPlayerScore(int);
+	void setPlayerNumOfArmiesBasedOnSoldiers(int);
 
 	//Print info of player
 	void printInfo();
 
 	//Implemented player methods
 	void addCountry(Node*);
+	void addContinent(Map*);
 	void Bid(int);
 	void BuyCard(int);
 	bool PayCoin(int);
@@ -65,6 +70,8 @@ public:
 	
 	int getArmyCount();
 	int getCardCount();
+	int getPlayerScore();
+    	int getArmyCountBasedOnSoldiers();
 
 private:
 
@@ -82,7 +89,9 @@ private:
 	BidingFacility* playerBiddingFacility;
 	vector<Army*> playerArmy;
 	vector<City*> playerCities;
-
+	vector<Map*> playerContinents;
+    	int* playerScore;
+    	int* playerNumOfArmiesBasedOnSoldiers;
 };
 
 #endif // Player_h
