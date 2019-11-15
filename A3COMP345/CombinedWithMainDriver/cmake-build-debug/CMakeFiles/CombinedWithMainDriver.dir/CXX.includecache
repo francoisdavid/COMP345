@@ -34,29 +34,17 @@ Map.h
 Player.h
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MAINDriver.cpp
-iostream
--
-Map.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
-string
--
-MapLoader.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MapLoader.h
-vector
--
-Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
-Cards.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Cards.h
-dirent.h
--
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.cpp
 MainGameLoop.hpp
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.hpp
+cmath
+-
+string.h
+-
+vector
+-
 PlayerActions.h
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h
-ctime
--
 
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.hpp
 stdio.h
@@ -82,9 +70,15 @@ Army.h
 City.h
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/City.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MapLoader.h
-Map.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.cpp
+iostream
+-
+Player.h
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+string
+-
+cmath
+-
 
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
 vector

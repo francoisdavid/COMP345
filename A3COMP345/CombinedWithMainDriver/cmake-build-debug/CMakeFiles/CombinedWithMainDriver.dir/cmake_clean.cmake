@@ -11,7 +11,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/CombinedWithMainDriver.dir/MapLoader.cpp.o"
   "CMakeFiles/CombinedWithMainDriver.dir/Player.cpp.o"
   "CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.o"
-  "CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.o"
   "CombinedWithMainDriver"
   "CombinedWithMainDriver.pdb"
 )
