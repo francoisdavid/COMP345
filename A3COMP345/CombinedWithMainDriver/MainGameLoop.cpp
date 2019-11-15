@@ -6,10 +6,11 @@
 //  Copyright © 2019 Wilson Fong. All rights reserved.
 //
 
-#include "MainGameLoop.hpp"
-#include <cmath>
+#include "MainGameLoop.hpp"#include <cmath>
 #include <string.h>
 #include <vector>
+#include <regex>
+#include <string>
 #include "PlayerActions.h"
 
 using namespace std;
@@ -168,68 +169,180 @@ void MainGameLoop::traverse(Turn *last)
 void MainGameLoop::processCard(Card*  card, Player* player) {
     string action = card->getAction();
 
-    if (action == "Build City.") {
-        cout << "Here are the countries you have that do not already have a city." << endl;
-        vector<Army *> armyLoc = player->getPlayerArmies();
-        for (int i = 0; i < armyLoc.size(); i++) {
-            cout << i + 1 << "- Build city on " << *armyLoc.at(i)->getLocation()->getName() << endl;
-        }
-        cout << armyLoc.size() + 1 << " - Ignore the action" << endl;
-        int index = 0;
-        cout << "Where do you want to build that city? ";
-        cin >> index;
-        index -= 1;
-        while (index < 0 || index > armyLoc.size()) {
-            cout << "Not a valid action! Re-enter the index of the region where you want to build a city: ";
-            cin >> index;
-            index -= 1;
-        }
-        if (index != armyLoc.size()) {
-            playerActions->BuildCity(armyLoc.at(index)->getLocation(), player);
-            cout << player->getName() << " built a city on " << *armyLoc.at(index)->getLocation()->getName() << "."
-                 << endl;
-        } else {
-            cout << "\nAction was ignored." << endl;
-        }
+	//Build City action
+	if (action == "Build City.")
+		BuildCity(player);
 
-    }else if (action == "Move 2 armies.") {
-        for(int i = 0 ; i < 2 ;i++) {
-            cout << "\nYou can now move "<<2-i<<" armies. Here are the armies you have that you can move."<< endl;
-            MoveOneArmy(player);
-        }
-    }else if (action == "Move 3 armies.") {
-        for(int i = 0 ; i < 3 ;i++) {
-            cout << "\nYou can now move "<<3-i<<" armies. Here are the armies you have that you can move."<< endl;
-            MoveOneArmy(player);
-        }
-    }else if (action == "Move 4 armies.") {
-        for(int i = 0 ; i < 4 ;i++) {
-            cout << "\nYou can now move "<<4-i<<" armies. Here are the armies you have that you can move."<< endl;
-            MoveOneArmy(player);
-        }
-    }else if (action == "Move 5 armies."){
-        for(int i = 0 ; i < 5 ;i++) {
-            cout << "\nYou can now move "<<5-i<<" armies. Here are the armies you have that you can move."<< endl;
-                MoveOneArmy(player);
-        }
-    } else if (action == "Add 1 army."){
-        cout << "\nYou can now Add 1 army. Here are the location you can add an army."<< endl;
-            AddOneArmy(player);
-    } else if (action == "Add 2 armies."){
-        for(int i = 0 ; i < 2 ;i++) {
-            cout << "\nYou can now Add "<<2-i<<" armies. Here are the location you can add an army. "<< endl;
-            AddOneArmy(player);
-        }
-    }else if (action == "Add 3 armies."){
-        for(int i = 0 ; i < 3 ;i++) {
-            cout << "\nYou can now Add "<<3-i<<" armies. Here are the location you can add an army."<< endl;
-            AddOneArmy(player);
-        }
-    }
+	if (action == "Destroy Army.")
+		DestroyArmy(player);
+
+	//And Action
+	else if (regex_match(action, regex("(.*)( AND )(.*)")))
+	{
+		int first = action.find(" AND ");
+
+		string action1 = action.substr(0,first) + ".";
+		string action2 = action.substr(first+5, action.size()-1);
+
+		int index = 0;
+
+		while (index < 1 && index > 2)
+		{
+			cout << "Here are your choices." << endl;
+			cout << "1- " << action << endl;
+			cout << "2- Ignore the action." << endl;
+			cout << endl;
+
+			cout << "What would you like to do? ";
+			cin >> index;
+
+			if (index == 1)
+			{
+				Card* card1 = new Card();
+				card1->setAction(action1);
+				processCard(card1, player);
+
+				Card* card2 = new Card();
+				card2->setAction(action2);
+				processCard(card2, player);
+
+				break;
+			}
+
+			else if (index == 2)
+			{
+				cout << "\nAction was ignored." << endl;
+				break;
+			}
+		}
+	}
+
+	//Or Action
+	else if (regex_match(action, regex("(.*)( OR )(.*)")))
+	{
+		int first = action.find(" OR ");
+
+		string action1 = action.substr(0, first) + ".";
+		string action2 = action.substr(first + 4, action.size() - 1);
+
+		int index = 0;
+
+		while (index < 1 && index > 3)
+		{
+			cout << "Here are your choices." << endl;
+			cout << "1- " << action1 << endl;
+			cout << "2- " << action2 << endl;
+			cout << "3- Ignore the action." << endl;
+			cout << endl;
+
+			cout << "What would you like to do? ";
+			cin >> index;
+
+			if (index == 1)
+			{
+				Card* card1 = new Card();
+				card1->setAction(action1);
+				processCard(card1, player);
+				break;
+			}
+
+			else if (index == 2)
+			{
+				Card* card2 = new Card();
+				card2->setAction(action2);
+				processCard(card2, player);
+				break;
+			}
+
+			else if (index == 3)
+			{
+				cout << "\nAction was ignored." << endl;
+				break;
+			}
+
+			else
+				cout << "Please select one of the options." << endl;
+			cout << endl;
+		}
+	}
+
+	//Move army action: checks if the action starts with "Mov" (Move) and ends with "ater" (Water) and extracts the number of army units
+	else if (regex_match(action, regex("(Mov)(.*)(ater)(.*)")))
+	{
+		int amt = action.at(5) - '0';
+		MoveArmyOverWater(player, amt);
+	}
+
+	//Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
+	else if (regex_match(action, regex("(Mov)(.*)")))
+	{
+		int amt = action.at(5) - '0';
+		MoveArmies(player, amt);
+	}
+
+	//Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
+	else if (regex_match(action, regex("(Ad)(.*)")))
+	{
+		int amt = action.at(4) - '0';
+		AddArmies(player, amt);
+	}
 
 }
 
+void MainGameLoop::BuildCity(Player* player)
+{
+	cout << "Here are the countries you have that do not already have a city." << endl;
+	vector<Army*> armyLoc = player->getPlayerArmies();
+	for (int i = 0; i < armyLoc.size(); i++) {
+		cout << i + 1 << "- Build city on " << *armyLoc.at(i)->getLocation()->getName() << endl;
+	}
+	cout << armyLoc.size() + 1 << " - Ignore the action" << endl;
+	int index = 0;
+	cout << "Where do you want to build that city? ";
+	cin >> index;
+	index -= 1;
+	while (index < 0 || index > armyLoc.size()) {
+		cout << "Not a valid action! Re-enter the index of the region where you want to build a city: ";
+		cin >> index;
+		index -= 1;
+	}
+	if (index != armyLoc.size()) {
+		playerActions->BuildCity(armyLoc.at(index)->getLocation(), player);
+		cout << player->getName() << " built a city on " << *armyLoc.at(index)->getLocation()->getName() << "."
+			<< endl;
+	}
+	else {
+		cout << "\nAction was ignored." << endl;
+	}
+}
 
+void MainGameLoop::MoveArmies(Player* player, int amount)
+{
+	for (int i = 0; i < amount; i++)
+	{
+		cout << "\nYou can now move " << amount - i << " armies. Here are the armies you have that you can move." << endl;
+		MoveOneArmy(player);
+	}
+}
+
+void MainGameLoop::MoveArmyOverWater(Player* player, int amount)
+{
+
+}
+
+void MainGameLoop::AddArmies(Player* player, int amount)
+{
+	for (int i = 0; i < amount; i++) 
+	{
+		cout << "\nYou can now Add " << amount - i << " armies. Here are the location you can add an army. " << endl;
+		AddOneArmy(player);
+	}
+}
+
+void MainGameLoop::DestroyArmy(Player* player)
+{
+
+}
 
 void MainGameLoop::MoveOneArmy(Player* player){
     // Get the regions of the current player.
