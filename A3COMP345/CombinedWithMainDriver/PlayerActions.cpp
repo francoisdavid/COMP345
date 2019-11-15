@@ -181,3 +181,7 @@ void PlayerActions::Ignore()
 {
 	cout << "Ignore the action. Take the good." << endl;
 }
+
+Node* PlayerActions::getStartingLocation() {
+    return startingLocation;
+}

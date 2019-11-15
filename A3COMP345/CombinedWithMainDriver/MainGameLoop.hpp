@@ -40,6 +40,7 @@ public:
     void executeGameLoop(Turn *);
     void processCard(Card*, Player* );
     void MoveOneArmy(Player*);
+    void AddOneArmy(Player*);
 
 private:
     
@@ -47,6 +48,7 @@ private:
     HandObject *handObject;
     Turn *head;
     vector<Player*> players;
+    // PlayerActions playerAction;
 };
 
 #endif // MainGameLoop_h

@@ -231,6 +231,15 @@ void Player::MoveArmies(Node* startLocation, Node* endLocation)
 
 			PlaceNewArmies(endLocation);
 
+           if ( *(startLocation->getArmies()[i]->getNumberOfSoldiers()) == 0) {
+              for(int j = 0 ; j < startLocation->getArmies().size() ; j++ ){
+                  if(*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber)){
+                      playerArmy.erase(playerArmy.begin() + j);
+                  }
+              }
+           }
+
+
 			break;
 		}
 	}

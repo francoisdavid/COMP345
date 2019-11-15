@@ -10,6 +10,7 @@
 #include <cmath>
 #include <string.h>
 #include <vector>
+#include "PlayerActions.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ using namespace std;
 MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList) {
     handObject = handObj;
     players = playersList;
-
+    playerActions = new PlayerActions();
     // Initialize
     setup();
 }
@@ -188,31 +189,43 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
             cout << player->getName() << " built a city on " << *armyLoc.at(index)->getLocation()->getName() << "."
                  << endl;
         } else {
-            cout << "Action was ignored." << endl;
+            cout << "\nAction was ignored." << endl;
         }
 
     }else if (action == "Move 2 armies.") {
         for(int i = 0 ; i < 2 ;i++) {
-            cout << "You can now move "<<2-i<<" armies. Here are the armies you have that you can move."<< endl;
+            cout << "\nYou can now move "<<2-i<<" armies. Here are the armies you have that you can move."<< endl;
             MoveOneArmy(player);
         }
     }else if (action == "Move 3 armies.") {
         for(int i = 0 ; i < 3 ;i++) {
-            cout << "You can now move "<<3-i<<" armies. Here are the armies you have that you can move."<< endl;
+            cout << "\nYou can now move "<<3-i<<" armies. Here are the armies you have that you can move."<< endl;
             MoveOneArmy(player);
         }
     }else if (action == "Move 4 armies.") {
         for(int i = 0 ; i < 4 ;i++) {
-            cout << "You can now move "<<4-i<<" armies. Here are the armies you have that you can move."<< endl;
+            cout << "\nYou can now move "<<4-i<<" armies. Here are the armies you have that you can move."<< endl;
             MoveOneArmy(player);
         }
     }else if (action == "Move 5 armies."){
         for(int i = 0 ; i < 5 ;i++) {
-            cout << "You can now move "<<5-i<<" armies. Here are the armies you have that you can move."<< endl;
+            cout << "\nYou can now move "<<5-i<<" armies. Here are the armies you have that you can move."<< endl;
                 MoveOneArmy(player);
         }
+    } else if (action == "Add 1 army."){
+        cout << "\nYou can now Add 1 army. Here are the location you can add an army."<< endl;
+            AddOneArmy(player);
+    } else if (action == "Add 2 armies."){
+        for(int i = 0 ; i < 2 ;i++) {
+            cout << "\nYou can now Add "<<2-i<<" armies. Here are the location you can add an army. "<< endl;
+            AddOneArmy(player);
+        }
+    }else if (action == "Add 3 armies."){
+        for(int i = 0 ; i < 3 ;i++) {
+            cout << "\nYou can now Add "<<3-i<<" armies. Here are the location you can add an army."<< endl;
+            AddOneArmy(player);
+        }
     }
-
 
 }
 
@@ -256,11 +269,48 @@ void MainGameLoop::MoveOneArmy(Player* player){
             index -=1;
         }
 
-
         playerActions->MoveArmies(from, neighbours.at(index2), player);
-        cout << player->getName() << " moved 1 army from " << *from->getName() << " to "
-                 << *neighbours.at(index2)->getName() << endl;
+        cout << player->getName() << " moved 1 army from " << *from->getName() << " to "<< *neighbours.at(index2)->getName() << endl;
+    }
+}
 
 
+void MainGameLoop::AddOneArmy(Player* player) {
+    vector<City*> cities = player->getCities();
+    vector<Node*> nodeOfCities;
+    // Add all the nodes to the vector.
+    for(int i = 0 ; i < cities.size(); i++ ){
+        nodeOfCities.emplace_back(cities.at(i)->getLocation());
+    }
+
+    for(int i = 0; i < nodeOfCities.size() ; i++){
+        cout <<"\t" <<i+1 << "- Add 1 army to " << *nodeOfCities.at(i)->getName() << endl;
+
+    }
+    cout <<"\t" << nodeOfCities.size()+1 << "- Add 1 army to " << *PlayerActions::getStartingLocation()->getName() << " (starting location)."<< endl;
+    cout << "\t" << nodeOfCities.size()+2 << "- Ignore the action. "<< endl;
+    cout<< "Which location do you want to add that army? ";
+    int index = -1;
+
+    cin >> index;
+    index -=1;
+
+    while (index < 0 || index > nodeOfCities.size() + 1) {
+        cout << "Not a valid action! Re-enter the index of the destination you want to add that army. ";
+        cin >> index;
+        index -= 1;
+    }
+
+    if (index != nodeOfCities.size()+1) {
+        if(index != nodeOfCities.size()) {
+            playerActions->PlaceNewArmies(nodeOfCities.at(index), player);
+            cout << "One "<< player->getName()<< " army have been placed on the location " << *nodeOfCities.at(index)->getName() << "." << endl;
+        }else {
+            playerActions->PlaceNewArmies(PlayerActions::getStartingLocation(), player);
+            cout << "One "<< player->getName()<< " army have been placed on the location " << *PlayerActions::getStartingLocation()->getName() << "." << endl;
+        }
+
+    } else {
+        cout << "Action was ignored." << endl;
     }
 }

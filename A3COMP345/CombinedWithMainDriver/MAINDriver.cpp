@@ -123,7 +123,7 @@ int main() {
         Node *startingLoc = map->getNode(startingLocation);
 
         PlayerActions* playerActions = new PlayerActions();
-        playerActions->setStartingLocation(startingLoc);
+        PlayerActions::setStartingLocation(startingLoc);
             for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
                 for (int j = 0; j < 3; j++) {
                     // Add armies to the starting location.

@@ -43,6 +43,8 @@ string.h
 -
 vector
 -
+PlayerActions.h
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h
 
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.hpp
 stdio.h
@@ -67,6 +69,16 @@ Army.h
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Army.h
 City.h
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/City.h
+
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.cpp
+iostream
+-
+Player.h
+/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+string
+-
+cmath
+-
 
 /Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
 vector

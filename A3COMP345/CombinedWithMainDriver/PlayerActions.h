@@ -19,9 +19,11 @@ public:
 	void DestroyArmy(Node*, Player* Opponent, Player* ThisPlayer);
 	int AndOrAction();
 	void Ignore();
-	void setStartingLocation(Node*);
+	static void setStartingLocation(Node*);
 
-    //Player* getPlayer();
+	static Node* getStartingLocation();
+
+    //Player* getPlayer();s
     //PlayerActions(Player*);
 private:
 	//Player* mainPlayer;
