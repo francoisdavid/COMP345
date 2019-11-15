@@ -38,4 +38,4 @@ add_executable(CombinedWithMainDriver
         Player.cpp
         Player.h
         PlayerActions.cpp
-        PlayerActions.h)
+        PlayerActions.h Strategy.cpp Strategy.h)

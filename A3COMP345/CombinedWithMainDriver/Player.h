@@ -65,6 +65,7 @@ public:
 	bool PayCoin(int);
 	void PlaceNewArmies(Node*);
 	void MoveArmies(Node*, Node*);
+	void MoveOverLandOrWater(Node*, Node*);
 	void BuildCity(Node*);
 	void DestroyArmy(Node*, int);
 	

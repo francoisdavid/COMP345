@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MapLoader.cpp" "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/cmake-build-debug/CMakeFiles/CombinedWithMainDriver.dir/MapLoader.cpp.o"
   "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.cpp" "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/cmake-build-debug/CMakeFiles/CombinedWithMainDriver.dir/Player.cpp.o"
   "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.cpp" "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/cmake-build-debug/CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.o"
+  "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Strategy.cpp" "/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/cmake-build-debug/CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

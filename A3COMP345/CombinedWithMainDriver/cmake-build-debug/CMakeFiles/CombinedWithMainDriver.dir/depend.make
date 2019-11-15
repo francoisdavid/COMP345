@@ -95,3 +95,6 @@ CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.o: ../Player.h
 CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.o: ../PlayerActions.cpp
 CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.o: ../PlayerActions.h
 
+CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.o: ../Strategy.cpp
+CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.o: ../Strategy.h
+

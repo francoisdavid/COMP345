@@ -23,7 +23,6 @@ public:
     Card(int index);
     string getAction();
     string getGoods();
-	void setAction(string);
 
 private:
     string action;

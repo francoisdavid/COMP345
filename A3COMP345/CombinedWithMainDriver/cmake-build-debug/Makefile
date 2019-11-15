@@ -447,6 +447,33 @@ PlayerActions.cpp.s:
 	$(MAKE) -f CMakeFiles/CombinedWithMainDriver.dir/build.make CMakeFiles/CombinedWithMainDriver.dir/PlayerActions.cpp.s
 .PHONY : PlayerActions.cpp.s
 
+Strategy.o: Strategy.cpp.o
+
+.PHONY : Strategy.o
+
+# target to build an object file
+Strategy.cpp.o:
+	$(MAKE) -f CMakeFiles/CombinedWithMainDriver.dir/build.make CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.o
+.PHONY : Strategy.cpp.o
+
+Strategy.i: Strategy.cpp.i
+
+.PHONY : Strategy.i
+
+# target to preprocess a source file
+Strategy.cpp.i:
+	$(MAKE) -f CMakeFiles/CombinedWithMainDriver.dir/build.make CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.i
+.PHONY : Strategy.cpp.i
+
+Strategy.s: Strategy.cpp.s
+
+.PHONY : Strategy.s
+
+# target to generate assembly for a file
+Strategy.cpp.s:
+	$(MAKE) -f CMakeFiles/CombinedWithMainDriver.dir/build.make CMakeFiles/CombinedWithMainDriver.dir/Strategy.cpp.s
+.PHONY : Strategy.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -492,6 +519,9 @@ help:
 	@echo "... PlayerActions.o"
 	@echo "... PlayerActions.i"
 	@echo "... PlayerActions.s"
+	@echo "... Strategy.o"
+	@echo "... Strategy.i"
+	@echo "... Strategy.s"
 .PHONY : help
 
 

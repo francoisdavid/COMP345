@@ -245,6 +245,11 @@ void Player::MoveArmies(Node* startLocation, Node* endLocation)
 	}
 }
 
+void Player::MoveOverLandOrWater(Node* startLocation, Node* endLocation)
+{
+	MoveArmies(startLocation, endLocation);
+}
+
 void Player::BuildCity(Node* location)
 {
 	City* city = new City(location,*(this->playerNumber));

@@ -181,6 +181,12 @@
 		<Unit filename="/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h">
 			<Option target="CombinedWithMainDriver"/>
 		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Strategy.cpp">
+			<Option target="CombinedWithMainDriver"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Strategy.h">
+			<Option target="CombinedWithMainDriver"/>
+		</Unit>
 		<Unit filename="/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
