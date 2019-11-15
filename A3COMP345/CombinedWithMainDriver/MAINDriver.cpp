@@ -13,20 +13,18 @@
 using namespace std;
 
 MapLoader* loadMap(const char *directory);
-MapLoader* loadMap2(const char *directory);
 void getUserSelection(int *choice);
 
 int main() {
-    const char *directory = "../Maps/";
+    const char *directory = "Maps/";
 
     try {
-        MapLoader *mapLoader = loadMap2("../Maps/MAP1.map");// To be deleted at the end of the game.
+        MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
         Map *map = mapLoader->getGraph();
-
 
         int number = 0;
         while (number < 2 || number > 5) {
-            cout << "Enter the number of players (2 to 5): " << endl;
+            std::cout << "Enter the number of players (2 to 5): " << endl;
             cin >> number;
         }
         cout << "Thank You ! \nThe game is will set up for " << number << " players" << endl;
@@ -243,21 +241,3 @@ void getUserSelection(int *choice) {
     cout << "Enter the number corresponding to the file: ";
     cin >> *choice;
 }
-
-// Loadmap
-MapLoader* loadMap2(const char*  filePath) {
-
-    try {
-        MapLoader *mapLoader = new MapLoader(filePath);
-        mapLoader->processMap();
-        Map* map = mapLoader->getGraph();
-        return mapLoader;
-
-
-    } catch (const std::exception& ex) {
-
-        cout << endl << ex.what() << endl;
-    }
-
-    return NULL;
-};

@@ -193,20 +193,21 @@ void MapLoader::processEdges(vector<string> edgeLines) {
 
 // Splits string by delimiter into tokens
 void MapLoader::processString(string line, vector<string> &tokens) {
-   char str[line.length() + 1];
+
+	char* str = new char[line.length() + 1];
     
-   for (int j = 0; j < sizeof(str); j++) {
-        str[j] = line[j];
-    }
-    
-    char * pch;
-    pch = strtok(str,",");
-    
-    while (pch != NULL)
-    {
-        tokens.push_back(pch);
-        pch = strtok(NULL, ",");
-    }
+	for (int j = 0; j < line.length()+1; j++) {
+		str[j] = line[j];
+	}
+
+	char* pch;
+	pch = strtok(str, ",");
+
+	while (pch != NULL)
+	{
+		tokens.push_back(pch);
+		pch = strtok(NULL, ",");
+	}
 }
 
 Map* MapLoader::getGraph() {

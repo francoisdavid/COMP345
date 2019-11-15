@@ -23,65 +23,65 @@ Card::Card(int index){
 
     switch(index){
         // 8 Forest cards.
-        case 1: goods = "Forest"; action = "Move 3 armies."; break;
-        case 2: goods = "Forest"; action = "Add 3 armies."; break;
-       // case 3: goods = "Forest"; action = "Move 6 armies."; break;
-        case 3: goods = "Forest"; action = "Destroy 1 army or Build City."; break;
-        case 4: goods = "Forest"; action = "Add 2 armies or Move 3 Armies." ; break;
-        case 5: goods = "Forest"; action = "Move 4 armies via Ship."; break;
+        case 1: goods = "Forest"; action = "Move 3 Armies."; break;
+        case 2: goods = "Forest"; action = "Add 3 Armies."; break;
+       // case 3: goods = "Forest"; action = "Move 6 Armies."; break;
+        case 3: goods = "Forest"; action = "Destroy Army or Build City."; break;
+        case 4: goods = "Forest"; action = "Add 2 Armies OR Move 3 Armies." ; break;
+        case 5: goods = "Forest"; action = "Move 4 Armies over Water."; break;
         case 6: goods = "Forest"; action = "Build City."; break;
-        case 7: goods = "Forest"; action = "Move 3 armies via Ship."; break;
+        case 7: goods = "Forest"; action = "Move 3 Armies over Water."; break;
         
         // 10 Carrots cards.
-         case 8: goods = "Carrots"; action = "Build city."; break;
-        case 9: goods = "Carrots"; action = "Destroy 1 army & Add 1 City."; break;
-        case 10: goods = "Carrots"; action = "Add 3 armies."; break;
-        case 11: goods = "Carrots"; action = "Move 4 armies."; break;
-        case 12: goods = "Carrots"; action = "Move 5 armies."; break;
-        case 13: goods = "Carrots"; action = "Add 3 armies."; break;
-        case 14: goods = "Carrots"; action = "Move 3 armies via Ship."; break;
-        //case 16: goods = "Carrots"; action = "Add 4 armies or move 2 armies."; break;
-        case 15: goods = "Carrots"; action = "Move 4 armies."; break;
+        case 8: goods = "Carrots"; action = "Build City."; break;
+        case 9: goods = "Carrots"; action = "Destroy Army AND Build City."; break;
+        case 10: goods = "Carrots"; action = "Add 3 Armies."; break;
+        case 11: goods = "Carrots"; action = "Move 4 Armies."; break;
+        case 12: goods = "Carrots"; action = "Move 5 Armies."; break;
+        case 13: goods = "Carrots"; action = "Add 3 Armies."; break;
+        case 14: goods = "Carrots"; action = "Move 3 Armies over Water."; break;
+        //case 16: goods = "Carrots"; action = "Add 4 Armies OR Move 2 Armies."; break;
+        case 15: goods = "Carrots"; action = "Move 4 Armies."; break;
         case 16: goods = "Carrots"; action = "Build City."; break;
         
         // 9 Anvil cards.
-        case 17: goods = "Anvil"; action = "Move 4 armies."; break;
-        case 18: goods = "Anvil"; action = "Move 3 armies or move 4 armies."; break;
-        case 19: goods = "Anvil"; action = "Move 5 armies.";break;
-        case 20: goods = "Anvil"; action = "Add 3 armies."; break;
-        case 21: goods = "Anvil"; action = "Add 3 armies."; break;
-        case 22: goods = "Anvil"; action = "Move 3 armies via Ship."; break;
+        case 17: goods = "Anvil"; action = "Move 4 Armies."; break;
+        case 18: goods = "Anvil"; action = "Move 3 Armies OR Move 4 Armies."; break;
+        case 19: goods = "Anvil"; action = "Move 5 Armies.";break;
+        case 20: goods = "Anvil"; action = "Add 3 Armies."; break;
+        case 21: goods = "Anvil"; action = "Add 3 Armies."; break;
+        case 22: goods = "Anvil"; action = "Move 3 Armies over Water."; break;
         case 23: goods = "Anvil"; action = "Build City."; break;
-        //case 26: goods = "Anvil"; action = "Move 4 armies."; break;
-        case 24: goods = "Anvil"; action = "Add 3 armies or move 3 armies."; break;
+        //case 26: goods = "Anvil"; action = "Move 4 Armies."; break;
+        case 24: goods = "Anvil"; action = "Add 3 Armies OR Move 3 Armies."; break;
         
         // 7 Ore cards.
-        case 25: goods = "Ore"; action = "Move 2 armies."; break;
-        case 26: goods = "Ore"; action = "Move 3 armies via Ship."; break;
-        //case 30: goods = "Ore"; action = "Move 2 armies via Ship."; break;
-        case 27: goods = "Ore"; action = "Move 2 armies via Ship."; break;
-        case 28: goods = "Ore"; action = "Add 3 armies."; break;
-        case 29: goods = "Ore"; action = "Add 3 armies."; break;
-        case 30: goods = "Ore"; action = "Add 2 armies."; break;
+        case 25: goods = "Ore"; action = "Move 2 Armies."; break;
+        case 26: goods = "Ore"; action = "Move 3 Armies over Water."; break;
+        //case 30: goods = "Ore"; action = "Move 2 Armies over Water."; break;
+        case 27: goods = "Ore"; action = "Move 2 Armies over Water."; break;
+        case 28: goods = "Ore"; action = "Add 3 Armies."; break;
+        case 29: goods = "Ore"; action = "Add 3 Armies."; break;
+        case 30: goods = "Ore"; action = "Add 2 Armies."; break;
             
         // 5 Crystal cards.
-        case 31: goods = "Crystal"; action = "Add 2 armies.";break;
-        case 32: goods = "Crystal"; action = "Add 2 armies.";break;
-        case 33: goods = "Crystal"; action = "Move 2 armies.";break;
-        case 34: goods = "Crystal"; action = "Add 1 army.";break;
-        case 35: goods = "Crystal"; action = "Add 2 armies.";break;
+        case 31: goods = "Crystal"; action = "Add 2 Armies.";break;
+        case 32: goods = "Crystal"; action = "Add 2 Armies.";break;
+        case 33: goods = "Crystal"; action = "Move 2 Armies.";break;
+        case 34: goods = "Crystal"; action = "Add 1 Army.";break;
+        case 35: goods = "Crystal"; action = "Add 2 Armies.";break;
             
         // 3 Wild cards.
-        case 36: goods = "Wild"; action = "Move 2 armies.";break;
-        case 37: goods = "Wild"; action = "Move 2 armies.";break;
-        //case 42: goods = "Wild"; action = "Add 2 armies.";break;
+        case 36: goods = "Wild"; action = "Move 2 Armies.";break;
+        case 37: goods = "Wild"; action = "Move 2 Armies.";break;
+        //case 42: goods = "Wild"; action = "Add 2 Armies.";break;
 
         // Only 5 player cards.
-        case 38: goods = "Forest"; action = "Move 6 armies."; break;
-        case 39: goods = "Carrots"; action = "Add 4 armies or move 2 armies."; break;
-        case 40: goods = "Anvil"; action = "Move 4 armies."; break;
-        case 41: goods = "Ore"; action = "Move 2 armies via Ship."; break;
-        case 42: goods = "Wild"; action = "Add 2 armies.";break;
+        case 38: goods = "Forest"; action = "Move 6 Armies."; break;
+        case 39: goods = "Carrots"; action = "Add 4 Armies OR Move 2 Armies."; break;
+        case 40: goods = "Anvil"; action = "Move 4 Armies."; break;
+        case 41: goods = "Ore"; action = "Move 2 Armies over Water."; break;
+        case 42: goods = "Wild"; action = "Add 2 Armies.";break;
 
 
         default: cout << "Trying to instantiate more than 42 cards." << endl;
@@ -102,6 +102,11 @@ string Card::getAction(){
 // Accessor method.
 string Card::getGoods(){
     return goods;
+}
+
+void Card::setAction(string act)
+{
+	action = act;
 }
 
 
