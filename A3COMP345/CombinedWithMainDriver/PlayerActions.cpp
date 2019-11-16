@@ -28,26 +28,46 @@ Player* PlayerActions::getPlayer()
 }
  */
 
-void PlayerActions::PlaceNewArmies(Node* location, Player* mainPlayer)
+void PlayerActions::PlaceNewArmies(Player* player)
 {
-	bool exists = false;
-	int index;
-	
-	for(int i=0; i<location->getCities().size(); i++)
-		if (*(location->getCities()[i]->getOwnerNumber()) == *(mainPlayer->getPlayerNumber()))
-		{
-			index = i;
-			exists = true;
-			break;
-		}
+	vector<City*> cities = player->getCities();
+	vector<Node*> nodeOfCities;
+	int index = -1;
 
-	if (exists || location == startingLocation)
+	// Add all the nodes to the vector.
+	for (int i = 0; i < cities.size(); i++)
+		nodeOfCities.emplace_back(cities.at(i)->getLocation());
+
+	while (index < 0 || index > nodeOfCities.size())
 	{
-		mainPlayer->PlaceNewArmies(location);
-		cout << mainPlayer->getName()<< " has successfully placed an army unit in " << *(location->getName()) << "." << endl;
+		cout << "\nPlease select one of the options." << endl;
+
+		for (int i = 0; i < nodeOfCities.size(); i++)
+			cout << "\t" << i + 1 << ". Add 1 army unit to " << *nodeOfCities.at(i)->getName() << endl;
+
+		cout << "\t" << nodeOfCities.size() + 1 << ". Add 1 army unit to " << *PlayerActions::getStartingLocation()->getName()
+			<< " (starting location)." << endl;
+
+		cout << "What would you like to do, " << player->getName() << "? ";
+		cin >> index;
+		index -= 1;
+
+		if (index >= 0 && index < nodeOfCities.size() + 1)
+		{
+			if (index != nodeOfCities.size())
+			{
+				player->PlaceNewArmies(nodeOfCities.at(index));
+				cout << "One " << player->getName() << " army unit has been placed in " << *nodeOfCities.at(index)->getName()
+					<< "." << endl;
+			}
+			else
+			{
+				player->PlaceNewArmies(PlayerActions::getStartingLocation());
+				cout << "One " << player->getName() << " army has been placed on the location "
+					<< *PlayerActions::getStartingLocation()->getName() << "." << endl;
+			}
+		}
 	}
-	else
-		cout << *(location->getName()) << " is not the starting location and you don't have a city there." << endl;
 }
 
 void PlayerActions::MoveArmies(Node* startLocation, Node* endLocation, Player* mainPlayer)
@@ -78,7 +98,7 @@ void PlayerActions::MoveOverLand(Player* player)
 	vector<Army*> armyLoc = player->getPlayerArmies();
 	int index = -1;
 
-	while (index < 0 || index > armyLoc.size())
+	while (index < 0 || index > armyLoc.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -108,7 +128,7 @@ void PlayerActions::MoveOverLand(Player* player)
 
 			int index2 = -1;
 
-			while (index2 < 0 || index2 > neighbours.size())
+			while (index2 < 0 || index2 > neighbours.size()-1)
 			{
 				cout << "\nPlease select one of the options." << endl;
 
@@ -130,13 +150,13 @@ void PlayerActions::MoveOverLand(Player* player)
 	}
 }
 
-void PlayerActions::MoveOverWater(Node* startLocation, Node* endLocation, Player* player)
+void PlayerActions::MoveOverWater(Player* player)
 {
 	// Get the regions of the current player.
     vector<Army*> armyLoc = player->getPlayerArmies();
 	int index = -1;
 
-	while (index < 0 || index > armyLoc.size())
+	while (index < 0 || index > armyLoc.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -146,11 +166,11 @@ void PlayerActions::MoveOverWater(Node* startLocation, Node* endLocation, Player
 				<< *armyLoc.at(i)->getLocation()->getName() << ".";
 
 			cout << "\tPossible destinations: ";
-			for (int j = 0; j < armyLoc.at(i)->getLocation()->getNeighboursLand().size(); j++)
-				if (j + 1 == armyLoc.at(i)->getLocation()->getNeighboursLand().size())
-					cout << *armyLoc.at(i)->getLocation()->getNeighboursLand().at(j)->getName();
+			for (int j = 0; j < armyLoc.at(i)->getLocation()->getNeighbours().size(); j++)
+				if (j + 1 == armyLoc.at(i)->getLocation()->getNeighbours().size())
+					cout << *armyLoc.at(i)->getLocation()->getNeighbours().at(j)->getName();
 				else
-					cout << *armyLoc.at(i)->getLocation()->getNeighboursLand().at(j)->getName() << ", ";
+					cout << *armyLoc.at(i)->getLocation()->getNeighbours().at(j)->getName() << ", ";
 
 			cout << endl;
 		}
@@ -162,11 +182,11 @@ void PlayerActions::MoveOverWater(Node* startLocation, Node* endLocation, Player
 		if (index >= 0 && index < armyLoc.size())
 		{
 			Node* from = armyLoc.at(index)->getLocation();
-			vector<Node*> neighbours = from->getNeighboursLand();
+			vector<Node*> neighbours = from->getNeighbours();
 
 			int index2 = -1;
 
-			while (index2 < 0 || index2 > neighbours.size())
+			while (index2 < 0 || index2 > neighbours.size()-1)
 			{
 				cout << "\nPlease select one of the options." << endl;
 
@@ -194,7 +214,7 @@ void PlayerActions::BuildCity(Player* mainPlayer)
 	int index = -1;
 	vector<Army*> armyLoc = mainPlayer->getPlayerArmies();
 
-	while (index < 0 || index > armyLoc.size())
+	while (index < 0 || index > armyLoc.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -226,7 +246,7 @@ void PlayerActions::DestroyArmy(vector<Player*> players, Player* mainPlayer)
 
 	int index = -1;
 
-	while (index < 0 || index > allArmies.size())
+	while (index < 0 || index > allArmies.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -256,15 +276,7 @@ void PlayerActions::DestroyArmy(vector<Player*> players, Player* mainPlayer)
 
 int PlayerActions::AndOrAction()
 {
-	cout << "1. Destroy army or build a city." << endl;
-	cout << "2. Add army unit or move an army unit." << endl;
-	cout << "3. Destroy army and build a city." << endl;
-	cout << "Select an option: ";
-
-	int selection;
-	cin >> selection;
-	cout << endl;
-	return selection;
+	
 }
 
 void PlayerActions::Ignore()

@@ -256,7 +256,11 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 			if (regex_match(action, regex("(Mov)(.*)(ater)(.*)")))
 			{
 				int amt = action.at(5) - '0';
-				MoveArmyOverWater(player, amt);
+				for (int i = 0; i < amt; i++)
+				{
+					cout << "You can now move " << amt - i << " armies." << endl;
+					playerActions->MoveOverWater(player);
+				}
 			}
 
 		//Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
@@ -264,7 +268,11 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 			if (regex_match(action, regex("(Mov)(.*)")))
 			{
 				int amt = action.at(5) - '0';
-				MoveArmies(player, amt);
+				for (int i = 0; i < amt; i++)
+				{
+					cout << "You can now move " << amt - i << " armies." << endl;
+					playerActions->MoveOverLand(player);
+				}
 			}
 
 		//Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
@@ -272,81 +280,11 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 			if (regex_match(action, regex("(Ad)(.*)")))
 			{
 				int amt = action.at(4) - '0';
-				AddArmies(player, amt);
+				for (int i = 0; i < amt; i++)
+				{
+					cout << "\nYou can now add " << amt - i << " armies." << endl;
+					playerActions->PlaceNewArmies(player);
+				}
 			}
 	}
-
-}
-
-void MainGameLoop::MoveArmies(Player* player, int amount)
-{
-    //vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
-	for (int i = 0; i < amount; i++)
-	{
-		cout << "You can now move " << amount - i << " armies." << endl;
-		playerActions->MoveOverLand(player);
-	}
-}
-
-void MainGameLoop::MoveArmyOverWater(Player* player, int amount)
-{
-
-}
-
-void MainGameLoop::AddArmies(Player* player, int amount)
-{
-	for (int i = 0; i < amount; i++) 
-	{
-		cout << "\nYou can now add " << amount - i << " armies. Here are the location you can add an army. " << endl;
-		AddOneArmy(player);
-	}
-}
-
-void MainGameLoop::MoveOneArmy(Player* player){
-
-    //vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
-}
-
-
-void MainGameLoop::AddOneArmy(Player* player) {
-    vector<City*> cities = player->getCities();
-    vector<Node*> nodeOfCities;
-    // Add all the nodes to the vector.
-    for(int i = 0 ; i < cities.size(); i++ ){
-        nodeOfCities.emplace_back(cities.at(i)->getLocation());
-    }
-
-    for(int i = 0; i < nodeOfCities.size() ; i++){
-        cout <<"\t" <<i+1 << "- Add 1 army to " << *nodeOfCities.at(i)->getName() << endl;
-
-    }
-    cout <<"\t" << nodeOfCities.size()+1 << "- Add 1 army to " << *PlayerActions::getStartingLocation()->getName() 
-		<< " (starting location)."<< endl;
-    cout << "\t" << nodeOfCities.size()+2 << "- Ignore the action. "<< endl;
-    cout<< "Which location do you want to add that army? ";
-    int index = -1;
-
-    cin >> index;
-    index -=1;
-
-    while (index < 0 || index > nodeOfCities.size() + 1) {
-        cout << "Not a valid action! Re-enter the index of the destination you want to add that army. ";
-        cin >> index;
-        index -= 1;
-    }
-
-    if (index != nodeOfCities.size()+1) {
-        if(index != nodeOfCities.size()) {
-            playerActions->PlaceNewArmies(nodeOfCities.at(index), player);
-            cout << "One "<< player->getName()<< " army have been placed on the location " << *nodeOfCities.at(index)->getName() 
-				<< "." << endl;
-        }else {
-            playerActions->PlaceNewArmies(PlayerActions::getStartingLocation(), player);
-            cout << "One "<< player->getName()<< " army have been placed on the location " 
-				<< *PlayerActions::getStartingLocation()->getName() << "." << endl;
-        }
-
-    } else {
-        cout << "Action was ignored." << endl;
-    }
 }

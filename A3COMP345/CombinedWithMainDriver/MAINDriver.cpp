@@ -16,7 +16,7 @@ MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
 
 int main() {
-    const char *directory = "../Maps/";
+    const char *directory = "Maps/";
 
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.

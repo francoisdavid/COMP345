@@ -11,10 +11,10 @@ public:
 	PlayerActions();
 	~PlayerActions();
 
-	void PlaceNewArmies(Node* location, Player*  player);
+	void PlaceNewArmies(Player*);
 	void MoveArmies(Node*, Node*, Player* player);
 	void MoveOverLand(Player*);
-	void MoveOverWater(Node*, Node*, Player* player);
+	void MoveOverWater(Player*);
 	void BuildCity(Player*);
 	void DestroyArmy(vector<Player*>, Player*);
 	int AndOrAction();
