@@ -280,7 +280,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 
 void MainGameLoop::MoveArmies(Player* player, int amount)
 {
-    vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
+    //vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
 	for (int i = 0; i < amount; i++)
 	{
 		cout << "You can now move " << amount - i << " armies." << endl;
@@ -304,7 +304,7 @@ void MainGameLoop::AddArmies(Player* player, int amount)
 
 void MainGameLoop::MoveOneArmy(Player* player){
 
-    vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
+    //vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
 }
 
 
