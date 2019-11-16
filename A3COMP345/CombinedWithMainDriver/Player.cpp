@@ -164,7 +164,7 @@ void Player::Bid(int bid)
 	if (bid <= *playerCoins)
 	{
 		playerBiddingFacility->playerBid(this, bid);
-		//this->PayCoin(bid);
+		this->PayCoin(bid);
 	}
 }
 
@@ -285,7 +285,8 @@ int Player::getCardCount() {
 }
 
 void Player::toString(){
-    cout <<"Player-" << getName() << "\n\tCoins: " << *getPlayerCoins() << "\n\tDateOfBirth:" << *getDayOfBirth() << "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
+    cout <<"Player " << *getPlayerNumber() << ": " << getName() << "\n\t  Coins: " << *getPlayerCoins() << "\n\t  Date of Birth: " << *getDayOfBirth()
+		<< "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
 }
 
 vector<City*> Player::getCities() {

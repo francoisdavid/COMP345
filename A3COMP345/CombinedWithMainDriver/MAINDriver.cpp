@@ -101,17 +101,21 @@ int main() {
             players[i]->toString();
         }
 
+		vector<int> bids;
         cout << "\n\nBIDDING PROCESS" << endl;
         for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
             // Player* player = players[i];
-            cout << " Time to bid for " << players[i]->getName() << endl;
+			cout << players[i]->getName() << ", how much would you like to bid? ";
             int bid;
             cin >> bid;
+			bids.emplace_back(bid);
             players[i]->playerBid(bid);
         }
 
-
-        cout << "\n\nBIDDING PROCESS" << endl;
+        cout << "\n\nBIDDING RESULT" << endl;
+		for (std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
+			cout << players[i]->getName() << " bid " << bids[i] << " coins." << endl;
+		}
         Player *winner = bidingFacility->revailHighestBider();
 
 

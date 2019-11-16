@@ -92,6 +92,7 @@ public:
   const std::vector<Edge *> &getEdges() const;
 
   std::vector<Node*> getNeighbours();
+  std::vector<Node*> getNeighboursLand();
   std::vector<Army*> getArmies();
   std::vector<City*> getCities();
   void addCity(City*);

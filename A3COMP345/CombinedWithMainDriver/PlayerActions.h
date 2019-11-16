@@ -13,10 +13,10 @@ public:
 
 	void PlaceNewArmies(Node* location, Player*  player);
 	void MoveArmies(Node*, Node*, Player* player);
-	void MoveOverLand(Node*, Node*, Player* player);
+	void MoveOverLand(Player*);
 	void MoveOverWater(Node*, Node*, Player* player);
-	void BuildCity(Node*, Player*);
-	void DestroyArmy(Node*, Player* Opponent, Player* ThisPlayer);
+	void BuildCity(Player*);
+	void DestroyArmy(vector<Player*>, Player*);
 	int AndOrAction();
 	void Ignore();
 	static void setStartingLocation(Node*);

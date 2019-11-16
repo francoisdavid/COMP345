@@ -15,8 +15,6 @@
 
 using namespace std;
 
-
-
 // Constructor
 MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList) {
     handObject = handObj;
@@ -123,8 +121,8 @@ void MainGameLoop::traverse(Turn *last)
     do
     {
         // Display who's player's turn it is.
-        cout << endl << "It is " << p->player->getName() << "'s turn to play now. This player's current bank account shows: " 
-			<< *p->player->getPlayerCoins()<<"$. "<< endl;
+        cout << endl << "It is " << p->player->getName() << "'s turn to play now. The player's current coin total is " 
+			<< *p->player->getPlayerCoins()<<" coins."<< endl;
 
         // Initialize it to a number that will make it enter the while loop.
         int indexOfCard = -1 ;
@@ -168,162 +166,123 @@ void MainGameLoop::traverse(Turn *last)
 }
 
 void MainGameLoop::processCard(Card*  card, Player* player) {
-    string action = card->getAction();
-
-	//Build City action
-	if (action == "Build City.")
-		BuildCity(player);
-
-	if (action == "Destroy Army.")
-		DestroyArmy(player);
-
-	//And Action
-	else if (regex_match(action, regex("(.*)( AND )(.*)")))
-	{
-		int first = action.find(" AND ");
-
-		string action1 = action.substr(0,first) + ".";
-		string action2 = action.substr(first+5, action.size()-1);
-
-		int index = 0;
-
-		while (index < 1 && index > 2)
-		{
-			cout << "Here are your choices." << endl;
-			cout << "1- " << action << endl;
-			cout << "2- Ignore the action." << endl;
-			cout << endl;
-
-			cout << "What would you like to do? ";
-			cin >> index;
-
-			if (index == 1)
-			{
-				Card* card1 = new Card();
-				card1->setAction(action1);
-				processCard(card1, player);
-
-				Card* card2 = new Card();
-				card2->setAction(action2);
-				processCard(card2, player);
-
-				break;
-			}
-
-			else if (index == 2)
-			{
-				cout << "\nAction was ignored." << endl;
-				break;
-			}
-		}
-	}
-
-	//Or Action
-	else if (regex_match(action, regex("(.*)( OR )(.*)")))
-	{
-		int first = action.find(" OR ");
-
-		string action1 = action.substr(0, first) + ".";
-		string action2 = action.substr(first + 4, action.size() - 1);
-
-		int index = 0;
-
-		while (index < 1 && index > 3)
-		{
-			cout << "Here are your choices." << endl;
-			cout << "1- " << action1 << endl;
-			cout << "2- " << action2 << endl;
-			cout << "3- Ignore the action." << endl;
-			cout << endl;
-
-			cout << "What would you like to do? ";
-			cin >> index;
-
-			if (index == 1)
-			{
-				Card* card1 = new Card();
-				card1->setAction(action1);
-				processCard(card1, player);
-				break;
-			}
-
-			else if (index == 2)
-			{
-				Card* card2 = new Card();
-				card2->setAction(action2);
-				processCard(card2, player);
-				break;
-			}
-
-			else if (index == 3)
-			{
-				cout << "\nAction was ignored." << endl;
-				break;
-			}
-
-			else
-				cout << "Please select one of the options." << endl;
-			cout << endl;
-		}
-	}
-
-	//Move army action: checks if the action starts with "Mov" (Move) and ends with "ater" (Water) 
-	//and extracts the number of army units
-	else if (regex_match(action, regex("(Mov)(.*)(ater)(.*)")))
-	{
-		int amt = action.at(5) - '0';
-		MoveArmyOverWater(player, amt);
-	}
-
-	//Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
-	else if (regex_match(action, regex("(Mov)(.*)")))
-	{
-		int amt = action.at(5) - '0';
-		MoveArmies(player, amt);
-	}
-
-	//Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
-	else if (regex_match(action, regex("(Ad)(.*)")))
-	{
-		int amt = action.at(4) - '0';
-		AddArmies(player, amt);
-	}
-
-}
-
-void MainGameLoop::BuildCity(Player* player)
-{
-	cout << "Here are the countries you have that do not already have a city." << endl;
-	vector<Army*> armyLoc = player->getPlayerArmies();
-	for (int i = 0; i < armyLoc.size(); i++) {
-		cout << i + 1 << "- Build city on " << *armyLoc.at(i)->getLocation()->getName() << endl;
-	}
-	cout << armyLoc.size() + 1 << " - Ignore the action" << endl;
+    
+	string action = card->getAction();
 	int index = 0;
-	cout << "Where do you want to build that city? ";
-	cin >> index;
-	index -= 1;
-	while (index < 0 || index > armyLoc.size()) {
-		cout << "Not a valid action! Re-enter the index of the region where you want to build a city: ";
+
+	while (index < 1 || index > 2)
+	{
+		cout << "Please select one of the options." << endl;
+		cout << "1. " << action << endl;
+		cout << "2. Ignore the action." << endl;
+		cout << "What would you like to do, " << player->getName() << "? ";
 		cin >> index;
-		index -= 1;
+		cout << endl;
 	}
-	if (index != armyLoc.size()) {
-		playerActions->BuildCity(armyLoc.at(index)->getLocation(), player);
-		cout << player->getName() << " built a city on " << *armyLoc.at(index)->getLocation()->getName() << "."
-			<< endl;
+
+	if (index == 1)
+	{
+		//Build City action
+		if (action == "Build City.")
+			playerActions->BuildCity(player);
+
+		//Destroy Army action
+		else
+			if (action == "Destroy Army.")
+				playerActions->DestroyArmy(players, player);
+
+		//And action
+		else
+			if (regex_match(action, regex("(.*)( AND )(.*)")))
+			{
+				int first = action.find(" AND ");
+
+				string action1 = action.substr(0, first) + ".";
+				string action2 = action.substr(first + 5, action.size() - 1);
+
+				Card* card1 = new Card();
+				card1->setAction(action1);
+				processCard(card1, player);
+
+				Card* card2 = new Card();
+				card2->setAction(action2);
+				processCard(card2, player);
+			}
+
+
+		//Or Action
+		else 
+			if (regex_match(action, regex("(.*)( OR )(.*)")))
+			{
+				int first = action.find(" OR ");
+
+				string action1 = action.substr(0, first) + ".";
+				string action2 = action.substr(first + 4, action.size() - 1);
+
+				int choice = 0;
+
+				while (choice < 1 || choice > 2)
+				{
+					cout << "Please select one of the options." << endl;
+					cout << "1. " << action1 << endl;
+					cout << "2. " << action2 << endl;
+					cout << "What would you like to do, " << player->getName() << "? ";
+					cin >> choice;
+					cout << endl;
+
+					if (choice == 1)
+					{
+						Card* card1 = new Card();
+						card1->setAction(action1);
+						processCard(card1, player);
+						break;
+					}
+
+					else if (choice == 2)
+					{
+						Card* card2 = new Card();
+						card2->setAction(action2);
+						processCard(card2, player);
+						break;
+					}
+				}
+			}
+
+
+		//Move army action: checks if the action starts with "Mov" (Move) and ends with "ater" (Water) 
+		//and extracts the number of army units
+		else 
+			if (regex_match(action, regex("(Mov)(.*)(ater)(.*)")))
+			{
+				int amt = action.at(5) - '0';
+				MoveArmyOverWater(player, amt);
+			}
+
+		//Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
+		else
+			if (regex_match(action, regex("(Mov)(.*)")))
+			{
+				int amt = action.at(5) - '0';
+				MoveArmies(player, amt);
+			}
+
+		//Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
+		else
+			if (regex_match(action, regex("(Ad)(.*)")))
+			{
+				int amt = action.at(4) - '0';
+				AddArmies(player, amt);
+			}
 	}
-	else {
-		cout << "\nAction was ignored." << endl;
-	}
+
 }
 
 void MainGameLoop::MoveArmies(Player* player, int amount)
 {
 	for (int i = 0; i < amount; i++)
 	{
-		cout << "\nYou can now move " << amount - i << " armies. Here are the armies you have that you can move." << endl;
-		MoveOneArmy(player);
+		cout << "\nYou can now move " << amount - i << " armies." << endl;
+		playerActions->MoveOverLand(player);
 	}
 }
 
@@ -341,53 +300,9 @@ void MainGameLoop::AddArmies(Player* player, int amount)
 	}
 }
 
-void MainGameLoop::DestroyArmy(Player* player)
-{
-
-}
-
 void MainGameLoop::MoveOneArmy(Player* player){
-    // Get the regions of the current player.
-    vector<Army*> armyLoc = player->getPlayerArmies();
-    for(int i = 0 ; i < armyLoc.size(); i++ ){
-        cout <<"\t" << i+1 << " - Move 1 of the " << *armyLoc.at(i)->getNumberOfSoldiers() << " soldiers "<< player->getName() 
-			<<" have on " << *armyLoc.at(i)->getLocation()->getName() <<".";
-        cout<< "\tPossible destinations: " ;
-            for(int j  = 0 ; j < armyLoc.at(i)->getLocation()->getNeighbours().size(); j++){
-                cout << *armyLoc.at(i)->getLocation()->getNeighbours().at(j)->getName() << ", ";
-            }
-            cout << endl;
-    }
-    cout <<"\t" <<armyLoc.size()+1 << " - Ignore the action" << endl;
-    int index = 0 ;
-    cout<< "From where do you want to move armies? " ;
-    cin >> index;
-    index -=1;
-    while(index < 0 || index > armyLoc.size()){
-        cout<<"Not a valid action! Re-enter the index of the army you want to move. ";
-        cin >> index;
-        index -=1;
-    }
-    // Check if the action was ignored.
-    if( index!=armyLoc.size()) {
-        Node* from = armyLoc.at(index)->getLocation();
-        vector<Node*> neighbours = from->getNeighbours();
-        for(int i = 0 ; i < neighbours.size(); i++ ){
-            cout << "\t"<< i+1<< " - Move 1 army from "<< *from->getName() << " to " << *neighbours.at(i)->getName() << endl;
-        }
-        int index2 = -1;
-        cout<< "Which location do you want to move that army? ";
-        cin >> index2;
-        index2 -=1;
-        while(index < 0 || index > neighbours.size()){
-            cout<<"Not a valid action! Re-enter the index of the destination you want to move that army. ";
-            cin >> index;
-            index -=1;
-        }
 
-        playerActions->MoveArmies(from, neighbours.at(index2), player);
-        cout << player->getName() << " moved 1 army from " << *from->getName() << " to "<< *neighbours.at(index2)->getName() << endl;
-    }
+    
 }
 
 

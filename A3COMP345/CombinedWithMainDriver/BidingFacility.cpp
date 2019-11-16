@@ -28,7 +28,7 @@ BidingFacility::~BidingFacility(){
 
 void BidingFacility::playerBid(Player* player, int bid) {
 
-	cout << player->getName() << " bids " << bid << " coins." << endl;
+	//cout << player->getName() << " bids " << bid << " coins." << endl;
     if (currentlyHighestBidder == NULL){
         currentlyHighestBidder = player;
     }

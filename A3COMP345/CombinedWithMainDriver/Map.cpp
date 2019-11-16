@@ -239,3 +239,18 @@ vector<Node*> Node::getNeighbours(){
     neighbours.erase( unique( neighbours.begin(), neighbours.end() ), neighbours.end() );
     return neighbours;
 }
+
+vector<Node*> Node::getNeighboursLand() {
+	vector<Edge*> edges = getEdges();
+	vector<Node*> neighbours;
+	for (int i = 0; i < edges.size(); i++) {
+		if (*edges.at(i)->getOver() == "land")
+			if (this != edges.at(i)->getNode1())
+				neighbours.emplace_back(edges.at(i)->getNode1());
+			else
+				neighbours.emplace_back(edges.at(i)->getNode2());
+	}
+	sort(neighbours.begin(), neighbours.end());
+	neighbours.erase(unique(neighbours.begin(), neighbours.end()), neighbours.end());
+	return neighbours;
+}

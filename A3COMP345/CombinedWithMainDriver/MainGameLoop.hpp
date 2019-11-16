@@ -40,10 +40,10 @@ public:
     void executeGameLoop(Turn *);
     void processCard(Card*, Player* );
 	void BuildCity(Player*);
+	void DestroyArmy(Player*);
 	void MoveArmies(Player*, int);
 	void MoveArmyOverWater(Player*, int);
 	void AddArmies(Player*, int);
-	void DestroyArmy(Player*);
     void MoveOneArmy(Player*);
     void AddOneArmy(Player*);
 
