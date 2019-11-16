@@ -16,7 +16,7 @@ MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
 
 int main() {
-    const char *directory = "Maps/";
+    const char *directory = "../Maps/";
 
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
@@ -249,3 +249,22 @@ void getUserSelection(int *choice) {
     cout << "\nEnter the number of the file you want to load: ";
     cin >> *choice;
 }
+
+
+// Loadmap
+MapLoader* loadMap2(const char*  filePath) {
+
+    try {
+        MapLoader *mapLoader = new MapLoader(filePath);
+        mapLoader->processMap();
+        Map* map = mapLoader->getGraph();
+        return mapLoader;
+
+
+    } catch (const std::exception& ex) {
+
+        cout << endl << ex.what() << endl;
+    }
+
+    return NULL;
+};

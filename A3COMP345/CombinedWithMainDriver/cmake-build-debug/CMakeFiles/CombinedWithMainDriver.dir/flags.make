@@ -6,5 +6,5 @@ CXX_FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sd
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/. 
+CXX_INCLUDES = -I/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/. 
 

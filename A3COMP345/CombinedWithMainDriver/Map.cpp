@@ -230,10 +230,13 @@ vector<Node*> Node::getNeighbours(){
     vector<Edge*> edges = getEdges();
     vector<Node*> neighbours;
     for(int i = 0 ; i < edges.size(); i++){
-        if(this != edges.at(i)->getNode1() )
+        if(this != edges.at(i)->getNode1() ) {
             neighbours.emplace_back(edges.at(i)->getNode1());
-        else
+            cout << "Over:'" << *edges.at(i)->getOver()  << "' \tNode:" <<*edges.at(i)->getNode1()->getName()  << endl;
+        }
+        else {
             neighbours.emplace_back(edges.at(i)->getNode2());
+        }
     }
     sort( neighbours.begin(), neighbours.end() );
     neighbours.erase( unique( neighbours.begin(), neighbours.end() ), neighbours.end() );
@@ -246,6 +249,7 @@ vector<Node*> Node::getNeighboursLand() {
 	for (int i = 0; i < edges.size(); i++) {
 		if (*edges.at(i)->getOver() == "land")
 			if (this != edges.at(i)->getNode1())
+
 				neighbours.emplace_back(edges.at(i)->getNode1());
 			else
 				neighbours.emplace_back(edges.at(i)->getNode2());

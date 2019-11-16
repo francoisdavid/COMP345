@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Army.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Army.h
 Map.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Map.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/BidingFacility.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/BidingFacility.h
 string
 -
 vector
@@ -18,9 +18,9 @@ vector
 stdio.h
 -
 Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Player.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Cards.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Cards.h
 string
 -
 vector
@@ -28,35 +28,13 @@ vector
 stdio.h
 -
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/City.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/City.h
 Map.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Map.h
 Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Player.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.cpp
-MainGameLoop.hpp
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.hpp
-cmath
--
-string.h
--
-vector
--
-PlayerActions.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h
-
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/MainGameLoop.hpp
-stdio.h
--
-Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
-Cards.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Cards.h
-PlayerActions.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h
-
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Map.h
 iostream
 -
 string
@@ -66,37 +44,31 @@ vector
 algorithm
 -
 Army.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Army.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Army.h
 City.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/City.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/City.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.cpp
-iostream
--
-Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
-string
--
-cmath
--
-
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Player.h
 vector
 -
 string
 -
 Cards.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Cards.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Cards.h
 Map.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Map.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Map.h
 BidingFacility.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/BidingFacility.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/BidingFacility.h
 Army.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Army.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Army.h
 City.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/City.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/City.h
 
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/PlayerActions.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/PlayerActions.cpp
+PlayerActions.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/PlayerActions.h
+
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/PlayerActions.h
 Player.h
-/Users/francoisdavid/Documents/A3COMP345/CombinedWithMainDriver/Player.h
+/Users/francoisdavid/Desktop/COMP345/A3COMP345/CombinedWithMainDriver/Player.h
 

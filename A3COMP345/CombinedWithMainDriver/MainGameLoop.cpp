@@ -6,7 +6,8 @@
 //  Copyright © 2019 Wilson Fong. All rights reserved.
 //
 
-#include "MainGameLoop.hpp"#include <cmath>
+#include "MainGameLoop.hpp"
+#include <cmath>
 #include <string.h>
 #include <vector>
 #include <regex>
@@ -279,9 +280,10 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 
 void MainGameLoop::MoveArmies(Player* player, int amount)
 {
+    vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
 	for (int i = 0; i < amount; i++)
 	{
-		cout << "\nYou can now move " << amount - i << " armies." << endl;
+		cout << "You can now move " << amount - i << " armies." << endl;
 		playerActions->MoveOverLand(player);
 	}
 }
@@ -302,7 +304,7 @@ void MainGameLoop::AddArmies(Player* player, int amount)
 
 void MainGameLoop::MoveOneArmy(Player* player){
 
-    
+    vector<Node*> nodes = PlayerActions::getStartingLocation()->getNeighbours();
 }
 
 

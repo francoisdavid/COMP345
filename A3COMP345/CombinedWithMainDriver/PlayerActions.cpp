@@ -146,11 +146,11 @@ void PlayerActions::MoveOverWater(Node* startLocation, Node* endLocation, Player
 				<< *armyLoc.at(i)->getLocation()->getName() << ".";
 
 			cout << "\tPossible destinations: ";
-			for (int j = 0; j < armyLoc.at(i)->getLocation()->getNeighbours().size(); j++)
-				if (j + 1 == armyLoc.at(i)->getLocation()->getNeighbours().size())
-					cout << *armyLoc.at(i)->getLocation()->getNeighbours().at(j)->getName();
+			for (int j = 0; j < armyLoc.at(i)->getLocation()->getNeighboursLand().size(); j++)
+				if (j + 1 == armyLoc.at(i)->getLocation()->getNeighboursLand().size())
+					cout << *armyLoc.at(i)->getLocation()->getNeighboursLand().at(j)->getName();
 				else
-					cout << *armyLoc.at(i)->getLocation()->getNeighbours().at(j)->getName() << ", ";
+					cout << *armyLoc.at(i)->getLocation()->getNeighboursLand().at(j)->getName() << ", ";
 
 			cout << endl;
 		}
@@ -162,7 +162,7 @@ void PlayerActions::MoveOverWater(Node* startLocation, Node* endLocation, Player
 		if (index >= 0 && index < armyLoc.size())
 		{
 			Node* from = armyLoc.at(index)->getLocation();
-			vector<Node*> neighbours = from->getNeighbours();
+			vector<Node*> neighbours = from->getNeighboursLand();
 
 			int index2 = -1;
 
