@@ -24,10 +24,10 @@ int main() {
 
         int number = 0;
         while (number < 2 || number > 5) {
-            std::cout << "Enter the number of players (2 to 5): " << endl;
+            std::cout << "\nEnter the number of players (2 to 5): ";
             cin >> number;
         }
-        cout << "Thank You ! \nThe game is will set up for " << number << " players" << endl;
+        cout << "\nThank You! Setting up the game for " << number << " players..." << endl;
 
         // Vector that will hold the pointers to the different players.
         vector<Player *> players;
@@ -62,7 +62,7 @@ int main() {
                 newPlayer->setPlayerCoins(8);
             }
 
-            cout << "\n\tCoins supplied to player" << i + 1 << " (" << newPlayer->getName() << "): "
+            cout << "\n\tCoins supplied to Player " << i + 1 << " (" << newPlayer->getName() << "): "
                  << *newPlayer->getPlayerCoins() << endl;
 
             // Set the playerBidingFacility to be shared between players.
@@ -71,7 +71,7 @@ int main() {
 
             // Showing that each player have an empty hand of cards.
             vector<Card *> cards = newPlayer->getCards();
-            cout << "\tCards in the hand of player" << i + 1 << " (" << newPlayer->getName() << "): " << cards.size()
+            cout << "\tCards in the hand of Player " << i + 1 << " (" << newPlayer->getName() << "): " << cards.size()
                  << endl;
 
             // Add the player to the vector of players.
@@ -204,6 +204,9 @@ MapLoader* loadMap(const char *directory) {
         throw invalid_argument("Directory could not be opened. Please review input.");
     }
 
+	cout << "Please select a map from the following list:" << endl;
+	cout << endl;
+
     // Display results
     for (int i = 0; i < files.size(); i++) {
         cout << to_string(i) << ": " << files.at(i) << endl;
@@ -217,6 +220,7 @@ MapLoader* loadMap(const char *directory) {
     while (isErrorState) {
         getUserSelection(choice);
         cout << "You have chosen file #" << *choice << ": " << files.at(*choice) << endl;
+		cout << endl;
 
         // Combine dir and filename
         filePath = directory + files.at(*choice);
@@ -238,6 +242,6 @@ MapLoader* loadMap(const char *directory) {
 
 // Prompts user for input
 void getUserSelection(int *choice) {
-    cout << "Enter the number corresponding to the file: ";
+    cout << "\nEnter the number of the file you want to load: ";
     cin >> *choice;
 }

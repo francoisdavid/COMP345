@@ -40,7 +40,7 @@ Edge::Edge(std::string name, Node *n1, Node *n2, std::string field) : name(new s
 }
 
 std::ostream &operator<<(std::ostream &os, const Edge &edge) {
-  os << "Edge {\n\tname: " << *edge.name << ",\n\tnode1: " << *edge.node1 << ",\n\tnode2: " << *edge.node2 << "\n}";
+  os << "Edge {\n\tname: " << *edge.name << ",\n\tnode1: " << *edge.node1 << ",\n\tnode2: " << *edge.node2 << "\n     }";
   return os;
 }
 
