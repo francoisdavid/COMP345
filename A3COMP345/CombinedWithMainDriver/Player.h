@@ -8,6 +8,7 @@
 #include "BidingFacility.h"
 #include "Army.h"
 #include "City.h"
+#include "GameObservers.h"
 
 class BidingFacility;
 class City;
@@ -18,7 +19,7 @@ class Map;
 
 using namespace std;
 
-class Player {
+class Player : public GameObservers {
 
 public:
 	//Constructors/Destructor
@@ -77,6 +78,8 @@ public:
     void setAsModerateComputer();
     bool isGreedyComputer();
     bool isModerateComputer();
+    
+    void update(int code);
 private:
 
     bool GreedyComputer;

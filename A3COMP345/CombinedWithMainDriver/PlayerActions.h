@@ -15,14 +15,14 @@ public:
 	void MoveArmies(Node*, Node*, Player* player);
 	void MoveOverLand(Player*);
 	void MoveOverWater(Player*);
-	void BuildCity(Player*);
+    void BuildCity(Player*);
 	void DestroyArmy(vector<Player*>, Player*);
 	void Ignore();
 	static void setStartingLocation(Node*);
 
 	static Node* getStartingLocation();
 
-    //Player* getPlayer();s
+    //Player* getPlayer();
     //PlayerActions(Player*);
 private:
 	//Player* mainPlayer;

@@ -34,7 +34,7 @@ class GameObservers {
 public:
 
 	~GameObservers();
-	virtual void update() = 0;
+	virtual void update(int code) = 0;
 
 protected:
 

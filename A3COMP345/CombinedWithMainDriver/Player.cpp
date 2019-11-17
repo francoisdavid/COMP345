@@ -344,3 +344,14 @@ void Player::setAsModerateComputer() {
 vector<Army*> Player::getPlayerArmies(){
     return playerArmy;
 }
+
+void Player::update(int code) {
+    //Called by Notify() when state of Subject changes
+
+    if (code == 1) {
+        //updatePhase();
+    }
+    else if (code == 2) {
+        //updateGameStats();
+    }
+};

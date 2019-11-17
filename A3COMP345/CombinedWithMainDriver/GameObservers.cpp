@@ -31,7 +31,7 @@ void Subject::notify(int code)
 {
 	list<GameObservers*>::iterator i = observers->begin();
 	for (; i != observers->end(); i++)
-		(*i)->update();
+		(*i)->update(code);
 }
 
 GameObservers::~GameObservers()
@@ -40,4 +40,8 @@ GameObservers::~GameObservers()
 
 GameObservers::GameObservers()
 {
+}
+
+void GameObservers::update(int code) {
+    
 }

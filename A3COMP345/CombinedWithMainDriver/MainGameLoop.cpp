@@ -13,6 +13,7 @@
 #include <regex>
 #include <string>
 #include "PlayerActions.h"
+#include "GameObservers.h"
 
 using namespace std;
 
@@ -147,14 +148,14 @@ void MainGameLoop::traverse(Turn *last)
         Card *card = handObject->getCard(indexOfCard);
 
         p->player->BuyCard(indexOfCard);
-
+        
+        // NOTIFY (3) -> As soon as a player owns a required number of cards
+        //notify(3);
+        
         // Display the card chosen.
         cout << "\tGood: " << card->getGoods() << "\tAction: " << card->getAction() << endl;
 
-
         processCard(card, p->player);
-
-
 
         // Check to see if the deck is empty.
         if (handObject->getDeckCount() > 0) {
@@ -184,13 +185,21 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 	if (index == 1)
 	{
 		//Build City action
-		if (action == "Build City.")
-			playerActions->BuildCity(player);
+        if (action == "Build City.") {
+            playerActions->BuildCity(player);
+            
+            // NOTIFY (1) -> Update every time a city has been conquered by a player
+            notify(1);
+        }
 
 		//Destroy Army action
 		else
-			if (action == "Destroy Army.")
-				playerActions->DestroyArmy(players, player);
+            if (action == "Destroy Army.") {
+                playerActions->DestroyArmy(players, player);
+                
+                // NOTIFY (2) -> Update when a player has been removed from any location by an opponent
+                //notify(2);
+            }
 
 		//And action
 		else
@@ -287,4 +296,9 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 				}
 			}
 	}
+}
+
+
+void MainGameLoop::attach(GameObservers *observer) {
+    
 }

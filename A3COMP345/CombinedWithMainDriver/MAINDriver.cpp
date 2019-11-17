@@ -14,9 +14,10 @@ using namespace std;
 
 MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
+vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 
 int main() {
-    const char *directory = "Maps/";
+    const char *directory = "/Users/Wilson/Desktop/COMP345/A3COMP345/A3_Part3/A3_Part3/A3_Part3/Maps/";
 
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
@@ -117,8 +118,8 @@ int main() {
 			cout << players[i]->getName() << " bid " << bids[i] << " coins." << endl;
 		}
         Player *winner = bidingFacility->revailHighestBider();
-
-
+        players = determinePlayerOrder(winner, players);
+        
         cout << "\n\nARMY PROCESS" << endl;
         int nbOfCountries = map->getNumberCountries();
         srand(time(0));
@@ -169,7 +170,10 @@ int main() {
          // Create the instance of the MainGameLoop, which will run itself.
         MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players);
         mainGameLoop->~MainGameLoop();
-
+        
+        for (int i = 0; i < players.size(); i++) {
+            mainGameLoop->attach(players[i]);
+        }
 
         // Delete the players.
         for(std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
@@ -268,3 +272,21 @@ MapLoader* loadMap2(const char*  filePath) {
 
     return NULL;
 };
+
+// Determine the order in which players will play as determined by the winner
+vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players) {
+    cout << endl << winner->getName() << " suggests the following order for the gameplay: ";
+    sort(players.begin(), players.end());
+    
+    for (int i = 0; i < players.size(); i++) {
+        if (i < players.size() - 1) {
+            cout << players[i]->getName() << ", ";
+        } else {
+            cout << players[i]->getName() << endl;
+        }
+    }
+    
+    cout << players[0]->getName() << " will start playing the game." << endl;
+    
+    return players;
+}
