@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="CombinedPartsWithCommentedDrivers"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CombinedPartsWithCommentedDrivers">
+				<Option output="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/CombinedPartsWithCommentedDrivers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 CombinedPartsWithCommentedDrivers"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CombinedPartsWithCommentedDrivers/fast">
+				<Option output="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/CombinedPartsWithCommentedDrivers" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/."/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 CombinedPartsWithCommentedDrivers/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Army.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Army.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/BidingFacility.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/BidingFacility.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Cards.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Cards.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/City.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/City.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/GameObservers.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/GameObservers.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/GameScore.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/GameScore.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/GameScore.hpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MAINDriver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MainGameLoop.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MainGameLoop.hpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Map.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Map.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MapDriver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MapLoader.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/MapLoader.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/MAP1.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/Map_expected_format_invalid.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/Map_expected_format_valid.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/Untitled.txt">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/another_working_example.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/bad_file_extension.map.txt">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/bad_format_edges.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/bad_format_nodes.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Maps/not_referenced_node.map">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Part3Driver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Part4Driver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Part5Driver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Part6Driver.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Player.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/Player.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/PlayerActions.cpp">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/PlayerActions.h">
+			<Option target="CombinedPartsWithCommentedDrivers"/>
+		</Unit>
+		<Unit filename="/Users/francoisdavid/Documents/CombinedPartsWithCommentedDrivers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
