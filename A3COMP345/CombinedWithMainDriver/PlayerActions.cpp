@@ -274,11 +274,6 @@ void PlayerActions::DestroyArmy(vector<Player*> players, Player* mainPlayer)
 	}
 }
 
-int PlayerActions::AndOrAction()
-{
-	
-}
-
 void PlayerActions::Ignore()
 {
 	cout << "Ignore the action. Take the good." << endl;

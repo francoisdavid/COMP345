@@ -131,7 +131,7 @@ int main() {
                 for (int j = 0; j < 3; j++) {
                     // Add armies to the starting location.
                      //players[i]->PlaceNewArmies(startingLoc);
-                     playerActions->PlaceNewArmies(startingLoc, players[i]);
+                     players[i]->PlaceNewArmies(startingLoc);
                      //playerActions->(startingLoc, players[i]);
                 }
                // cout << "3 "<< players[i]->getName()<<" Armies were added to the starting location. Location: " << *startingLoc->getName() << endl;

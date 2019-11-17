@@ -5,9 +5,41 @@
 #ifndef COMBINEDPARTSWITHCOMMENTEDDRIVERS_GAMEOBSERVERS_H
 #define COMBINEDPARTSWITHCOMMENTEDDRIVERS_GAMEOBSERVERS_H
 
+#include <list>
+using namespace std;
 
+class GameObservers;
+
+//Abstract class for subjects. The list _views_ contains all the observer objects to which this subject
+//will be sharing information.
+class Subject {
+
+public:
+
+	Subject();
+	~Subject();
+	virtual void attach(GameObservers*);
+	virtual void detach(GameObservers*);
+	virtual void notify(int code);
+
+private:
+	list<GameObservers*> *observers;
+
+};
+
+//Abstract class for observers. All classes that inherit from this class must define what they will
+//do when update() is invoked.
 class GameObservers {
 
+public:
+
+	~GameObservers();
+	virtual void update() = 0;
+
+protected:
+
+	GameObservers();
+	
 };
 
 

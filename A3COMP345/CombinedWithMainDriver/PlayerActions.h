@@ -17,7 +17,6 @@ public:
 	void MoveOverWater(Player*);
 	void BuildCity(Player*);
 	void DestroyArmy(vector<Player*>, Player*);
-	int AndOrAction();
 	void Ignore();
 	static void setStartingLocation(Node*);
 
