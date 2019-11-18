@@ -222,7 +222,7 @@ void Player::PlaceNewArmies(Node* location)
         Army* army = new Army(location, *(this->playerNumber), 1);
         playerArmy.emplace_back(army);
     }
-	armyUnitsLeft--;
+	*armyUnitsLeft = *armyUnitsLeft - 1;
     //playerCountries.emplace_back(location);
 }
 
@@ -254,7 +254,7 @@ void Player::BuildCity(Node* location)
 {
     City* city = new City(location,*(this->playerNumber));
     playerCities.emplace_back(city);
-	citiesLeft--;
+	*citiesLeft = *citiesLeft - 1;
 }
 
 void Player::DestroyArmy(Node* location, int ownerNumber)
@@ -402,6 +402,8 @@ void Player::updatePhase(int type, int num)
 
 	if (type != 1)
 	{
+		cout << endl;
+
 		if (type == 2)
 		{
 			cout << currentPlayer->playerName << " has moved " << num << " army units." << endl;
@@ -425,15 +427,15 @@ void Player::updatePhase(int type, int num)
 		vector<Army*> army = currentPlayer->playerArmy;
 		vector<City*> cities = currentPlayer->playerCities;
 
-		cout << currentPlayer->playerName << " Status:" << endl;
+		cout << "\n" << currentPlayer->playerName << " Status:" << endl;
 
 		cout << "Player Coins: " << *currentPlayer->playerCoins << endl;
 
-		cout << "Army Units: (" << *currentPlayer->armyUnitsLeft << "left)" << endl;
+		cout << "Army Units: (" << *currentPlayer->armyUnitsLeft << " left)" << endl;
 		for (int i = 0; i < army.size(); i++)
 			cout << "- " << *army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
 
-		cout << "Cities: (" << *currentPlayer->citiesLeft << "left)" << endl;
+		cout << "Cities: (" << *currentPlayer->citiesLeft << " left)" << endl;
 		for (int i = 0; i < cities.size(); i++)
 			cout << "- " << *cities[i]->getLocation()->getName() << endl;
 
