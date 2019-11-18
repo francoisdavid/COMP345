@@ -5,13 +5,13 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "Army.h"
+//#include "Army.h"
 #include "City.h"
 
-class Map;
+
 class Edge;
 class Node;
-class City;
+class Army;
 
 class Map {
 private:

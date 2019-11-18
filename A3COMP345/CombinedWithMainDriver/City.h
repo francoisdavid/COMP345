@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Map.h"
-#include "Player.h"
+class Node;
 
 class City {
 

@@ -1,6 +1,5 @@
 
 #include <iostream>
-#include "Map.h"
 #include <string>
 #include "MapLoader.h"
 #include <vector>

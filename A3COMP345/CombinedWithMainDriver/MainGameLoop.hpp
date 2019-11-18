@@ -10,8 +10,6 @@
 #define MainGameLoop_hpp
 
 #include <stdio.h>
-#include "Player.h"
-#include "Cards.h"
 #include "PlayerActions.h"
 #include "GameObservers.h"
 
