@@ -41,6 +41,8 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB, Strategy* str)
     monthOfBirth = new int(MOB);
     yearOfBirth = new int(YOB);
     playerAge = new double();
+	armyUnitsLeft = new int(14);
+	citiesLeft = new int(3);
     playerScore = new int();
     playerNumOfArmiesBasedOnSoldiers = new int();
     playerHand = new HandObject();
@@ -220,6 +222,7 @@ void Player::PlaceNewArmies(Node* location)
         Army* army = new Army(location, *(this->playerNumber), 1);
         playerArmy.emplace_back(army);
     }
+	armyUnitsLeft--;
     //playerCountries.emplace_back(location);
 }
 
@@ -251,6 +254,7 @@ void Player::BuildCity(Node* location)
 {
     City* city = new City(location,*(this->playerNumber));
     playerCities.emplace_back(city);
+	citiesLeft--;
 }
 
 void Player::DestroyArmy(Node* location, int ownerNumber)
@@ -291,6 +295,11 @@ void Player::toString(){
          << "/" << *getMonthOfBirth() << "/" << *getYearOfBirth()<< endl;
 }
 
+MainGameLoop* Player::getSubject()
+{
+	return game;
+}
+
 vector<City*> Player::getCities() {
     return playerCities;
 }
@@ -310,6 +319,12 @@ int Player::getArmyCountBasedOnSoldiers() {
 // Sets the number of armies based on # of soldiers 
 void Player::setPlayerNumOfArmiesBasedOnSoldiers(int number) {
     *playerNumOfArmiesBasedOnSoldiers += number;
+}
+
+void Player::setSubject(MainGameLoop* subject)
+{
+	game = subject;
+	game->attach(this);
 }
 
 // Returns list of continents 
@@ -361,6 +376,67 @@ void Player::setStrategy(Strategy* str) {
 
 Strategy* Player:: getStrategy(){
     return strategy;
+}
+
+void Player::update(int code, int type, int num)
+{
+	if (code == 1) {
+		updatePhase(type, num);
+	}
+	else if (code == 2) {
+		//updateGameStats();
+	}
+}
+
+void Player::updatePhase(int type, int num)
+{
+	Player* currentPlayer = game->getTurn()->player;
+
+	if (type == 1)
+	{
+		vector<Card*> cards = currentPlayer->playerCards;
+		cout << currentPlayer->playerName << "has picked the card in the " << num << " position." << endl;
+		cout << "The card selected has good: " << cards[cards.size() - 1]->getGoods() << " and action: " << cards[cards.size() - 1]->getAction() << endl;
+	}
+
+	if (type != 1)
+	{
+		if (type == 2)
+		{
+			cout << currentPlayer->playerName << " has moved " << num << " army units." << endl;
+		}
+
+		if (type == 3)
+		{
+			cout << currentPlayer->playerName << " has placed " << num << " army units." << endl;
+		}
+
+		if (type == 4)
+		{
+			cout << currentPlayer->playerName << " has built a city." << endl;
+		}
+
+		if (type == 5)
+		{
+			cout << currentPlayer->playerName << " has destroyed an army unit." << endl;
+		}
+
+		vector<Army*> army = currentPlayer->playerArmy;
+		vector<City*> cities = currentPlayer->playerCities;
+
+		cout << currentPlayer->playerName << " Status:" << endl;
+
+		cout << "Player Coins: " << *currentPlayer->playerCoins << endl;
+
+		cout << "Army Units: (" << *currentPlayer->armyUnitsLeft << "left)" << endl;
+		for (int i = 0; i < army.size(); i++)
+			cout << "- " << army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
+
+		cout << "Cities: (" << *currentPlayer->citiesLeft << "left)" << endl;
+		for (int i = 0; i < cities.size(); i++)
+			cout << "- " << *cities[i]->getLocation()->getName() << endl;
+
+	}
 }
 
 void Player::pickStrategy() {

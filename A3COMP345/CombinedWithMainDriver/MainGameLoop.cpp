@@ -21,6 +21,11 @@ MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList) {
     handObject = handObj;
     players = playersList;
     playerActions = new PlayerActions();
+
+	for (int i = 0; i < players.size(); i++) {
+		players[i]->setSubject(this);
+	}
+
     // Initialize
     setup();
 }
@@ -144,6 +149,8 @@ void MainGameLoop::traverse(Turn *last)
         // Display the card chosen.
         cout << "\tGood: " << card->getGoods() << "\tAction: " << card->getAction() << endl;
 
+		//When this works, there is no need for the above cout statement
+		notify(1,1,indexOfCard);
 
         processCard(card, p->player);
 
@@ -178,13 +185,19 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
     if (*index == 1)
     {
         //Build City action
-        if (action == "Build City.")
-            playerActions->BuildCity(player);
+		if (action == "Build City.")
+		{
+			playerActions->BuildCity(player);
+			notify(1, 4, 0);
+		}
 
             //Destroy Army action
         else
-        if (action == "Destroy Army.")
-            playerActions->DestroyArmy(players, player);
+			if (action == "Destroy Army.")
+			{
+				playerActions->DestroyArmy(players, player);
+				notify(1, 5, 0);
+			}
 
             //And action
         else
@@ -256,6 +269,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 cout << "You can now move " << amt - i << " armies." << endl;
                 playerActions->MoveOverWater(player);
             }
+			notify(1, 2, amt);
         }
 
             //Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
@@ -268,6 +282,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 cout << "You can now move " << amt - i << " armies." << endl;
                 playerActions->MoveOverLand(player);
             }
+			notify(1, 2, amt);
         }
 
             //Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
@@ -280,6 +295,12 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 cout << "\nYou can now add " << amt - i << " armies." << endl;
                 playerActions->PlaceNewArmies(player);
             }
+			notify(1, 3, amt);
         }
     }
+}
+
+Turn* MainGameLoop::getTurn()
+{
+	return head;
 }

@@ -16,7 +16,7 @@ void getUserSelection(int *choice);
 vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 
 int main() {
-    const char *directory = "../Maps/";
+    const char *directory = "Maps/";
 
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
@@ -170,10 +170,6 @@ int main() {
         MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players);
         mainGameLoop->~MainGameLoop();
         
-        for (int i = 0; i < players.size(); i++) {
-            mainGameLoop->attach(players[i]);
-        }
-
         // Delete the players.
         for(std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
             Player* temp = players[i];

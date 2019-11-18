@@ -46,6 +46,8 @@ public:
     void MoveOneArmy(Player*) {};
     void AddOneArmy(Player*) {};
     void attach(GameObservers*) {};
+	Turn* getTurn();
+
 private:
     
     // Properties

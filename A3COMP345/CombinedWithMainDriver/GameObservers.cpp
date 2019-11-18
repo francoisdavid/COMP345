@@ -27,18 +27,14 @@ void Subject::detach(GameObservers* deleteObserver)
 	observers->remove(deleteObserver);
 }
 
-void Subject::notify(int code)
+void Subject::notify(int code, int type, int num)
 {
 	list<GameObservers*>::iterator i = observers->begin();
 	for (; i != observers->end(); i++)
-		(*i)->update(code);
+		(*i)->update(code, type, num);
 }
 
 
 GameObservers::GameObservers()
 {
-}
-
-void GameObservers::update(int code) {
-    
 }

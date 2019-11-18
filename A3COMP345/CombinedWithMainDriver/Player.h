@@ -13,6 +13,7 @@
 
 class Strategy;
 class BidingFacility;
+class MainGameLoop;
 using namespace std;
 
 class Player : public GameObservers {
@@ -31,6 +32,8 @@ public:
 	int* getMonthOfBirth();
 	int* getYearOfBirth();
 	double* getPlayerAge();
+	int* citiesLeft;
+	int* armyUnitsLeft;
 	vector<Card*> getCards();
 	vector<Node*> getCountries();
 	vector<City*> getCities();
@@ -39,6 +42,7 @@ public:
 	BidingFacility* getBuildingFacility();
 	void playerBid(int coins);
 	void toString();
+	MainGameLoop* getSubject();
 
 	//Setters
 	void setName(string);
@@ -50,6 +54,7 @@ public:
 	void setPlayerBiddingFacility(BidingFacility* bf);
 	void setPlayerScore(int);
 	void setPlayerNumOfArmiesBasedOnSoldiers(int);
+	void setSubject(MainGameLoop* subject);
 
 	//Print info of player
 	void printInfo();
@@ -78,7 +83,9 @@ public:
     void setStrategy(Strategy *);
     void pickStrategy();
     Strategy* getStrategy();
-    void update(int code) {};
+    void update(int, int, int);
+	void updatePhase(int, int);
+	//void updateGameStats();
 private:
     Strategy* strategy;
     bool GreedyComputer;
@@ -99,8 +106,9 @@ private:
 	vector<Army*> playerArmy;
 	vector<City*> playerCities;
 	vector<Map*> playerContinents;
-    	int* playerScore;
-    	int* playerNumOfArmiesBasedOnSoldiers;
+    int* playerScore;
+    int* playerNumOfArmiesBasedOnSoldiers;
+	MainGameLoop* game;
 };
 
 #endif // Player_h

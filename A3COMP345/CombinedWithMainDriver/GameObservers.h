@@ -19,7 +19,7 @@ class GameObservers {
 public:
 
 	virtual ~GameObservers() = default;
-	virtual void update(int code) = 0;
+	virtual void update(int code, int type, int num) = 0;
 
 protected:
 
@@ -36,7 +36,7 @@ public:
     ~Subject();
     virtual void attach(GameObservers*);
     virtual void detach(GameObservers*);
-    virtual void notify(int code);
+    virtual void notify(int code, int type, int num);
 
 private:
     list<GameObservers*> *observers;
