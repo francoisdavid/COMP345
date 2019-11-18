@@ -396,8 +396,9 @@ void Player::updatePhase(int type, int num)
 	if (type == 1)
 	{
 		vector<Card*> cards = currentPlayer->playerCards;
-		cout << currentPlayer->playerName << "has picked the card in the " << num << " position." << endl;
-		cout << "The card selected has good: " << cards[cards.size() - 1]->getGoods() << " and action: " << cards[cards.size() - 1]->getAction() << endl;
+		cout << "\n" << currentPlayer->playerName << " has picked the card in position " << num + 1 << "." << endl;
+		cout << "The card selected has good: " << cards[cards.size() - 1]->getGoods() << " and action: " << cards[cards.size() - 1]->getAction() 
+			<< "\n" << endl;
 	}
 
 	if (type != 1)
@@ -429,15 +430,15 @@ void Player::updatePhase(int type, int num)
 
 		cout << "\n" << currentPlayer->playerName << " Status:" << endl;
 
-		cout << "Player Coins: " << *currentPlayer->playerCoins << endl;
+		cout << "-Player Coins: " << *currentPlayer->playerCoins << endl;
 
-		cout << "Army Units: (" << *currentPlayer->armyUnitsLeft << " left)" << endl;
+		cout << "-Army Units: (" << *currentPlayer->armyUnitsLeft << " left)" << endl;
 		for (int i = 0; i < army.size(); i++)
-			cout << "- " << *army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
+			cout << "   " << *army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
 
-		cout << "Cities: (" << *currentPlayer->citiesLeft << " left)" << endl;
+		cout << "-Cities: (" << *currentPlayer->citiesLeft << " left)" << endl;
 		for (int i = 0; i < cities.size(); i++)
-			cout << "- " << *cities[i]->getLocation()->getName() << endl;
+			cout << "   " << *cities[i]->getLocation()->getName() << endl;
 
 	}
 }

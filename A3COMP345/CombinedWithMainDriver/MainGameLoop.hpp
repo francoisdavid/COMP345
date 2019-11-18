@@ -15,6 +15,8 @@
 #include "GameScore.h"
 
 using namespace std;
+
+class GameScore;
 class PlayerActions;
 // Use circular linked list to form clockwise playing style
 

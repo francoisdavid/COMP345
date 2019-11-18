@@ -17,7 +17,7 @@ void getUserSelection(int *choice);
 vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 
 int main() {
-    const char *directory = "../Maps/";
+    const char *directory = "Maps/";
     //const char *directory = "/Users/Wilson/Desktop/COMP345/A3COMP345/A3_Part3/A3_Part3/Maps/";
 
     try {

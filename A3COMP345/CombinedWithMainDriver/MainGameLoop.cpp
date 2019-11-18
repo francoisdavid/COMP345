@@ -152,9 +152,6 @@ void MainGameLoop::traverse(Turn *last)
 
         p->player->BuyCard(indexOfCard);
 
-        // Display the card chosen.
-        cout << "\tGood: " << card->getGoods() << "\tAction: " << card->getAction() << endl;
-
 		//When this works, there is no need for the above cout statement
 		notify(1, 1, indexOfCard);
         //notify(2, 1, indexOfCard);

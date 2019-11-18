@@ -12,6 +12,7 @@
 
 using namespace std;
 
+
 class GameScore {
     
 public:
@@ -22,6 +23,7 @@ public:
     
     // Methods
     void computeGameScore();
+	void computeGameStatsOnCardDraw();
 private:
     
     // Properties
@@ -43,6 +45,8 @@ private:
     void determineWinnerByArmies();
     void determineWinnerByCoins();
     void determineWinnerByControlledRegions();
+	bool isPlayerCardsRequirementMet();
+	void checkRoundScoring(Player*);
 };
 
 #endif //COMBINEDPARTSWITHCOMMENTEDDRIVERS_GAMESCORE_H
