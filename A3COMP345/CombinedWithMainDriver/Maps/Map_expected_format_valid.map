@@ -10,3 +10,4 @@ edge,1,5,land
 edge,3,1,land
 edge,5,3,land
 edge,1,4,land
+edge,4,1,land
