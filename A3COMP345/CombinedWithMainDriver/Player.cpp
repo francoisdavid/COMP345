@@ -321,10 +321,11 @@ void Player::setPlayerNumOfArmiesBasedOnSoldiers(int number) {
     *playerNumOfArmiesBasedOnSoldiers += number;
 }
 
-void Player::setSubject(MainGameLoop* subject)
+void Player::setSubject(MainGameLoop* subject, GameScore* gameScore)
 {
-	game = subject;
+    game = subject;
 	game->attach(this);
+    score = gameScore;
 }
 
 // Returns list of continents 
@@ -384,7 +385,7 @@ void Player::update(int code, int type, int num)
 		updatePhase(type, num);
 	}
 	else if (code == 2) {
-		//updateGameStats();
+		updateGameStats(type);
 	}
 }
 
@@ -430,7 +431,7 @@ void Player::updatePhase(int type, int num)
 
 		cout << "Army Units: (" << *currentPlayer->armyUnitsLeft << "left)" << endl;
 		for (int i = 0; i < army.size(); i++)
-			cout << "- " << army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
+			cout << "- " << *army[i]->getNumberOfSoldiers() << " on " << *army[i]->getLocation()->getName() << endl;
 
 		cout << "Cities: (" << *currentPlayer->citiesLeft << "left)" << endl;
 		for (int i = 0; i < cities.size(); i++)
@@ -458,5 +459,48 @@ void Player::pickStrategy() {
         case 3:
             this->setStrategy(new ModerateComputerStrategy());
             break;
+    }
+}
+
+// Updates game stats upon receiving notification from subject
+void Player::updateGameStats(int type) {
+    
+    int currentPlayerScore = game->getTurn()->player->getPlayerScore();
+    score->computeGameScore();
+    int newPlayerScore = game->getTurn()->player->getPlayerScore();
+    
+    if (currentPlayerScore < newPlayerScore) {
+        cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
+    }
+    
+    // Reset game score values for re-computation next turn
+    //resetPlayerScoreValues();
+
+    // Card has been drawn by player
+    if (type == 1) {
+        score->computeGameStatsOnCardDraw();
+    }
+    
+    // City has been built by player
+    else if (type == 4) {
+        cout << "CITY HAS BEEN BUILT BY PLAYER " << game->getTurn()->player->getName() << endl;
+        /*int currentPlayerScore = game->getTurn()->player->getPlayerScore();
+        score->computeGameScore();
+        int newPlayerScore = game->getTurn()->player->getPlayerScore();
+        
+        if (currentPlayerScore < newPlayerScore) {
+            cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
+        }*/
+    }
+    
+    // Army has been destroyed by player
+    else if (type == 5) {
+        /*int currentPlayerScore = game->getTurn()->player->getPlayerScore();
+        score->computeGameScore();
+        int newPlayerScore = game->getTurn()->player->getPlayerScore();
+        
+        if (currentPlayerScore < newPlayerScore) {
+            cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
+        }*/
     }
 }

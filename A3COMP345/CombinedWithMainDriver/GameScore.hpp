@@ -5,7 +5,7 @@
 //  Created by Wilson Fong on 2019-11-04.
 //  Copyright © 2019 Wilson Fong. All rights reserved.
 //
-
+/*
 #ifndef GameScore_hpp
 #define GameScore_hpp
 

@@ -13,17 +13,23 @@
 #include <string>
 #include "PlayerActions.h"
 #include "GameObservers.h"
+#include "GameScore.h"
 
 using namespace std;
 
 // Constructor
-MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList) {
+MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList, GameScore *gameScore) {
     handObject = handObj;
     players = playersList;
     playerActions = new PlayerActions();
+    score = gameScore;
 
 	for (int i = 0; i < players.size(); i++) {
-		players[i]->setSubject(this);
+        if (i == 0) {
+            this->Subject::attach(players[0]);
+        }
+        
+        players[i]->setSubject(this, score);
 	}
 
     // Initialize
@@ -123,6 +129,7 @@ void MainGameLoop::traverse(Turn *last)
 
     // Pointing to first node of the list
     p = last -> next;
+    currentPlayer = p;
 
     // Perform action when traversing the list
     do
@@ -132,7 +139,6 @@ void MainGameLoop::traverse(Turn *last)
              << *p->player->getPlayerCoins()<<" coins."<< endl;
 
         //the strategy adopted by a player can be changed dynamically during play:
-        cout << "Which strategy would you like to use, player " <<p->player->getName() <<" ?"<<endl;
         p->player->pickStrategy();
 
         // Initialize it to a number that will make it enter the while loop.
@@ -150,12 +156,12 @@ void MainGameLoop::traverse(Turn *last)
         cout << "\tGood: " << card->getGoods() << "\tAction: " << card->getAction() << endl;
 
 		//When this works, there is no need for the above cout statement
-		notify(1,1,indexOfCard);
+		notify(1, 1, indexOfCard);
+        //notify(2, 1, indexOfCard);
 
-        processCard(card, p->player);
-
-
-
+        int type = processCard(card, p->player);
+        notify(2, type, indexOfCard);
+        
         // Check to see if the deck is empty.
         if (handObject->getDeckCount() > 0) {
             // Next player's turn
@@ -166,8 +172,8 @@ void MainGameLoop::traverse(Turn *last)
     } while(p != last->next);
 }
 
-void MainGameLoop::processCard(Card*  card, Player* player) {
-
+int MainGameLoop::processCard(Card*  card, Player* player) {
+    int type = 0;
     string action = card->getAction();
     int* index = new int(-1);
 
@@ -189,6 +195,8 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 		{
 			playerActions->BuildCity(player);
 			notify(1, 4, 0);
+            //notify(2, 4, 0);
+            type = 4;
 		}
 
             //Destroy Army action
@@ -197,6 +205,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
 			{
 				playerActions->DestroyArmy(players, player);
 				notify(1, 5, 0);
+                type = 5;
 			}
 
             //And action
@@ -270,6 +279,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 playerActions->MoveOverWater(player);
             }
 			notify(1, 2, amt);
+            type = 2;
         }
 
             //Move army action: checks if the action starts with "Mov" (Move) and extracts the number of army units
@@ -283,6 +293,7 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 playerActions->MoveOverLand(player);
             }
 			notify(1, 2, amt);
+            type = 2;
         }
 
             //Add army action: checks if the action starts with "Ad" (Add) and extracts the number of army units
@@ -296,11 +307,14 @@ void MainGameLoop::processCard(Card*  card, Player* player) {
                 playerActions->PlaceNewArmies(player);
             }
 			notify(1, 3, amt);
+            type = 3;
         }
     }
+    
+    return type;
 }
 
 Turn* MainGameLoop::getTurn()
 {
-	return head;
+    return currentPlayer;
 }

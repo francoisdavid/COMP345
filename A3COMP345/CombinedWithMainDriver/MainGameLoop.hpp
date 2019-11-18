@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "PlayerActions.h"
 #include "GameObservers.h"
+#include "GameScore.h"
 
 using namespace std;
 class PlayerActions;
@@ -28,7 +29,7 @@ public:
 
     PlayerActions* playerActions;
     // Constructors/Destructor
-    MainGameLoop(HandObject *handObject, vector<Player*> players);
+    MainGameLoop(HandObject *handObject, vector<Player*> players, GameScore *gameScore);
     ~MainGameLoop();
     
     // Methods
@@ -37,7 +38,7 @@ public:
     Turn *addToEnd(Turn *, Player*);
     void traverse(Turn *);
     void executeGameLoop(Turn *);
-    void processCard(Card*, Player* );
+    int processCard(Card*, Player* );
 	void BuildCity(Player*) {};
 	void DestroyArmy(Player*) {};
 	void MoveArmies(Player*, int) {};
@@ -54,6 +55,8 @@ private:
     HandObject *handObject;
     Turn *head;
     vector<Player*> players;
+    Turn *currentPlayer;
+    GameScore *score;
     // PlayerActions playerAction;
 };
 

@@ -9,6 +9,7 @@
 #include "MainGameLoop.hpp"
 #include "PlayerActions.h"
 #include <ctime>
+
 using namespace std;
 
 MapLoader* loadMap(const char *directory);
@@ -17,6 +18,7 @@ vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 
 int main() {
     const char *directory = "../Maps/";
+    //const char *directory = "/Users/Wilson/Desktop/COMP345/A3COMP345/A3_Part3/A3_Part3/Maps/";
 
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
@@ -166,8 +168,11 @@ int main() {
             players[i]->PlaceNewArmies(startingLoc);
         }
     }
+        
+        GameScore *gameScore = new GameScore(players, map);
+        
          // Create the instance of the MainGameLoop, which will run itself.
-        MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players);
+        MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players, gameScore);
         mainGameLoop->~MainGameLoop();
         
         // Delete the players.
@@ -285,3 +290,4 @@ vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players) {
     
     return players;
 }
+

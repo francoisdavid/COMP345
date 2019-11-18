@@ -1,4 +1,4 @@
-
+/*
 #include <iostream>
 #include "Map.h"
 #include <string>
@@ -167,8 +167,10 @@ int main() {
                 players[i]->PlaceNewArmies(startingLoc);
             }
         }
+        
+        GameScore *gameScore = new GameScore(players, map);
         // Create the instance of the MainGameLoop, which will run itself.
-        MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players);
+        MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players, gameScore);
         mainGameLoop->~MainGameLoop();
 
 
@@ -269,3 +271,5 @@ MapLoader* loadMap2(const char*  filePath) {
 
     return NULL;
 };
+
+*/

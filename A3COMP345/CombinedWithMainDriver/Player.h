@@ -10,6 +10,7 @@
 #include "City.h"
 #include "GameObservers.h"
 #include "PlayerStrategies.h"
+#include "GameScore.h"
 
 class Strategy;
 class BidingFacility;
@@ -54,7 +55,7 @@ public:
 	void setPlayerBiddingFacility(BidingFacility* bf);
 	void setPlayerScore(int);
 	void setPlayerNumOfArmiesBasedOnSoldiers(int);
-	void setSubject(MainGameLoop* subject);
+	void setSubject(MainGameLoop* subject, GameScore* gameScore);
 
 	//Print info of player
 	void printInfo();
@@ -85,7 +86,7 @@ public:
     Strategy* getStrategy();
     void update(int, int, int);
 	void updatePhase(int, int);
-	//void updateGameStats();
+	void updateGameStats(int);
 private:
     Strategy* strategy;
     bool GreedyComputer;
@@ -109,6 +110,7 @@ private:
     int* playerScore;
     int* playerNumOfArmiesBasedOnSoldiers;
 	MainGameLoop* game;
+    GameScore* score;
 };
 
 #endif // Player_h
