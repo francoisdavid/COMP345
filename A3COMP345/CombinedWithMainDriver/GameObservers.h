@@ -8,24 +8,9 @@
 #include <list>
 using namespace std;
 
-class GameObservers;
 
 //Abstract class for subjects. The list _views_ contains all the observer objects to which this subject
-//will be sharing information.
-class Subject {
 
-public:
-
-	Subject();
-	~Subject();
-	virtual void attach(GameObservers*);
-	virtual void detach(GameObservers*);
-	virtual void notify(int code);
-
-private:
-	list<GameObservers*> *observers;
-
-};
 
 //Abstract class for observers. All classes that inherit from this class must define what they will
 //do when update() is invoked.
@@ -33,13 +18,29 @@ class GameObservers {
 
 public:
 
-	~GameObservers();
+	virtual ~GameObservers() = default;
 	virtual void update(int code) = 0;
 
 protected:
 
 	GameObservers();
 	
+};
+
+//will be sharing information.
+class Subject {
+
+public:
+
+    Subject();
+    ~Subject();
+    virtual void attach(GameObservers*);
+    virtual void detach(GameObservers*);
+    virtual void notify(int code);
+
+private:
+    list<GameObservers*> *observers;
+
 };
 
 

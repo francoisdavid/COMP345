@@ -34,9 +34,6 @@ void Subject::notify(int code)
 		(*i)->update(code);
 }
 
-GameObservers::~GameObservers()
-{
-}
 
 GameObservers::GameObservers()
 {

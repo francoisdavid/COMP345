@@ -14,7 +14,7 @@
 #include "GameObservers.h"
 
 using namespace std;
-
+class PlayerActions;
 // Use circular linked list to form clockwise playing style
 
 struct Turn {
@@ -38,14 +38,14 @@ public:
     void traverse(Turn *);
     void executeGameLoop(Turn *);
     void processCard(Card*, Player* );
-	void BuildCity(Player*);
-	void DestroyArmy(Player*);
-	void MoveArmies(Player*, int);
-	void MoveArmyOverWater(Player*, int);
-	void AddArmies(Player*, int);
-    void MoveOneArmy(Player*);
-    void AddOneArmy(Player*);
-    void attach(GameObservers*);
+	void BuildCity(Player*) {};
+	void DestroyArmy(Player*) {};
+	void MoveArmies(Player*, int) {};
+	void MoveArmyOverWater(Player*, int) {};
+	void AddArmies(Player*, int) {};
+    void MoveOneArmy(Player*) {};
+    void AddOneArmy(Player*) {};
+    void attach(GameObservers*) {};
 private:
     
     // Properties

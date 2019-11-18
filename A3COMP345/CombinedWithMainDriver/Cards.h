@@ -20,7 +20,7 @@ class Card {
 public:
     Card();
     ~Card();
-    Card(int index);
+    explicit Card(int index);
     string getAction();
     string getGoods();
 	void setAction(string);

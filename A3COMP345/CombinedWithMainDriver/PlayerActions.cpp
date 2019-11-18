@@ -32,13 +32,13 @@ void PlayerActions::PlaceNewArmies(Player* player)
 {
 	vector<City*> cities = player->getCities();
 	vector<Node*> nodeOfCities;
-	int index = -1;
+	int* index = new int(-1);
 
 	// Add all the nodes to the vector.
 	for (int i = 0; i < cities.size(); i++)
 		nodeOfCities.emplace_back(cities.at(i)->getLocation());
 
-	while (index < 0 || index > nodeOfCities.size())
+	while (*index < 0 || *index > nodeOfCities.size())
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -49,15 +49,16 @@ void PlayerActions::PlaceNewArmies(Player* player)
 			<< " (starting location)." << endl;
 
 		cout << "What would you like to do, " << player->getName() << "? ";
-		cin >> index;
-		index -= 1;
+		//cin >> index;
+        player->getStrategy()->execute(nullptr, nullptr, nullptr, index);
+		*index -= 1;
 
-		if (index >= 0 && index < nodeOfCities.size() + 1)
+		if (*index >= 0 && *index < nodeOfCities.size() + 1)
 		{
-			if (index != nodeOfCities.size())
+			if (*index != nodeOfCities.size())
 			{
-				player->PlaceNewArmies(nodeOfCities.at(index));
-				cout << "One " << player->getName() << " army unit has been placed in " << *nodeOfCities.at(index)->getName()
+				player->PlaceNewArmies(nodeOfCities.at(*index));
+				cout << "One " << player->getName() << " army unit has been placed in " << *nodeOfCities.at(*index)->getName()
 					<< "." << endl;
 			}
 			else
@@ -211,10 +212,10 @@ void PlayerActions::MoveOverWater(Player* player)
 
 void PlayerActions::BuildCity(Player* mainPlayer)
 {
-	int index = -1;
+	int *index = new int(-1);
 	vector<Army*> armyLoc = mainPlayer->getPlayerArmies();
 
-	while (index < 0 || index > armyLoc.size()-1)
+	while (*index < 0 || *index > armyLoc.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -223,13 +224,14 @@ void PlayerActions::BuildCity(Player* mainPlayer)
 		}
 
 		cout << "What would you like to do, " << mainPlayer->getName() << "? ";
-		cin >> index;
-		index -= 1;
+		//cin >> index;
+        mainPlayer->getStrategy()->execute(nullptr, nullptr, nullptr, index);
+		*index -= 1;
 
-		if (index >= 0 && index < armyLoc.size())
+		if (*index >= 0 && *index < armyLoc.size())
 		{
-			mainPlayer->BuildCity(armyLoc.at(index)->getLocation());
-			cout << mainPlayer->getName() << " built a city on " << *armyLoc.at(index)->getLocation()->getName() << "."
+			mainPlayer->BuildCity(armyLoc.at(*index)->getLocation());
+			cout << mainPlayer->getName() << " built a city on " << *armyLoc.at(*index)->getLocation()->getName() << "."
 				<< endl;
 		}
 	}
@@ -244,9 +246,9 @@ void PlayerActions::DestroyArmy(vector<Player*> players, Player* mainPlayer)
 			for (int j = 0; j < players[i]->getArmyCount(); j++)
 				allArmies.emplace_back(players[i]->getPlayerArmies()[j]);
 
-	int index = -1;
+	int *index = new int(-1);
 
-	while (index < 0 || index > allArmies.size()-1)
+	while (*index < 0 || *index > allArmies.size()-1)
 	{
 		cout << "\nPlease select one of the options." << endl;
 
@@ -256,19 +258,20 @@ void PlayerActions::DestroyArmy(vector<Player*> players, Player* mainPlayer)
 		}
 
 		cout << "What would you like to do, " << mainPlayer->getName() << "? ";
-		cin >> index;
-		index -= 1;
+		//cin >> index;
+        mainPlayer->getStrategy()->execute(nullptr, nullptr, nullptr, index);
+		*index -= 1;
 
-		if (index >= 0 && index < allArmies.size())
+		if (*index >= 0 && *index < allArmies.size())
 		{
 			Player* target = NULL;
 
 			for (int i = 0; i < players.size(); i++)
-				if (players[i]->getPlayerNumber() == allArmies[index]->getOwnerNumber())
+				if (players[i]->getPlayerNumber() == allArmies[*index]->getOwnerNumber())
 					target = players[i];
 
-			mainPlayer->DestroyArmy(allArmies.at(index)->getLocation(), *target->getPlayerNumber());
-			cout << mainPlayer->getName() << " destroyed " << target->getName() << "'s army unit in " << *allArmies[index]->getLocation()->getName() << "."
+			mainPlayer->DestroyArmy(allArmies.at(*index)->getLocation(), *target->getPlayerNumber());
+			cout << mainPlayer->getName() << " destroyed " << target->getName() << "'s army unit in " << *allArmies[*index]->getLocation()->getName() << "."
 				<< endl;
 		}
 	}

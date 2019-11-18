@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include "Map.h"
 #include <string>
 #include "MapLoader.h"
 #include <vector>
@@ -13,7 +14,6 @@ using namespace std;
 
 MapLoader* loadMap(const char *directory);
 void getUserSelection(int *choice);
-vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 
 int main() {
     const char *directory = "../Maps/";
@@ -50,10 +50,12 @@ int main() {
                 newPlayer->setName("Pink");
             }
 
+            //Ask player which strategy to start with
+            newPlayer->pickStrategy();
+
             // Set the number of coins according to the number of players playing.
             if (number == 2) {
                 newPlayer->setPlayerCoins(14);
-
             } else if (number == 3) {
                 newPlayer->setPlayerCoins(11);
             } else if (number == 4) {
@@ -67,7 +69,6 @@ int main() {
 
             // Set the playerBidingFacility to be shared between players.
             newPlayer->setPlayerBiddingFacility(bidingFacility);
-
 
             // Showing that each player have an empty hand of cards.
             vector<Card *> cards = newPlayer->getCards();
@@ -101,24 +102,24 @@ int main() {
             players[i]->toString();
         }
 
-		vector<int> bids;
+        vector<int> bids;
         cout << "\n\nBIDDING PROCESS" << endl;
         for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
             // Player* player = players[i];
-			cout << players[i]->getName() << ", how much would you like to bid? ";
+            cout << players[i]->getName() << ", how much would you like to bid? ";
             int bid;
             cin >> bid;
-			bids.emplace_back(bid);
+            bids.emplace_back(bid);
             players[i]->playerBid(bid);
         }
 
         cout << "\n\nBIDDING RESULT" << endl;
-		for (std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
-			cout << players[i]->getName() << " bid " << bids[i] << " coins." << endl;
-		}
+        for (std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
+            cout << players[i]->getName() << " bid " << bids[i] << " coins." << endl;
+        }
         Player *winner = bidingFacility->revailHighestBider();
-        players = determinePlayerOrder(winner, players);
-        
+
+
         cout << "\n\nARMY PROCESS" << endl;
         int nbOfCountries = map->getNumberCountries();
         srand(time(0));
@@ -127,17 +128,17 @@ int main() {
 
         PlayerActions* playerActions = new PlayerActions();
         PlayerActions::setStartingLocation(startingLoc);
-            for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
-                for (int j = 0; j < 3; j++) {
-                    // Add armies to the starting location.
-                     //players[i]->PlaceNewArmies(startingLoc);
-                     players[i]->PlaceNewArmies(startingLoc);
-                     //playerActions->(startingLoc, players[i]);
-                }
-               // cout << "3 "<< players[i]->getName()<<" Armies were added to the starting location. Location: " << *startingLoc->getName() << endl;
+        for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
+            for (int j = 0; j < 3; j++) { // why 3?
+                // Add armies to the starting location.
+                //players[i]->PlaceNewArmies(startingLoc);
+                playerActions->PlaceNewArmies(players[i]);
+                //playerActions->(startingLoc, players[i]);
             }
+            // cout << "3 "<< players[i]->getName()<<" Armies were added to the starting location. Location: " << *startingLoc->getName() << endl;
+        }
         // If there are 2 players, add another player that will not play with other armies (non player color)
-         if (number == 2 ) {
+        if (number == 2 ) {
             int armiesplaced = 0 ;
             int indexOfPlayer = 0;
             Player* nonPlayerColor = new Player();
@@ -145,34 +146,31 @@ int main() {
             int location = 0 ;
             // Run this loop ten times to place all of the armies of the 3rd non-player player.
             while(armiesplaced < 10 ){
-            location = 0 ;
-            //cout << "Player " << players[indexOfPlayer]->getName() << " turns to add another non player army of which node:(Has to be an index between 1 and"<< nbOfCountries<< ")." << endl;
-            while( location < 1 || location > nbOfCountries  ) {
-                cout << "\nPlayer " << players[indexOfPlayer]->getName() << " turns to add the " << armiesplaced + 1  << " non player army to which node:( it has to be an index between 1 and "<< nbOfCountries<< ")." << endl;
-                cin >> location;
-            }
-            // Set a new army at this location.
-            nonPlayerColor->PlaceNewArmies(map->getNode(location));
-            // Increment the armies placed.
-            armiesplaced++ ;
+                location = 0 ;
+                //cout << "Player " << players[indexOfPlayer]->getName() << " turns to add another non player army of which node:(Has to be an index between 1 and"<< nbOfCountries<< ")." << endl;
+                while( location < 1 || location > nbOfCountries  ) {
+                    cout << "\nPlayer " << players[indexOfPlayer]->getName() << " turns to add the " << armiesplaced + 1  << " non player army to which node:( it has to be an index between 1 and "<< nbOfCountries<< ")." << endl;
+                    cin >> location;
+                }
+                // Set a new army at this location.
+                nonPlayerColor->PlaceNewArmies(map->getNode(location));
+                // Increment the armies placed.
+                armiesplaced++ ;
 
-            // Increment the indexOfPlayer to place the armies and take the remainder for 2 so that it changes  at each iterations.
-            indexOfPlayer++ ;
-            indexOfPlayer = indexOfPlayer % 2;
+                // Increment the indexOfPlayer to place the armies and take the remainder for 2 so that it changes  at each iterations.
+                indexOfPlayer++ ;
+                indexOfPlayer = indexOfPlayer % 2;
+            }
+            // Place the starting armies of the players depending on the starting location.
+            for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
+                for (int j = 0; j < 3; j++) {}
+                players[i]->PlaceNewArmies(startingLoc);
+            }
         }
-        // Place the starting armies of the players depending on the starting location.
-        for (std::vector<Player *>::size_type i = 0; i != players.size(); i++) {
-            for (int j = 0; j < 3; j++) {}
-            players[i]->PlaceNewArmies(startingLoc);
-        }
-    }
-         // Create the instance of the MainGameLoop, which will run itself.
+        // Create the instance of the MainGameLoop, which will run itself.
         MainGameLoop *mainGameLoop = new MainGameLoop(handObj, players);
         mainGameLoop->~MainGameLoop();
-        
-        for (int i = 0; i < players.size(); i++) {
-            mainGameLoop->attach(players[i]);
-        }
+
 
         // Delete the players.
         for(std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
@@ -211,8 +209,8 @@ MapLoader* loadMap(const char *directory) {
         throw invalid_argument("Directory could not be opened. Please review input.");
     }
 
-	cout << "Please select a map from the following list:" << endl;
-	cout << endl;
+    cout << "Please select a map from the following list:" << endl;
+    cout << endl;
 
     // Display results
     for (int i = 0; i < files.size(); i++) {
@@ -227,7 +225,7 @@ MapLoader* loadMap(const char *directory) {
     while (isErrorState) {
         getUserSelection(choice);
         cout << "You have chosen file #" << *choice << ": " << files.at(*choice) << endl;
-		cout << endl;
+        cout << endl;
 
         // Combine dir and filename
         filePath = directory + files.at(*choice);
@@ -271,21 +269,3 @@ MapLoader* loadMap2(const char*  filePath) {
 
     return NULL;
 };
-
-// Determine the order in which players will play as determined by the winner
-vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players) {
-    cout << endl << winner->getName() << " suggests the following order for the gameplay: ";
-    sort(players.begin(), players.end());
-    
-    for (int i = 0; i < players.size(); i++) {
-        if (i < players.size() - 1) {
-            cout << players[i]->getName() << ", ";
-        } else {
-            cout << players[i]->getName() << endl;
-        }
-    }
-    
-    cout << players[0]->getName() << " will start playing the game." << endl;
-    
-    return players;
-}

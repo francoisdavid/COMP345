@@ -9,7 +9,9 @@
 #include "Army.h"
 #include "City.h"
 #include "GameObservers.h"
+#include "PlayerStrategies.h"
 
+class Strategy;
 class BidingFacility;
 using namespace std;
 
@@ -18,7 +20,7 @@ class Player : public GameObservers {
 public:
 	//Constructors/Destructor
 	Player();
-	Player(string, int, int, int, int);
+	Player(string, int, int, int, int, Strategy * str);
 	~Player();
 
 	//Getters
@@ -72,11 +74,15 @@ public:
     void setAsModerateComputer();
     bool isGreedyComputer();
     bool isModerateComputer();
-    
-    void update(int code);
+    bool isHuman();
+    void setStrategy(Strategy *);
+    void pickStrategy();
+    Strategy* getStrategy();
+    void update(int code) {};
 private:
-
+    Strategy* strategy;
     bool GreedyComputer;
+    bool HumanPlayer;
     bool ModerateComputer;
 	static int* objCounter;
 	string playerName;

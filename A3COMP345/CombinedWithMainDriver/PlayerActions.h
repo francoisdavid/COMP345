@@ -4,7 +4,7 @@
 #include "Player.h"
 
 using namespace std;
-
+class Player;
 class PlayerActions {
 
 public:
