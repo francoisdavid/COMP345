@@ -10,6 +10,7 @@
 #include "City.h"
 #include "GameObservers.h"
 
+class BidingFacility;
 using namespace std;
 
 class Player : public GameObservers {

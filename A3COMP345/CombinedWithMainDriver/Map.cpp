@@ -58,7 +58,7 @@ Node *Edge::getNode2() const {
   return node2;
 }
 
-string* Edge::getOver()
+std::string* Edge::getOver()
 {
 	return over;
 }
@@ -218,21 +218,21 @@ int Map::getNumberCountries() {
     return countries.size();
 }
 
-vector<Node*> Map::getCountries() {
+std::vector<Node*> Map::getCountries() {
     return countries;
 }
 
-vector<Map*> Map::getContinents() {
+std::vector<Map*> Map::getContinents() {
     return continents;
 }
 
-vector<Node*> Node::getNeighbours(){
-    vector<Edge*> edges = getEdges();
-    vector<Node*> neighbours;
+std::vector<Node*> Node::getNeighbours(){
+    std::vector<Edge*> edges = getEdges();
+    std::vector<Node*> neighbours;
     for(int i = 0 ; i < edges.size(); i++){
         if(this != edges.at(i)->getNode1() ) {
             neighbours.emplace_back(edges.at(i)->getNode1());
-            cout << "Over:'" << *edges.at(i)->getOver()  << "' \tNode:" <<*edges.at(i)->getNode1()->getName()  << endl;
+            std::cout << "Over:'" << *edges.at(i)->getOver()  << "' \tNode:" <<*edges.at(i)->getNode1()->getName()  << std::endl;
         }
         else {
             neighbours.emplace_back(edges.at(i)->getNode2());
@@ -243,13 +243,12 @@ vector<Node*> Node::getNeighbours(){
     return neighbours;
 }
 
-vector<Node*> Node::getNeighboursLand() {
-	vector<Edge*> edges = getEdges();
-	vector<Node*> neighbours;
+std::vector<Node*> Node::getNeighboursLand() {
+	std::vector<Edge*> edges = getEdges();
+	std::vector<Node*> neighbours;
 	for (int i = 0; i < edges.size(); i++) {
 		if (*edges.at(i)->getOver() == "land")
 			if (this != edges.at(i)->getNode1())
-
 				neighbours.emplace_back(edges.at(i)->getNode1());
 			else
 				neighbours.emplace_back(edges.at(i)->getNode2());
