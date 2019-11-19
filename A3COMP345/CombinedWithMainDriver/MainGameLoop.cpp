@@ -164,7 +164,7 @@ void MainGameLoop::traverse(Turn *last)
         if (handObject->getDeckCount() > 0) {
             // Next player's turn
             p = p -> next;
-            currentPlayer = p;
+			currentPlayer = p;
         } else {
             throw invalid_argument("Deck of cards is finished. The game is over.");
         }

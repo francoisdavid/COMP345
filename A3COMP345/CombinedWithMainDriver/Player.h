@@ -33,8 +33,7 @@ public:
 	int* getMonthOfBirth();
 	int* getYearOfBirth();
 	double* getPlayerAge();
-	int* citiesLeft;
-	int* armyUnitsLeft;
+	int* getArmyUnitsLeft();
 	vector<Card*> getCards();
 	vector<Node*> getCountries();
 	vector<City*> getCities();
@@ -53,6 +52,7 @@ public:
 	void setYearOfBirth(int);
 	void setPlayerAge(double);
 	void setPlayerCoins(int);
+	void setArmyUnitsLeft(int);
 	void setPlayerBiddingFacility(BidingFacility* bf);
 	void setPlayerScore(int);
 	void setPlayerNumOfArmiesBasedOnSoldiers(int);
@@ -102,6 +102,8 @@ private:
 	int* yearOfBirth;
 	double* playerAge;
 	int* playerCoins;
+	int* citiesLeft;
+	int* armyUnitsLeft;
 	vector<Node*> playerCountries;
 	vector<Card*> playerCards;
 	HandObject* playerHand;

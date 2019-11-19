@@ -69,6 +69,7 @@ void PlayerActions::PlaceNewArmies(Player* player)
 			}
 		}
 	}
+	player->setArmyUnitsLeft(*player->getArmyUnitsLeft() - 1);
 }
 
 void PlayerActions::MoveArmies(Node* startLocation, Node* endLocation, Player* mainPlayer)

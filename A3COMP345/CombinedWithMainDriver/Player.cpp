@@ -103,6 +103,11 @@ double* Player::getPlayerAge()
     return (playerAge);
 }
 
+int* Player::getArmyUnitsLeft()
+{
+	return armyUnitsLeft;
+}
+
 vector<Card*> Player::getCards()
 {
     return playerCards;
@@ -142,6 +147,11 @@ void Player::setPlayerAge(double age)
 void Player::setPlayerCoins(int coins)
 {
     *playerCoins = coins;
+}
+
+void Player::setArmyUnitsLeft(int armyUnits)
+{
+	*armyUnitsLeft = armyUnits;
 }
 
 void Player::printInfo()
@@ -224,7 +234,11 @@ void Player::PlaceNewArmies(Node* location)
         Army* army = new Army(location, *(this->playerNumber), 1);
         playerArmy.emplace_back(army);
     }
-	*armyUnitsLeft = *armyUnitsLeft - 1;
+
+	//QUICK FIX -- need a better fix for full game
+	if (*armyUnitsLeft <= 14 && *armyUnitsLeft >= 12)
+		*armyUnitsLeft = *armyUnitsLeft - 1;
+
     //playerCountries.emplace_back(location);
 }
 
