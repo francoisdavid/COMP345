@@ -26,6 +26,7 @@ public:
     
     // Methods
     void computeGameScore();
+    void computeGameScoreOnDraw();
 private:
     
     // Properties

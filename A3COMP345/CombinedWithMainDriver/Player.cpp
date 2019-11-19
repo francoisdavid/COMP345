@@ -20,6 +20,7 @@ Player::Player()
     yearOfBirth = new int();
     playerAge = new double();
     playerScore = new int();
+    lastPlayerScore = new int();
     playerNumOfArmiesBasedOnSoldiers = new int();
 
     playerHand = new HandObject();
@@ -44,6 +45,7 @@ Player::Player(string name, int coins, int DOB, int MOB, int YOB, Strategy* str)
 	armyUnitsLeft = new int(14);
 	citiesLeft = new int(3);
     playerScore = new int();
+    lastPlayerScore = new int();
     playerNumOfArmiesBasedOnSoldiers = new int();
     playerHand = new HandObject();
     playerBiddingFacility = new BidingFacility();
@@ -310,6 +312,7 @@ int Player::getPlayerScore() {
 
 void Player::setPlayerScore(int score) {
     *playerScore = score;
+    *lastPlayerScore = score;
 }
 
 int Player::getArmyCountBasedOnSoldiers() {
@@ -467,43 +470,44 @@ void Player::pickStrategy() {
 
 // Updates game stats upon receiving notification from subject
 void Player::updateGameStats(int type) {
+
+    // City has been built by player
+    if (type == 4) {
+        cout << endl << "City has been built by " << game->getTurn()->player->getName() << endl;
+    }
     
-    int currentPlayerScore = game->getTurn()->player->getPlayerScore();
-    score->computeGameScore();
-    int newPlayerScore = game->getTurn()->player->getPlayerScore();
+    vector<int> currentPlayerScores = game->getCurrentPlayerScores();
+    score->computeGameStatsOnCardDraw();
+    game->checkPlayerScore(currentPlayerScores);
     
-    if (currentPlayerScore < newPlayerScore) {
-        cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
+    // Army has been destroyed by player
+    if (type == 5) {
+        // Check if players have had some of their nodes removed
+        vector<int> currentPlayerCountries = game->getCurrentPlayerCountries();
+        game->checkPlayerCountries(currentPlayerCountries);
     }
     
     // Reset game score values for re-computation next turn
-    //resetPlayerScoreValues();
+    game->resetPlayerScoreValues();
+}
 
-    // Card has been drawn by player
-    if (type == 1) {
-        score->computeGameStatsOnCardDraw();
+void Player::resetScore() {
+    *playerScore = 0;
+    *playerNumOfArmiesBasedOnSoldiers = 0;
+    
+    for (int i = 0; i < playerCountries.size(); i++) {
+        playerCountries.erase(playerCountries.begin() + i);
     }
     
-    // City has been built by player
-    else if (type == 4) {
-        cout << "CITY HAS BEEN BUILT BY PLAYER " << game->getTurn()->player->getName() << endl;
-        /*int currentPlayerScore = game->getTurn()->player->getPlayerScore();
-        score->computeGameScore();
-        int newPlayerScore = game->getTurn()->player->getPlayerScore();
-        
-        if (currentPlayerScore < newPlayerScore) {
-            cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
-        }*/
+    for (int i = 0; i < playerCities.size(); i++) {
+        playerCities.erase(playerCities.begin() + i);
     }
     
-    // Army has been destroyed by player
-    else if (type == 5) {
-        /*int currentPlayerScore = game->getTurn()->player->getPlayerScore();
-        score->computeGameScore();
-        int newPlayerScore = game->getTurn()->player->getPlayerScore();
-        
-        if (currentPlayerScore < newPlayerScore) {
-            cout << "Congratulations to " << game->getTurn()->player->getName() << " for scoring this turn!!!";
-        }*/
+    for (int i = 0; i < playerContinents.size(); i++) {
+        playerContinents.erase(playerContinents.begin() + i);
     }
+    
+    playerCountries.clear();
+    playerCities.clear();
+    playerContinents.clear();
 }

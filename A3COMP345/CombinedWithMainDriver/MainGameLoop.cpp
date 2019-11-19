@@ -40,6 +40,7 @@ MainGameLoop::MainGameLoop(HandObject *handObj, vector<Player*> playersList, Gam
 MainGameLoop::~MainGameLoop() {
     delete handObject;
     delete head;
+    delete score;
     for (int i = 0; i < players.size(); ++i)
         delete players[i];
 };
@@ -192,7 +193,6 @@ int MainGameLoop::processCard(Card*  card, Player* player) {
 		{
 			playerActions->BuildCity(player);
 			notify(1, 4, 0);
-            //notify(2, 4, 0);
             type = 4;
 		}
 
@@ -314,4 +314,48 @@ int MainGameLoop::processCard(Card*  card, Player* player) {
 Turn* MainGameLoop::getTurn()
 {
     return currentPlayer;
+}
+
+void MainGameLoop::resetPlayerScoreValues() {
+    for (int i = 0; i < players.size(); i++) {
+        players[i]->resetScore();
+    }
+}
+
+void MainGameLoop::checkPlayerScore(vector<int> originalScores) {
+    for (int i = 0; i < players.size(); i++) {
+        int newScore = players[i]->getPlayerScore();
+        if (originalScores[i] < newScore) {
+            cout << "Congratulations to " << players[i]->getName() << " for scoring this turn!!!" << endl;
+        }
+    }
+}
+
+vector<int> MainGameLoop::getCurrentPlayerScores() {
+    vector<int> scores;
+    
+    for (int i = 0; i < players.size(); i++) {
+        scores.push_back(*players[i]->lastPlayerScore);
+    }
+    
+    return scores;
+}
+
+vector<int> MainGameLoop::getCurrentPlayerCountries() {
+    vector<int> countries;
+    
+    for (int i = 0; i < players.size(); i++) {
+        countries.push_back(players[i]->getCountries().size());
+    }
+    
+    return countries;
+}
+
+void MainGameLoop::checkPlayerCountries(vector<int> originalCountries) {
+    for (int i = 0; i < players.size(); i++) {
+        int newCount = players[i]->getCountries().size();
+        if (originalCountries[i] < newCount) {
+            cout << "One or more countries have been removed from " << players[i]->getName() << " during this turn!!!" << endl;
+        }
+    }
 }

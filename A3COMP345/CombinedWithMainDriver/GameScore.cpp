@@ -10,8 +10,6 @@
 
 using namespace std;
 
-void displayPlayerStats();
-
 // Constructor
 GameScore::GameScore(vector<Player*> playersList, Map* graph) {
     players = playersList;
@@ -55,7 +53,7 @@ bool GameScore::isGameEnd() {
         }
     }
     else if (players.size() == 3) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             if (players.at(i)->getCardCount() != 10) {
                 isGameEnd = false;
             }
@@ -66,7 +64,7 @@ bool GameScore::isGameEnd() {
         }
     }
     else if (players.size() == 4) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 4; i++) {
             if (players.at(i)->getCardCount() != 8) {
                 isGameEnd = false;
             }
@@ -78,7 +76,7 @@ bool GameScore::isGameEnd() {
         
     }
     else if (players.size() == 5) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             if (players.at(i)->getCardCount() != 7) {
                 isGameEnd = false;
             }
@@ -371,6 +369,53 @@ void GameScore::listScoreAndStatistics() {
         
         cout << "Player " << to_string(i+1) << " (" << players.at(i)->getName() << ") - score: " << players.at(i)->getPlayerScore() << ", coins: " << *players.at(i)->getPlayerCoins() << ", armies: " << players.at(i)->getArmyCountBasedOnSoldiers() << ", regions: " << players.at(i)->getCountries().size() << ", continent: " << players.at(i)->getContinents().size() << ", cities: " << players.at(i)->getCities().size() << endl << endl;
     }
+    
+    cout << "Note: # of '*' represent the player #." << endl;
+    
+    // Display bar graph
+    cout << "---------- CONTINENTS ----------" << endl;
+    vector<Map*> continents = map->getContinents();
+    for (int i = 0; i < continents.size(); i++) {
+        cout << *continents[i]->getName() << " ";
+        
+        for (int j = 0; j < players.size(); j++) {
+            vector<Map*> playerContinents = players[j]->getContinents();
+            
+            auto result = find(playerContinents.begin(), playerContinents.end(), continents[i]);
+            
+            if (result != playerContinents.end()) {
+                // Print stars corresponding to player number
+                for (int k = 0; k <= j; k++) {
+                    cout << "*";
+                }
+            }
+        }
+        
+        cout << endl;
+    }
+    
+    cout << endl << "---------- COUNTRIES ----------" << endl;
+    vector<Node*> countries = map->getCountries();
+    for (int i = 0; i < countries.size(); i++) {
+        cout << *countries[i]->getName() << " ";
+        
+        for (int j = 0; j < players.size(); j++) {
+            vector<Node*> playerCountries = players[j]->getCountries();
+            
+            auto result = find(playerCountries.begin(), playerCountries.end(), countries[i]);
+            
+            if (result != playerCountries.end()) {
+                // Print stars corresponding to player number
+                for (int k = 0; k <= j; k++) {
+                    cout << "*";
+                }
+            }
+        }
+        
+        cout << endl;
+    }
+    
+    cout << endl;
 }
 
 // Determine winner based on score
@@ -489,11 +534,24 @@ void GameScore::determineWinnerByControlledRegions() {
     }
 }
 
-// Determines if a player owns a required number of cards and computes game score
+// Displays game stats
 void GameScore::computeGameStatsOnCardDraw() {
     if (isPlayerCardsRequirementMet()) {
-        computeGameScore();
+        if (players.size() == 2) {
+            cout << endl << "A player is currently holding 13 cards." << endl;
+        }
+        else if (players.size() == 3) {
+            cout << endl << "A player is currently holding 10 cards." << endl;
+        }
+        else if (players.size() == 4) {
+            cout << endl << "A player is currently holding 8 cards." << endl;
+        }
+        else if (players.size() == 5) {
+            cout << endl << "A player is currently holding 7 cards." << endl;
+        }
     }
+    
+    computeGameScore();
 }
 
 // Determines if the required # of cards in a player's hands is met
@@ -507,56 +565,31 @@ bool GameScore::isPlayerCardsRequirementMet() {
                 break;
             }
         }
-        
-        if (isRequirementMet) {
-            cout << endl << "A player is currently holding 13 cards." << endl;
-        }
     }
     else if (players.size() == 3) {
-        for (int i = 0; i < 2; i++) {
-            if (players.at(i)->getCardCount() == 10) {
+        for (int i = 0; i < 3; i++) {
+            if (players.at(i)->getCardCount() == 10) { // Change to 3 cards to test driver with 3 players
                 isRequirementMet = true;
                 break;
             }
         }
-        
-        if (isRequirementMet) {
-            cout << endl << "A player is currently holding 10 cards." << endl;
-        }
     }
     else if (players.size() == 4) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 4; i++) {
             if (players.at(i)->getCardCount() == 8) {
                 isRequirementMet = true;
                 break;
             }
         }
-        
-        if (isRequirementMet) {
-            cout << endl << "A player is currently holding 8 cards." << endl;
-        }
-        
     }
     else if (players.size() == 5) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             if (players.at(i)->getCardCount() == 7) {
                 isRequirementMet = true;
                 break;
             }
         }
-        
-        if (isRequirementMet) {
-            cout << endl << "A player is currently holding 7 cards." << endl;
-        }
     }
     
     return isRequirementMet;
-}
-
-void GameScore::checkRoundScoring(Player *player) {
-    for (int i = 0; i < players.size(); i++) {
-        if (players[i]->getName() == player->getName()) {
-            
-        }
-    }
 }

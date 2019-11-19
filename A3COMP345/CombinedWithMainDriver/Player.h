@@ -44,6 +44,7 @@ public:
 	void playerBid(int coins);
 	void toString();
 	MainGameLoop* getSubject();
+    int* lastPlayerScore;
 
 	//Setters
 	void setName(string);
@@ -87,6 +88,7 @@ public:
     void update(int, int, int);
 	void updatePhase(int, int);
 	void updateGameStats(int);
+    void resetScore();
 private:
     Strategy* strategy;
     bool GreedyComputer;

@@ -50,7 +50,11 @@ public:
     void AddOneArmy(Player*) {};
     void attach(GameObservers*) {};
 	Turn* getTurn();
-
+    void resetPlayerScoreValues();
+    vector<int> getCurrentPlayerScores();
+    void checkPlayerScore(vector<int>);
+    vector<int> getCurrentPlayerCountries();
+    void checkPlayerCountries(vector<int>);
 private:
     
     // Properties
@@ -59,7 +63,6 @@ private:
     vector<Player*> players;
     Turn *currentPlayer;
     GameScore *score;
-    // PlayerActions playerAction;
 };
 
 #endif // MainGameLoop_h
