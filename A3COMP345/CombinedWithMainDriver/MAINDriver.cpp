@@ -23,6 +23,16 @@ int main() {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
         Map *map = mapLoader->getGraph();
 
+
+        Map *map2 = Map::instance(new std::string("graph"));
+
+        if(map2 == map){
+            cout << "\n\nSAME MAP With the singleton pattern!" << endl;
+        } else{
+            cout << "\n\nNot the same MAP With the singleton pattern!" << endl;
+        }
+
+        delete map2;
         int number = 0;
         while (number < 2 || number > 5) {
             std::cout << "\nEnter the number of players (2 to 5): ";
