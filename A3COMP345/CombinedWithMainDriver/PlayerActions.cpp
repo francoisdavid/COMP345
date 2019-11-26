@@ -232,8 +232,7 @@ void PlayerActions::BuildCity(Player* mainPlayer)
 		if (*index >= 0 && *index < armyLoc.size())
 		{
 			mainPlayer->BuildCity(armyLoc.at(*index)->getLocation());
-			cout << mainPlayer->getName() << " built a city on " << *armyLoc.at(*index)->getLocation()->getName() << "."
-				<< endl;
+			cout << mainPlayer->getName() << " built a city on " << *armyLoc.at(*index)->getLocation()->getName() << "." << endl;
 		}
 	}
 }

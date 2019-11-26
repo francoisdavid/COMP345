@@ -12,6 +12,7 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
+
 using namespace std;
 
 
@@ -20,10 +21,10 @@ class Card {
 public:
     Card();
     ~Card();
-    explicit Card(int index);
-    string getAction();
-    string getGoods();
-	void setAction(string);
+    //explicit Card(int index);
+    virtual string getAction();
+    virtual string getGoods();
+	virtual void setAction(string);
 
 private:
     string action;
@@ -41,6 +42,7 @@ public:
     int howManyCards();
     friend ostream& operator<<(ostream& os, const Deck& dt);
     void randomizeDeck();
+    static Card* createCards(int);
 private:
     vector<Card*> cards;
 };
@@ -63,9 +65,5 @@ private:
     static Card* displayCards[6];
     static Deck* deck;
 };
-
-
-
-
 #endif /* Cards_h *///s
 

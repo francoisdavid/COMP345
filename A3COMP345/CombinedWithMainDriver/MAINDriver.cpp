@@ -32,7 +32,7 @@ int main() {
             cout << "\n\nNot the same MAP With the singleton pattern!" << endl;
         }
 
-        delete map2;
+        //delete map2;
         int number = 0;
         while (number < 2 || number > 5) {
             std::cout << "\nEnter the number of players (2 to 5): ";
@@ -132,8 +132,8 @@ int main() {
         
         cout << "\n\nARMY PROCESS" << endl;
         int nbOfCountries = map->getNumberCountries();
-        srand(time(0));
-        int startingLocation = rand() % nbOfCountries;
+        //srand(time(0));
+        int startingLocation = 15;
         Node *startingLoc = map->getNode(startingLocation);
 
         PlayerActions* playerActions = new PlayerActions();

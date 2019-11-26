@@ -40,7 +40,7 @@ add_executable(CombinedWithMainDriver
         PlayerActions.cpp
         PlayerActions.h
         PlayerStrategies.h
-        PlayerStrategies.cpp)
+        PlayerStrategies.cpp CardsFactory.h GameCards.cpp)
 
 add_executable(Task_1_strategy
         Maps/another_working_example.map
