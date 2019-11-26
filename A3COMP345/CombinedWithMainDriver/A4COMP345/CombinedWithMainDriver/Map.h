@@ -1,0 +1,121 @@
+#ifndef MAPS_MAP_H
+#define MAPS_MAP_H
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+//#include "Army.h"
+#include "City.h"
+
+
+class Edge;
+class Node;
+class Army;
+class City;
+
+class Map {
+private:
+  std::string *name;
+  std::vector<Node*> countries;
+  std::vector<Edge*> edges;
+  std::vector<Map*> continents;
+  // Static instance that will be share.
+  static Map* map;
+  // Private constructor for Singleton Pattern.
+  Map(std::string* name);
+public:
+  ~Map();
+
+  static Map *instance(std::string* name){
+      if(!map)
+          map = new Map(name);
+      return map;
+  }
+
+  friend std::ostream &operator<<(std::ostream &os, const Map &map);
+
+  void addCountry(Node *);
+
+  void addCountry(Node *node, std::string continent);
+
+  void addEdge(Edge*);
+
+  std::string *getName();
+
+  void validate();
+
+  Node* getNode(int id);
+
+  int getIndexOf(Node*);
+
+  void traverse(Node*, bool[]);
+
+  bool isConnected();
+
+  void removeCountry(Node*);
+
+  int getNumberCountries();
+  
+  std::vector<Node*> getCountries();
+    
+  std::vector<Map*> getContinents();
+
+
+
+  // Only to return subMap that will be used for the continent counting.
+  static Map* createContinents(std::string* name){
+      return new Map(name);
+  }
+
+};
+
+
+
+class Node {
+private:
+  std::string *name;
+  int* id;
+  Map *continent;
+  std::vector<Edge*> edges;
+  std::vector<Army*> armies;
+  std::vector<City*> cities;
+
+public:
+  Node(int id, std::string);
+  ~Node();
+
+  std::string* getName();
+  int *getId() const;
+  void setContinent(Map *);
+  void addEdge(Edge*);
+
+  const std::vector<Edge *> &getEdges() const;
+
+  std::vector<Node*> getNeighbours();
+  std::vector<Node*> getNeighboursLand();
+  std::vector<Army*> getArmies();
+  std::vector<City*> getCities();
+  void addCity(City*);
+  void addArmy(Army*);
+
+
+  friend std::ostream &operator<<(std::ostream &os, const Node &node);
+};
+
+class Edge {
+private:
+  std::string *name;
+  std::string* over;
+  Node *node1;
+  Node *node2;
+public:
+  Edge(std::string, Node *, Node *, std::string);
+  ~Edge();
+  Node *getNode1() const;
+  Node *getNode2() const;
+  std::string* getOver();
+  friend std::ostream &operator<<(std::ostream &os, const Edge &edge);
+};
+
+#endif //MAPS_MAP_H
