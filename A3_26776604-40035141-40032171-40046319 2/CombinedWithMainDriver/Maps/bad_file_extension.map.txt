@@ -1,0 +1,13 @@
+node,France,Europe
+node,UK,Europe
+node,Spain,Europe
+node,Italy,Europe
+node,USA,America
+node,Japan,Asia
+node,Egypt,Africa
+edge,France,UK,water
+edge,UK,Spain,water
+edge,Spain,Italy,land
+edge,Italy,Japan,land
+edge,Japan,USA,land
+edge,USA,France,land
