@@ -244,6 +244,7 @@ void Player::PlaceNewArmies(Node* location)
 
 void Player::MoveArmies(Node* startLocation, Node* endLocation)
 {
+    vector <Army*> startLocationArmies = startLocation->getArmies();
     for (int i = 0; i < startLocation->getArmies().size(); i++)
     {
         if (*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber))
@@ -253,17 +254,19 @@ void Player::MoveArmies(Node* startLocation, Node* endLocation)
             PlaceNewArmies(endLocation);
 
             if ( *(startLocation->getArmies()[i]->getNumberOfSoldiers()) == 0) {
-                for(int j = 0 ; j < startLocation->getArmies().size() ; j++ ){
-                    if(*(startLocation->getArmies()[i]->getOwnerNumber()) == *(this->playerNumber)){
-                        playerArmy.erase(playerArmy.begin() + j);
-                    }
-                }
+
+				startLocationArmies.erase(startLocationArmies.begin() + i);
             }
-
-
+			
             break;
         }
     }
+
+	for (int i = 0; i < playerArmy.size(); i++) {
+		if (*playerArmy[i]->getNumberOfSoldiers() == 0) {
+			playerArmy.erase(playerArmy.begin() + i);
+		}
+	}
 }
 
 void Player::BuildCity(Node* location)
@@ -275,13 +278,20 @@ void Player::BuildCity(Node* location)
 
 void Player::DestroyArmy(Node* location, int ownerNumber)
 {
+   vector <Army*> armyLoc = location->getArmies();
+
     for (int i = 0; i < location->getArmies().size(); i++)
         if (*(location->getArmies()[i]->getOwnerNumber()) == ownerNumber)
         {
             location->getArmies()[i]->setNumberOfSoldiers(*(location->getArmies()[i]->getNumberOfSoldiers()) - 1);
+
+			if (*(location->getArmies()[i]->getNumberOfSoldiers()) == 0) {
+
+				armyLoc.erase(armyLoc.begin() + i);
+			}
+
             break;
         }
-
 }
 
 void Player::setPlayerBiddingFacility(BidingFacility* bf){
