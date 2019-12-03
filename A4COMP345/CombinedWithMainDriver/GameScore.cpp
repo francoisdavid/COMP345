@@ -625,6 +625,6 @@ void GameScore::printSummaryTable() {
     cout << "|   " << player->getName() << "   |";
     cout << "|   " << player->getCardCount() << "   |";
     cout << "|   " << player->getPlayerScore() << "   |";
-    cout << "|   " << player->getPlayerCoins() << "   |";
+    cout << "|   " << *player->getPlayerCoins() << "   |" << endl;
   }
 }
