@@ -22,13 +22,13 @@ public:
     Card();
     ~Card();
     //explicit Card(int index);
-    virtual string getAction();
-    virtual string getGoods();
-	virtual void setAction(string);
+    virtual string getAction()= 0;
+    virtual string getGoods() = 0;
+	virtual void setAction(string) = 0;
 
 private:
-    string action;
-    string goods;
+   // string action;
+    //string goods;
 };
 
 

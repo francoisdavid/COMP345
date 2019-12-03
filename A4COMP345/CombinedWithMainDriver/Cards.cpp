@@ -95,7 +95,7 @@ Card::Card(int index){
 Card::~Card(){
     
 }
-
+/*
 // Accessor method.
 string Card::getAction(){
     return action;
@@ -111,7 +111,7 @@ void Card::setAction(string act)
 	action = act;
 }
 
-
+*/
 
 // Deck CLASS.
 // Default Constructor.

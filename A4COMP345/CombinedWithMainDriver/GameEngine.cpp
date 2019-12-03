@@ -190,7 +190,7 @@ int main() {
         // Delete the players.
         for(std::vector<Player*>::size_type i = 0; i != players.size(); i++) {
             Player* temp = players[i];
-            delete temp;
+            //delete temp;
         }
 
         // Delete the mapLoader which will delete the map.

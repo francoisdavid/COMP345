@@ -14,6 +14,7 @@
 #include "PlayerActions.h"
 #include "GameObservers.h"
 #include "GameScore.h"
+#include "CardsFactory.h"
 
 using namespace std;
 
@@ -41,8 +42,8 @@ MainGameLoop::~MainGameLoop() {
     delete handObject;
     delete head;
     delete score;
-    for (int i = 0; i < players.size(); ++i)
-        delete players[i];
+    //for (int i = 0; i < players.size(); ++i)
+       // delete players[i];
 };
 
 // Add players to the game
@@ -215,12 +216,10 @@ int MainGameLoop::processCard(Card*  card, Player* player) {
             string action1 = action.substr(0, first) + ".";
             string action2 = action.substr(first + 5, action.size() - 1);
 
-            Card* card1 = new Card();
-            card1->setAction(action1);
+            Card* card1 = CardFactory::NewCard(card->getGoods(), action1);
             processCard(card1, player);
 
-            Card* card2 = new Card();
-            card2->setAction(action2);
+            Card* card2 = CardFactory::NewCard(card->getGoods(), action2);
             processCard(card2, player);
         }
 
@@ -248,16 +247,15 @@ int MainGameLoop::processCard(Card*  card, Player* player) {
 
                 if (*choice == 1)
                 {
-                    Card* card1 = new Card();
-                    card1->setAction(action1);
+                    Card* card1 = CardFactory::NewCard(card->getGoods(), action1);
                     processCard(card1, player);
                     break;
                 }
 
                 else if (*choice == 2)
                 {
-                    Card* card2 = new Card();
-                    card2->setAction(action2);
+                    Card* card2 =CardFactory::NewCard(card->getGoods(), action2);
+
                     processCard(card2, player);
                     break;
                 }
