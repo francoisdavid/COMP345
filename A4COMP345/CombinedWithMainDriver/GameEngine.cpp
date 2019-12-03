@@ -9,6 +9,18 @@ vector<Player*> determinePlayerOrder(Player *winner, vector<Player*> players);
 int main() {
     const char *directory = "../Maps/";
 
+    int choice = 0;
+    while (choice != 2 || choice != 1) {
+      cout << "Welcome to the game! Enter 1 for single mode or 2 for Tournament mode.";
+      cin >> choice;
+    }
+    bool tournament = choice - 1;
+
+    if (tournament) {
+
+    } else {
+
+    }
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
         Map *map = mapLoader->getGraph();

@@ -105,7 +105,7 @@ void MainGameLoop::executeGameLoop(Turn *last) {
     cout << "Running game loop..." << endl;
     int roundCounter =  1;
     try {
-        while (true) {
+        while (roundCounter <= 30) {
             cout << endl << "ROUND " << roundCounter<< " STARTS" << endl;
             traverse(last);
             roundCounter++;
@@ -114,7 +114,7 @@ void MainGameLoop::executeGameLoop(Turn *last) {
         cout << endl << ex.what() << endl;
     }
 
-    cout << endl << "GAME IS OVER." << endl;
+    cout << endl << "GAME IS OVER. (Turn " << roundCounter << ")" << endl;
 }
 
 // Going through each player for each round
