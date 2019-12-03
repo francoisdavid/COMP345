@@ -23,6 +23,7 @@ public:
     
     // Methods
     void computeGameScore();
+    void printSummaryTable();
 	void computeGameStatsOnCardDraw();
 private:
     

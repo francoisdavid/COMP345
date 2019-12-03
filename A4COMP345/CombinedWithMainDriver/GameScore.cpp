@@ -34,6 +34,7 @@ void GameScore::computeGameScore() {
      // Determine winner
     if (isGameEnd()) {
         determineWinnerByScore();
+        printSummaryTable();
     }
 }
 
@@ -592,4 +593,13 @@ bool GameScore::isPlayerCardsRequirementMet() {
     }
     
     return isRequirementMet;
+}
+
+void GameScore::printSummaryTable() {
+  for (auto &player : players) // access by reference to avoid copying
+  {
+    cout << "|   " << player->getName() << "   |";
+    cout << "|   " << player->getCardCount() << "   |";
+    cout << "|   " << player->getPlayerCoins() << "   |";
+  }
 }

@@ -203,14 +203,6 @@ int main() {
     return 0;
 }
 
-void printResults(std::vector<Player> players) {
-    for (auto &player : players) // access by reference to avoid copying
-    {
-       cout << "|   " << player.getName() << "   |";
-       cout << "|   " << player.getCardCount() << "   |";
-       cout << "|   " << player.getPlayerCoins() << "   |";
-    }
-}
 
 // List files in directory, prompt for user selection and load map
 MapLoader* loadMap(const char *directory) {
