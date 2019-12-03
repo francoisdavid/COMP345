@@ -13,15 +13,19 @@ void HumanStrategy:: execute(int* indexOfCard, Turn* p, HandObject*, int* index_
         // Prompt the user to enter the card he wants to select, continues this process until the input is valid.
         do {
             cout << "Please enter the index of the card you want to select (1 to 6) : ";
-            cin >> *indexOfCard;
+            if (!p->player->isTournament())
+              cin >> *indexOfCard;
+            else
+              *indexOfCard = rand() % 6 + 1;
             *indexOfCard -= 1;
             // Display to the user that he does not have enough coins for that.
             if (*p->player->getPlayerCoins() < ceil(double(*indexOfCard) / 2)) {
                 cout << "You can't afford this card." << endl;
             }
         } while (*indexOfCard > 5 || *indexOfCard < 0 || *p->player->getPlayerCoins() < ceil(double(*indexOfCard) / 2));
-    } else
-        cin>>  *index_case2;
+    } else {
+      *index_case2 = rand() % 2 + 1;
+    }
 }
 
 void GreedyComputerStrategy:: execute(int* indexOfCard, Turn* p, HandObject* handObject,int* index_case2) {

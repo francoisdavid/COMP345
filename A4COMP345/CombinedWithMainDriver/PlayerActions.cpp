@@ -120,7 +120,10 @@ void PlayerActions::MoveOverLand(Player* player)
 		}
 
 		cout << "What would you like to do, " << player->getName() << "? ";
-		cin >> index;
+		if (!player->isTournament())
+		  cin >> index;
+    else
+      index = rand() % (armyLoc.size()) + 1;
 		index -= 1;
 
 		if (index >= 0 && index < armyLoc.size())
@@ -138,8 +141,10 @@ void PlayerActions::MoveOverLand(Player* player)
 					cout << "\t" << i + 1 << ". Move 1 army from " << *from->getName() << " to " << *neighbours.at(i)->getName() << endl;
 
 				cout << "What would you like to do, " << player->getName() << "? ";
-
-				cin >> index2;
+        if (!player->isTournament())
+				  cin >> index2;
+        else
+          index2 = rand() % (neighbours.size()) + 1;
 				index2 -= 1;
 
 				if (index2 >= 0 && index2 < neighbours.size())
@@ -178,7 +183,10 @@ void PlayerActions::MoveOverWater(Player* player)
 		}
 
 		cout << "What would you like to do, " << player->getName() << "? ";
-		cin >> index;
+		if (!player->isTournament())
+		  cin >> index;
+		else
+		  index = rand() % (armyLoc.size()) + 1;
 		index -= 1;
 
 		if (index >= 0 && index < armyLoc.size())
@@ -196,8 +204,10 @@ void PlayerActions::MoveOverWater(Player* player)
 					cout << "\t" << i + 1 << ". Move 1 army from " << *from->getName() << " to " << *neighbours.at(i)->getName() << endl;
 
 				cout << "What would you like to do, " << player->getName() << "? ";
-
-				cin >> index2;
+        if (!player->isTournament())
+				  cin >> index2;
+        else
+          index2 = rand() % (neighbours.size()) +1 ;
 				index2 -= 1;
 
 				if (index2 >= 0 && index2 < neighbours.size())

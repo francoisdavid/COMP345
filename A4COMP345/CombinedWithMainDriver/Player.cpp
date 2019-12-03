@@ -475,7 +475,10 @@ void Player::pickStrategy() {
     while(strategy_choice<0 || strategy_choice>3) {
         cout << "Which strategy would you like to use, player " << this->getName() << " ?" << endl;
         cout << "1. Human strategy 2.Greedy computer strategy 3. Moderate computer strategy" << endl;
-        cin >> strategy_choice;
+        if (!isTournament())
+          cin >> strategy_choice;
+        else
+          strategy_choice = rand() % 3 + 1;
         if(strategy_choice<0 || strategy_choice>3)
             cout<<"Invalid choice. Please choose between option 1-3.";
     }
@@ -534,4 +537,12 @@ void Player::resetScore() {
     playerCountries.clear();
     playerCities.clear();
     playerContinents.clear();
+}
+
+bool Player::isTournament() const {
+  return tournament;
+}
+
+void Player::setTournament(bool tournament) {
+  Player::tournament = tournament;
 }

@@ -49,7 +49,7 @@ int main() {
         for (int i = 0; i < number; i++) {
             // Create a new player object with default name and coin number that will be changed later.
             Player *newPlayer = new Player("Red", 10, rand() % 31 + 1, rand() % +12, rand() % 99 + 1930, new HumanStrategy());
-
+            newPlayer->setTournament(tournament);
             // Change the name of the player created above depending on the value of i.  0 stays as "Red".
             if (i == 1) {
                 newPlayer->setName("Blue");

@@ -115,6 +115,11 @@ private:
     int* playerNumOfArmiesBasedOnSoldiers;
 	MainGameLoop* game;
     GameScore* score;
+    bool tournament;
+public:
+  bool isTournament() const;
+
+  void setTournament(bool tournament);
 };
 
 #endif // Player_h
