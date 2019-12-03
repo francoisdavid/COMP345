@@ -10,17 +10,12 @@ int main() {
     const char *directory = "../Maps/";
 
     int choice = 0;
-    while (choice != 2 || choice != 1) {
-      cout << "Welcome to the game! Enter 1 for single mode or 2 for Tournament mode.";
+    while (choice != 2 && choice != 1) {
+      cout << "Welcome to the game! Enter 1 for single mode or 2 for Tournament mode.\n";
       cin >> choice;
     }
     bool tournament = choice - 1;
 
-    if (tournament) {
-
-    } else {
-
-    }
     try {
         MapLoader *mapLoader = loadMap(directory);// To be deleted at the end of the game.
         Map *map = mapLoader->getGraph();
@@ -38,7 +33,10 @@ int main() {
         int number = 0;
         while (number < 2 || number > 5) {
             std::cout << "\nEnter the number of players (2 to 5): ";
-            cin >> number;
+            if (!tournament)
+              cin >> number;
+            else
+              number = rand() % 4 + 2;
         }
         cout << "\nThank You! Setting up the game for " << number << " players..." << endl;
 
@@ -120,7 +118,10 @@ int main() {
             // Player* player = players[i];
 			cout << players[i]->getName() << ", how much would you like to bid? ";
             int bid;
-            cin >> bid;
+            if (!tournament)
+              cin >> bid;
+            else
+              bid = rand() % *players[i]->getPlayerCoins();
 			bids.emplace_back(bid);
             players[i]->playerBid(bid);
         }
