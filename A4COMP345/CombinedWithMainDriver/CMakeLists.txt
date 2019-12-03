@@ -32,7 +32,6 @@ add_executable(CombinedWithMainDriver
         GameScore.cpp
         GameScore.h
         GameScore.hpp
-        MAINDriver.cpp
         MainGameLoop.cpp
         MainGameLoop.hpp
         MainStrategyDriver.cpp

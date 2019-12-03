@@ -555,25 +555,26 @@ void GameScore::computeGameStatsOnCardDraw() {
     computeGameScore();
 }
 
-void computeFinalScore(){
-    
-processRegionsScore();
-processContinentsScore();
-    
-for (int i = 0; i < players.size(); i++) {
+void GameScore::computeFinalScore() {
+
+    processRegionsScore();
+    processContinentsScore();
+
+    for (int i = 0; i < players.size(); i++) {
         int score = 0;
-        
+
         // Compute regions score
         score += players.at(i)->getCountries().size();
-        
+
         // Compute continents score
         score += players.at(i)->getContinents().size();
-        
+
         // Compute goods score
         score += computeGoodsScore(players.at(i));
-        
+
         // Set and display score & statistics
         players.at(i)->setPlayerScore(score);
+    }
 }
 
 // Determines if the required # of cards in a player's hands is met
@@ -617,10 +618,13 @@ bool GameScore::isPlayerCardsRequirementMet() {
 }
 
 void GameScore::printSummaryTable() {
+    computeFinalScore();
+    cout << "| Player # | Cards | Victory Points | Coins |" << endl;
   for (auto &player : players) // access by reference to avoid copying
   {
     cout << "|   " << player->getName() << "   |";
     cout << "|   " << player->getCardCount() << "   |";
+    cout << "|   " << player->getPlayerScore() << "   |";
     cout << "|   " << player->getPlayerCoins() << "   |";
   }
 }
