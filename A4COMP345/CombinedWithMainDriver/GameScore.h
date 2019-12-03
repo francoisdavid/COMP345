@@ -25,6 +25,7 @@ public:
     void computeGameScore();
     void printSummaryTable();
 	void computeGameStatsOnCardDraw();
+	void computeFinalScore();
 private:
     
     // Properties
